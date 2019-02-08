@@ -11,12 +11,10 @@ if [ -d "themes/academic" ];then
   git pull
   cd ../../
 else
-  echo 'Directoy "themes/academic" not found, do "git clone"'
-  git clone https://github.com/skyao/hugo-academic.git themes/academic
-  #git clone git@github.com:skyao/hugo-academic-cn.git themes/academic
-  #cd themes
-  #ln -s ../../hugo-academic academic
-  #cd ../
+  echo 'Directoy "themes/academic" not found, do "ln -s"'
+  cd themes
+  ln -s ../../hugo-academic academic
+  cd ../
 fi
 
 
