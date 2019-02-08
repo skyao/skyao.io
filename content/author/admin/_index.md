@@ -13,7 +13,7 @@ role = "中年码农"
 organizations = [ { name = "Dreamfly.io", url = "https://dreamfly.io" } ]
 
 # Short bio (displayed in user profile at end of posts)
-bio = "My research interests include distributed robotics, mobile computing and programmable matter."
+bio = "我目前研究的方向主要在微服务/Microservice、服务网格/Servicemesh、无服务器架构/Serverless等和云原生/Cloud Native相关的领域，欢迎交流和指导"
 
 # Enter email to display Gravatar (if Gravatar enabled in Config)
 email = "aoxiaojian@hotmail.com"

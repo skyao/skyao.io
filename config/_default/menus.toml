@@ -10,28 +10,38 @@
 
 [[main]]
   name = "演讲分享"
-  url = "/publication/"
+  url = "/talk/"
   weight = 2
+
+[[main]]
+  name = "出版作品"
+  url = "/publication/"
+  weight = 3
 
 [[main]]
   name = "技术博客"
   url = "/post/"
-  weight = 3
+  weight = 4
 
-#[[main]]
-#  name = "开源项目"
-#  url = "#projects"
-#  weight = 4
+[[main]]
+  name = "开源项目"
+  url = "/project/"
+  weight = 5
 
 [[main]]
   name = "学习笔记"
   url = "/learning/"
-  weight = 5
+  weight = 6
+
+[[main]]
+  name = "内容标签"
+  url = "#tags"
+  weight = 7
 
 [[main]]
   name = "和我联系"
   url = "#contact"
-  weight = 6
+  weight = 8
 
 # Link to a PDF of your resume/CV from the menu.
 # To enable, copy your resume/CV to `static/files/cv.pdf` and uncomment the lines below.

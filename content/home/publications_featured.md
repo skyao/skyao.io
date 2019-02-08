@@ -3,9 +3,9 @@
 # This widget displays publications from `content/publication/` which have
 # `featured = true` in their front matter.
 widget = "publications_featured"  # Do not modify this line!
-active = true  # Activate this widget? true/false
+active = false  # Activate this widget? true/false
 
-title = "特别推荐"
+title = "最新出版"
 subtitle = ""
 
 # Order that this section will appear in.

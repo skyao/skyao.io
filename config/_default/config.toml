@@ -32,11 +32,11 @@ theme = "academic"
 enableGitInfo = false
 
 # Default language to use (if you setup multilingual support)
-defaultContentLanguage = "en"
+defaultContentLanguage = "zh"
 hasCJKLanguage = true  # Set `true` for Chinese/Japanese/Korean languages.
 defaultContentLanguageInSubdir = false
 
-paginate = 50  # Number of items per page in paginated lists.
+paginate = 20  # Number of items per page in paginated lists.
 enableEmoji = true
 footnotereturnlinkcontents = "<sup>^</sup>"
 ignoreFiles = ["\\.Rmd$", "\\.Rmarkdown$", "_files$", "_cache$"]
@@ -60,3 +60,4 @@ preserveTaxonomyNames = true
   category = "categories"
   publication_type = "publication_types"
   author = "authors"
+
