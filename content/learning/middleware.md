@@ -22,4 +22,8 @@ linktitle = "中间件"
 +++
 
 
+### [服务注册学习笔记](https://skyao.io/learning-serviceregistry/)
+
+服务注册和服务发现是服务化、微服务框架的基石。
+
 
