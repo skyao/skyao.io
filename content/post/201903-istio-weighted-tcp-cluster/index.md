@@ -6,8 +6,8 @@ lastmod = 2019-03-19
 draft = false
 
 tags = ["Istio"]
-summary = "蚂蚁金服容器与服务创新组招聘优秀毕业生啦，欢迎致力于云原生微服务研发的同学投递简历。"
-abstract = "蚂蚁金服容器与服务创新组招聘优秀毕业生啦，欢迎致力于云原生微服务研发的同学投递简历。"
+summary = "Istio支持在多个cluster之间设置权重，通过设置不同的subset和weight，可以实现很多丰富的功能。但是之前只能为HTTP提供，TLS和TCP只能设置一个Destination，直到Istio1.1版本。"
+abstract = "Istio支持在多个cluster之间设置权重，通过设置不同的subset和weight，可以实现很多丰富的功能。但是之前只能为HTTP提供，TLS和TCP只能设置一个Destination，直到Istio1.1版本。"
 
 [header]
 image = "headers/post/201903-istio-service-visibility.jpg"
