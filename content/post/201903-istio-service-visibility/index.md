@@ -6,8 +6,8 @@ lastmod = 2019-03-18
 draft = false
 
 tags = ["Istio"]
-summary = "对于服务的可见性，在 Istio 设计之初，是没有特别考虑的，或者说，Istio 一开始的设计就是建立在如下前提下的：Istio中的任何服务都可以访问其他任意服务。直到Istio1.1版本。"
-abstract = "对于服务的可见性，在 Istio 设计之初，是没有特别考虑的，或者说，Istio 一开始的设计就是建立在如下前提下的：Istio中的任何服务都可以访问其他任意服务。直到Istio1.1版本。"
+summary = "对于服务的可见性，在 Istio 设计之初，是没有特别考虑的，或者说，Istio 一开始的设计就是建立在如下前提下的：Istio中的任何服务都可以访问其他任意服务。直到Istio1.1版本才开始正视这个问题 :)"
+abstract = "对于服务的可见性，在 Istio 设计之初，是没有特别考虑的，或者说，Istio 一开始的设计就是建立在如下前提下的：Istio中的任何服务都可以访问其他任意服务。直到Istio1.1版本才开始正视这个问题 :)"
 
 [header]
 image = "headers/post/201804-dreammesh-registry-difficulty.jpg"
@@ -19,7 +19,7 @@ caption = ""
 
 对于服务的可见性，在 Istio 设计之初，是没有特别考虑的，或者说，Istio 一开始的假定，就是建立在如下这个前提下的：
 
-**Istio中的任何服务都可以访问其他任意服务**
+**Istio中的每个服务都可以访问Mesh中的任意服务**
 
 即在服务发现/请求转发这个层面，对服务访问的可见性不做任何限制，而通过安全机制来解决服务间调用权限的问题，如RBAC的使用。在这个思想的指导下，Pilot组件是需要将全量的服务信息（服务注册信息和服务治理信息）下发到 Sidecar，这样Sidecar才能在做到不管服务要请求的目标是哪个服务，都可以做到正确的路由。
 
@@ -28,11 +28,17 @@ caption = ""
 - 下发的信息量太大：因此Pilot和Sidecar的CPU使用会很高，因为每次都要将全量的数据下发到每一个sidecar，需要编解码。Sidecar的内存使用也会增加。
 - 下发的频度非常密集：系统中任何一个服务的变动，都需要通知到每一个Sidecar，即使这个Sidecar所在的服务完全不访问它
 
+![](images/istio.png)
+
 试想：假定 A 服务只需要访问 B/C 两个服务，但是在一个有1000个服务的系统中，A服务的 Sidecar 会不得不接收到其他 998 个服务的数据和每一次的变化通知。其所需有效数据和实际得到数据的比例高达 2:1000！
+
+![](images/istio2.png)
 
 因此，在没有服务可见性控制的情况下，Pilot到Sidecar的数据下发的有效性低得可谓令人发指！
 
 理想模式：同样假定 A 服务只需要访问 B/C 两个服务，如果能通过某个方式将这个信息（成为服务依赖或者服务可见性）提供出来，让Istio得到这个信息，那么在Pilot往A服务的Sidecar下发数据时，就可以做一个简单的过滤：只发送B/C服务的信息，和只在B/C服务发生变更时通知A。而这个简单过滤所带来的Pilot和Sidecar之间数据下发的性能提升，是和系统内服务数量成线性关系，很容易就实现两个或者三个数量级的提升。
+
+![](images/istio3.png)
 
 在Istio问世快2年之际，Istio终于开始正视这个问题——好吧，我坦白，在这一点上，我是有怨言的：Istio的工程实现中，对实际生产问题的考虑，非常不到位。
 
@@ -73,13 +79,13 @@ Istio 1.1 在 DestinationRule / ServiceEntry / VirtualService 三个 CRD 上新�
 
 ```protobuf
 message DestinationRule {
-	    repeated string export_to = 4;
+    repeated string export_to = 4;
 }
 message ServiceEntry {
     repeated string export_to = 7;
 }
 message VirtualService {
-  repeated string export_to = 6;
+    repeated string export_to = 6;
 }
 ```
 
@@ -126,29 +132,29 @@ metadata:
   name: istio-{{ $key }}
   namespace: {{ $.Release.Namespace }}
   annotations:
-   networking.istio.io/exportTo: "*"
+    networking.istio.io/exportTo: "*"
 ```
 
 在`pilot/pkg/serviceregistry/kube/conversion.go` 文件中有这个annotation的常量定义：
 
 ```go
-	// ServiceExportAnnotation specifies the namespaces to which this service should be exported to.
-	//   "*" which is the default, indicates it is reachable within the mesh
-	//   "." indicates it is reachable within its namespace
-	ServiceExportAnnotation = "networking.istio.io/exportTo"
+// ServiceExportAnnotation specifies the namespaces to which this service should be exported to.
+//   "*" which is the default, indicates it is reachable within the mesh
+//   "." indicates it is reachable within its namespace
+ServiceExportAnnotation = "networking.istio.io/exportTo"
 ```
 
 只在 `pilot/pkg/serviceregistry/kube/conversion.go` 的convertService() 方法中使用，这个方法将k8s 的 api core 中的 v1.Service 转为 istio 抽象模型中的 service：
 
 ```go
 func convertService(svc v1.Service, domainSuffix string) *model.Service {
-	......
-if svc.Annotations[ServiceExportAnnotation] != "" {
-    			exportTo = make(map[model.Visibility]bool)
-			    for _, e := range strings.Split(svc.Annotations[ServiceExportAnnotation], ",") {
-				        exportTo[model.Visibility(e)] = true
-    			}
-		}
+  ......
+  if svc.Annotations[ServiceExportAnnotation] != "" {
+    exportTo = make(map[model.Visibility]bool)
+    for _, e := range strings.Split(svc.Annotations[ServiceExportAnnotation], ",") {
+      exportTo[model.Visibility(e)] = true
+    }
+  }
 }
 ```
 
@@ -160,12 +166,12 @@ Visibility 类型定义如下：
 // Visibility defines whether a given config or service is exported to local namespace, all namespaces or none
 type Visibility string
 const (
-	    // VisibilityPrivate implies namespace local config
-	    VisibilityPrivate Visibility = "."
-	    // VisibilityPublic implies config is visible to all
-    	VisibilityPublic Visibility = "*"
-    	// VisibilityNone implies config is visible to none
-    	VisibilityNone Visibility = "~"
+  // VisibilityPrivate implies namespace local config
+  VisibilityPrivate Visibility = "."
+  // VisibilityPublic implies config is visible to all
+  VisibilityPublic Visibility = "*"
+  // VisibilityNone implies config is visible to none
+  VisibilityNone Visibility = "~"
 )
 ```
 
@@ -262,6 +268,8 @@ spec:
 
 当然，记得有个前提条件：service-b/service-c 的 k8s service 和相关的 CRD（DestinationRule / ServiceEntry / VirtualService）都必须正确的设置 exportTo。
 
+![](images/istio4.png)
+
 > 备注：这里设计的有点复杂，按照这个思路，如果要实现上述的精确限制，多个环节都必须明确设置。一旦有一个地方出错，就会无法访问，然后debug的过程估计不会轻松。
 
 小结：Istio1.1 通过 exportTo 字段 + Sidecar.egress.hosts 字段的配合，实现了对服务可见性的约束
@@ -271,14 +279,14 @@ spec:
 `pilot/pkg/model/push_context.go` 中，PushContext 在保存 Service 和 VirtualService 信息时，都分为 private 和 public 两个结构：
 
 ```go
-	type PushContext struct {
-	    // privateServices are reachable within the same namespace.
-	    	privateServicesByNamespace map[string][]*Service
-		    // publicServices are services reachable within the mesh.
-		    publicServices []*Service
+type PushContext struct {
+    // privateServices are reachable within the same namespace.
+    privateServicesByNamespace map[string][]*Service
+    // publicServices are services reachable within the mesh.
+    publicServices []*Service
 
-	    privateVirtualServicesByNamespace map[string][]Config
-	    publicVirtualServices             []Config
+    privateVirtualServicesByNamespace map[string][]Config
+    publicVirtualServices             []Config
 }
 ```
 
@@ -288,26 +296,28 @@ spec:
 // Caches list of services in the registry, and creates a map
 // of hostname to service
 func (ps *PushContext) initServiceRegistry(env *Environment) error {
-				    ......
-		    	for _, s := range allServices {
-		    		    		ns := s.Attributes.Namespace
-		    		    		if len(s.Attributes.ExportTo) == 0 {
-					    		    		    if ps.defaultServiceExportTo[VisibilityPrivate] {
-		    		    		    		    				ps.privateServicesByNamespace[ns] = append(ps.privateServicesByNamespace[ns], s)
-					    		    		    } else if ps.defaultServiceExportTo[VisibilityPublic] {
-						    		    		    		    ps.publicServices = append(ps.publicServices, s)
-					    		    		    }
-		    		    		} else {
-					    		    		    if s.Attributes.ExportTo[VisibilityPrivate] {
-						    		    		    		    ps.privateServicesByNamespace[ns] = append(ps.privateServicesByNamespace[ns], s)
-		    		    		    			} else {
-						    		    		    		    ps.publicServices = append(ps.publicServices, s)
-		    		    		    			}
-				    		    }
- 		   }
-				    ps.ServiceByHostname[s.Hostname] = s
-c		ps.ServicePort2Name[string(s.Hostname)] = s.Ports
-		    ......
+    ......
+    for _, s := range allServices {
+        ns := s.Attributes.Namespace
+        if len(s.Attributes.ExportTo) == 0 {
+            if ps.defaultServiceExportTo[VisibilityPrivate] {
+               ps.privateServicesByNamespace[ns] 
+                   = append(ps.privateServicesByNamespace[ns], s)
+            } else if ps.defaultServiceExportTo[VisibilityPublic] {
+                ps.publicServices = append(ps.publicServices, s)
+            }
+        } else {
+            if s.Attributes.ExportTo[VisibilityPrivate] {
+                ps.privateServicesByNamespace[ns] = 
+                   append(ps.privateServicesByNamespace[ns], s)
+            } else {
+               ps.publicServices = append(ps.publicServices, s)
+            }
+        }
+    }
+    ps.ServiceByHostname[s.Hostname] = s
+    ps.ServicePort2Name[string(s.Hostname)] = s.Ports
+    ......
 }
 ```
 
@@ -316,27 +326,26 @@ c		ps.ServicePort2Name[string(s.Hostname)] = s.Ports
 ```go
 // Services returns the list of services that are visible to a Proxy in a given config namespace
 func (ps *PushContext) Services(proxy *Proxy) []*Service {
-			    // 如果 proxy 有 sidecar scope，则从 sidecar scope 获取 service 列表
-		    	if proxy != nil && proxy.SidecarScope != nil && proxy.SidecarScope.Config != nil && 		   proxy.Type == SidecarProxy {
-		    		    		return proxy.SidecarScope.Services()
-			    }
+    // 如果 proxy 有 sidecar scope，则从 sidecar scope 获取 service 列表
+    if proxy != nil && proxy.SidecarScope != nil && proxy.SidecarScope.Config != nil && 		   proxy.Type == SidecarProxy {
+        return proxy.SidecarScope.Services()
+    }
+    
+    out := []*Service{}
 
-		    	out := []*Service{}
+    // 没有 sidecar scope，就只考虑 exportTo 的影响
+    if proxy == nil {
+        for _, privateServices := range ps.privateServicesByNamespace {
+            out = append(out, privateServices...)
+        }
+    } else {
+        // 只给当前 proxy 所在 namespace 的 private 服务
+        out = append(out, ps.privateServicesByNamespace[proxy.ConfigNamespace]...)
+    }
 
-		    // 没有 sidecar scope，就只考虑 exportTo 的影响
-			    if proxy == nil {
-				    		    for _, privateServices := range ps.privateServicesByNamespace {
-					    		    		    out = append(out, privateServices...)
-				    		    }
-		    	} else {
-			    		    // 只给当前 proxy 所在 namespace 的 private 服务
-		    		    		out = append(out, ps.privateServicesByNamespace[proxy.ConfigNamespace]...)
-		    	}
-
-		    	// 和 public 的服务
-		    	out = append(out, ps.publicServices...)
-
-		    	return out
+    // 和 public 的服务
+    out = append(out, ps.publicServices...)
+    return out
 }
 ```
 
@@ -346,9 +355,8 @@ SidecarScope 的说明，来自代码注释：
 
 ```go
 type SidecarScope struct {
-
-				    // Union of services imported across all egress listeners for use by CDS code.
-			    services []*Service
+    // Union of services imported across all egress listeners for use by CDS code.
+    services []*Service
 }
 ```
 
@@ -363,6 +371,6 @@ type SidecarScope struct {
 1. 总算提供了一个避免全量数据下发的方式，理论上在服务数量比较多时，通过严格约束服务间的可见性，是可以让 Pilot 到 Sidecar 的数据下发数量起码降低一到两个数量级（1/10到1/100），Pilot的CPU使用/Sidecar的CPU使用/Sidecar的内存占用 应该都可以有明显改善。当然这是理论推断，具体是否做到了还要看 Istio 1.1 的实际测试结果。拭目以待吧，希望是个惊喜。
 2. 可见性的边界，是 namespace，这一点我有些担心：k8s 的 namespace 在实践中一般不会做非常细致的细分，搞不好一个体系里面可能就几个甚至一个 namespace，以 namespace 为边界来决定服务的可见性我个人觉得粒度太大——这一点稍后咨询一下各方情况再做更新。
 3. 设置上有些麻烦，从上面的分析上看，要实现服务A对服务B的精确限制，需要设置服务B的exportTo，包括k8s Service/Istio VitualService/Istio Destination Rule，还要设置服务A的 Sidecar CRD，至少要设置4个地方。繁琐且容易出错，而且语义也不直白：我相信大部分同学如果没有看过类似本文这样的讲解，恐怕很难一下就把这里面的条条道道梳理清楚。
-4. 只是限制服务的可见性，而不是明确的强制要求管理服务间的静态依赖关系，后者其实是我，或者说我们团队想要的。可见性和静态依赖关系之间有语义上的明确差别：可见性不是强制性的，是笼统的，是可以含糊一点的；而静态依赖关系是强制的，明确的，精准的，需要强力管控的。
+4. 只是限制服务的可见性，而不是明确的强制要求管理服务间的静态依赖关系，后者其实是我，或者说我们团队想要的。服务可见性和服务静态依赖关系之间有语义上的明确差别：服务可见性不具备强制性的，是笼统的，是可以含糊一点的，从Istio的意图看主要是为了效率的提升（毕竟之前的做法太浪费资源）；而服务静态依赖关系是强制性的，依赖明确，设置精准，目标是为体系中的服务调用关系进行强力管控。
 
 先写到这，稍后深入后再补充。
