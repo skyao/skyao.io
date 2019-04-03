@@ -13,7 +13,7 @@ role = "中年码农"
 organizations = [ { name = "Dreamfly.io", url = "https://dreamfly.io" } ]
 
 # Short bio (displayed in user profile at end of posts)
-bio = "我目前研究的方向主要在微服务/Microservice、服务网格/Servicemesh、无服务器架构/Serverless等和云原生/Cloud Native相关的领域，欢迎交流和指导"
+bio = "我目前研究的方向主要在Microservice、Servicemesh、Serverless等和Cloud Native相关的领域，欢迎交流和指导"
 
 # Enter email to display Gravatar (if Gravatar enabled in Config)
 email = "aoxiaojian@hotmail.com"
@@ -23,8 +23,7 @@ interests = [
     "微服务/Micro Service",
     "服务网格/Service Mesh",
     "无服务器架构/Serverless",
-    "云原生/Cloud Native",
-    "敏捷/DevOps"
+    "云原生/Cloud Native"
 ]
 
 # List qualifications (such as academic degrees)
@@ -83,3 +82,6 @@ interests = [
 目前就职蚂蚁金服，在中间件团队从事Service Mesh、Serverless产品开发。
 
 个人理念：(希望)坚守一线，(力求)绝不脱节，上可海阔天空谈架构(常有)，下可埋头苦干码代码(难得)。
+
+（欢迎使用 [RSS订阅](/index.xml) 本站内容更新）
+
