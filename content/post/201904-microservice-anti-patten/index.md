@@ -5,7 +5,7 @@ date = 2019-04-10
 lastmod = 2019-04-10
 draft = false
 
-tags = ["AppMesh"]
+tags = ["微服务"]
 summary = "微服务领域的著名专家 Chris Richardson 在其博客上发表了微服务反模式序列文章，描述他在与全球众多客户合作时，观察到多种微服务采用的反模式。"
 abstract = "微服务反模式序列文章翻译"
 
