@@ -6,8 +6,8 @@ lastmod = 2019-04-23
 draft = false
 
 tags = ["Istio"]
-summary = "微服务领域的著名专家 Chris Richardson 在其博客上发表了微服务反模式序列文章，描述他在与全球众多客户合作时，观察到多种微服务采用的反模式。"
-abstract = "微服务反模式序列文章翻译"
+summary = "来自 Shopify 的 Michael Kipper 发表了一篇文章，评测和对比了 Istio 和 Linkerd2 的CPU使用情况。Istio 的表现可以说相当的尴尬…..."
+abstract = "来自 Shopify 的 Michael Kipper 发表了一篇文章，评测和对比了 Istio 和 Linkerd2 的CPU使用情况。Istio 的表现可以说相当的尴尬…..."
 
 [header]
 image = "headers/post/201903-istio-service-visibility.jpg"
@@ -75,9 +75,9 @@ Istio/Envoy的表现（客户端 Sidecar）：
 
 最后这条值得注意：
 
-> 具体到 Istio, 在我看来, 他们围绕 Mixer 做出了一些不幸的架构决定。好消息是, 我被告知, 在1.2 发布后这些问题会被解除, 这应该会大大提高proxy资源的利用率。
+> 具体到 Istio, 在我看来, 他们围绕 Mixer 做出了一些不幸(unfortunate)的架构决定。好消息是, 我被告知, 在1.2 发布后这些问题会被解除, 这应该会大大提高proxy资源的利用率。
 
-看来是个好消息，问题是具体会有什么内容？Matt 没说，准备去调研一下，如有收获后续更新。
+看来是个好消息，问题是具体会有什么内容？Matt 没说，准备去调研一下，如有收获后续更新。注意这个用词，**不幸(unfortunate)**，Matt 用它来形容 Istio Mixer 设计，Mixer的设计问题可见一斑。
 
 ## Mixer背景补充
 
