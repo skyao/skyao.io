@@ -5,9 +5,9 @@ date = 2019-05-05
 lastmod = 2019-05-05
 draft = false
 
-tags = ["服务网格","Istio", "Mixer"]
-summary = "多集群还是不多集群：使用Service Mesh进行集群间通信"
-abstract = "多集群还是不多集群：使用Service Mesh进行集群间通信"
+tags = ["服务网格", "Traffic Director"]
+summary = "在这篇文章中，我将介绍Traffic Director是什么，它与Istio服务网格有什么关系，以及对于那些已经在GKE上运行生产Istio网格的人来说意味着什么。"
+abstract = "在这篇文章中，我将介绍Traffic Director是什么，它与Istio服务网格有什么关系，以及对于那些已经在GKE上运行生产Istio网格的人来说意味着什么。"
 
 [header]
 image = "headers/post/201904-microservice-anti-patten.jpg"
@@ -17,13 +17,13 @@ caption = ""
 
 > 备注：英文原文来自Medium网站博客文章 [Google Cloud’s Traffic Director — What is it and how is it related to the Istio service-mesh?](https://medium.com/cloudzone/google-clouds-traffic-director-what-is-it-and-how-is-it-related-to-the-istio-service-mesh-c199acc64a6d)，原作者为 [Iftach Schonbaum](https://medium.com/@iftachsc)，发布时间 2019-04-16
 
-!![](images/traffic.jpeg)
+![](images/traffic.jpeg)
 
 对于最近跟进 Google Cloud 路线图的人来说，可能听说过Traffic Director。对于那些了解 Istio 的人来说，可能听起来有些重叠和混乱（特别是如果使用了最新的 GKE Istio 插件）。
 
 在这篇文章中，我将介绍Traffic Director是什么，它与Istio服务网格有什么关系，以及对于那些已经在GKE上运行生产Istio网格的人来说意味着什么。
 
-在这篇文章中，我不会讲述 Istio 或服务网格是什么。
+在这篇文章中，我不会介绍 Istio 或服务网格是什么。
 
 ------
 
@@ -92,57 +92,56 @@ Traffic Director 提供 GCP 托管的 Pilot 以及所提及的其他功能，如
 
 ### 数据平面代理
 
-Traffic Director使用开放式xDSv2 API与数据平面中的服务代理进行通信，从而确保您不会被锁定到专有接口。这意味着Traffic Advisor可以使用像Envoy这样的xDSv2兼容的开放服务代理。**值得注意**的是，Traffic Director仅使用Envoy代理进行了测试，并且在当前的beta版本中仅支持Envoy版本1.9.1或更高版本。
+Traffic Director使用开放式xDSv2 API与数据平面中的服务代理进行通信，从而确保您不会被锁定到专有接口。这意味着Traffic Director可以使用像Envoy这样的xDSv2兼容的开放服务代理。**值得注意**的是，Traffic Director仅使用Envoy代理进行了测试，并且在当前的beta版本中仅支持Envoy版本1.9.1或更高版本。
 
-另一方面，Istio目前仅与Envoy一起[发售](https://github.com/nginxinc/nginmesh)，虽然有像[nginMesh](https://github.com/nginxinc/nginmesh)这样的项目，它们使用nginx作为边车代理运送Istio控制平面，但这是一个单独的项目。
+另一方面，Istio目前仅与Envoy一起发行，虽然有像[nginMesh](https://github.com/nginxinc/nginmesh)这样的项目，使用 nginx 作为 Sidecar 代理配合 Istio 控制平面，但这是一个单独的项目。
 
-值得一提的是，Envoy拥有领先的网状代理，专为服务网格而设计，具有高性能和低内存占用。
+值得一提的是，Envoy拥有领先的网格代理，为服务网格而设计，具有高性能和低内存占用。
 
-#### Sidecar注入和部署
+### Sidecar注入和部署
 
-在Istio和Traffic Director中，代理可以在Kubernetes部署（最终POD）和VM上。在VM上部署的两种情况下，都会为您提供多个脚本和文件来安装代理并使用控件对其进行配置。
+在 Istio 和 Traffic Director 中，代理可以在 Kubernetes 部署（最终是POD）和VM上。在VM上部署的两种情况下，都会提供多个脚本和文件来安装代理并使用控制器对其进行配置。
 
-对于Kubernetes工作负载，Istio开箱即用，具有自动注入机制（与MutatingAdmissionController 配合使用），当在标记为 自动注入的命名空间或使用专用POD注释创建时，它会自动将边车代理注入POD。
+对于Kubernetes工作负载，Istio开箱即用，具有自动注入机制（与MutatingAdmissionController 配合使用），当在标记为自动注入的命名空间或使用专用POD注释创建POD时，它会自动将Sidecar代理注入到POD。
 
-使用Traffic Director，您当前需要手动注入边车。并且还使用注释从服务创建NEG（[请参阅GCP网络端点组](https://cloud.google.com/load-balancing/docs/negs/)），以便可以将其作为服务添加到Traffic Director中。
+使用 Traffic Director，您当前需要手动注入 Sidecar。并且还要使用注释从服务创建NEG（[请参阅GCP网络端点组](https://cloud.google.com/load-balancing/docs/negs/)），以便可以将其作为服务添加到Traffic Director中。
 
-由于创建[MutatingAdmissionWebhook](https://kubernetes.io/docs/reference/access-authn-authz/admission-controllers/)和注入服务相对容易，我确信自动注入迟早会到达Traffic Director ...
+考虑到创建 [MutatingAdmissionWebhook](https://kubernetes.io/docs/reference/access-authn-authz/admission-controllers/) 和注入服务相对容易，我相信Traffic Director 迟早会提供自动注入的...
 
-#### **多簇网格**
+### 多集群网格
 
-在Istio中，为了跨越多个Kubernetes簇的网格，Istio提供了一个专用图表，名为istio-remote，用于扩展网格。我不会在这里看到。
+在Istio中，为了让网格跨越多个Kubernetes 集群，Istio提供了一个专用 chart 用于扩展网格，名为 istio-remote。我这里就不再展开。
 
-由于Traffic Director是一个控制平面，它位于Kubernetes集群之外，并且无论从哪个集群添加Kubernetes工作负载，都没有特定的演练来跨越多个集群的网格。
+由于 Traffic Director 是一个控制平面，位于 Kubernetes 集群之外，可以从任意集群添加Kubernetes工作负载到 Traffic Director，没有跨越多个集群的网格的特定演练。
 
-#### 网格可观察性
+### 网格可观测性
 
-今天，Istio推出了Kiali - 一个很好的网格可观察性，帮助我们的客户在微服务应用程序中调试应用问题。Kiali一直在不断发展，迅速发布新版本。
+目前，Istio推出了Kiali - 一个很好用的网格可观测性，极大的帮助了我们的客户在微服务应用程序中调试问题。Kiali一直在不断发展，迅速发布新版本。
 
-Traffic Director的特点是可以使用多个工具进行观察，包括[Apache Skywalking](http://skywalking.apache.org/)。
+Traffic Director的特点是可以使用多个工具进行观测，包括[Apache Skywalking](http://skywalking.apache.org/)。
 
-#### $ Pricing $
+### $ Pricing $
 
-Istio是一个开源和免费的。目前，Traffic Director目前免费提供Beta版本。
-
-------
-
-#### “如果我已经在GKE上使用Istio操作生产网格怎么办？”
-
-如上所述，Traffic Advisor是一个托管的Pilot（具有额外功能），它将支持Istio API进行管理。因此，如果您想要使用具有高SLA的完全托管的试用版替换您的集群内非托管试用版，它应该能够轻松选择更换。据我所知，将有适当的选择指示。
+Istio是开源和免费的。Traffic Director目前免费提供Beta版本。
 
 ------
 
-Traffic [Cloud](https://medium.com/@googlecloud)是[Google Cloud](https://medium.com/@googlecloud)最近发布的一项声明。由于它基于Istio的核心模式，谷歌是其主要贡献者之一，我预测它的美好未来。正是在所有公共云提供商宣布他们自己的Mesh解决方案的时候。
+### “如果我已经在GKE上使用Istio运维生产网格怎么办？”
+
+如上所述，Traffic Director是一个托管的Pilot（具有额外功能），它将支持使用 Istio API 进行管理。因此，如果您想要使用具有高SLA的完全托管的版本替换您集群内的非托管版本，它应该能够轻松选择更换。据我所知，将有适当的选择指示。
 
 ------
 
-交通主管的路线图目前包括：
+[Google Cloud](https://medium.com/@googlecloud)最近发布了 Traffic Director。由于它基于Istio的核心模式，而谷歌是Istio主要贡献者之一，我预测它会有美好未来。现在正是所有公有云提供商宣布他们自己的Mesh解决方案的时候了。
 
-- 支持Istio的安全功能，如mTLS，RBAC（Istio RBAC）
-- 可观察性整合
+------
+
+Traffic Director 的路线图目前包括：
+
+- 支持Istio的安全特性，如mTLS，RBAC（Istio RBAC）
+- 可观测性集成
 - 混合和多云支持
 - 使用Istio API进行管理
-- Anthos整合（见我在Anthos上的帖子）
-- 与其他服务网格控制平面的联合
+- Anthos集成
+- 与其他服务网格控制平面的联邦（Federation）
 
-我希望这篇文章解决任何困惑或问题，如果没有联系我！
