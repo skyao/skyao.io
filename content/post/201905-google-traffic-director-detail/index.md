@@ -6,8 +6,8 @@ lastmod = 2019-05-06
 draft = false
 
 tags = ["服务网格", "Traffic Director"]
-summary = "Google最近宣布用于服务网格的Traffic Director beta测试版，为VM和容器服务带来全局流量管理。本文将对 Traffic Director 进行详细介绍。"
-abstract = "Google最近宣布用于服务网格的Traffic Director beta测试版，为VM和容器服务带来全局流量管理。本文将对 Traffic Director 进行详细介绍。"
+summary = "Google最近宣布用于服务网格的Traffic Director beta测试版，为VM和容器服务带来全局流量管理。本文将对 Traffic Director 进行详细介绍和产品分析"
+abstract = "Google最近宣布用于服务网格的Traffic Director beta测试版，为VM和容器服务带来全局流量管理。本文将对 Traffic Director 进行详细介绍和产品分析。"
 
 [header]
 image = "headers/post/201904-microservice-anti-patten.jpg"
@@ -328,15 +328,32 @@ Traffic Director 的 Roadmap 中，有和 Istio 进一步集成的计划，从�
 
 在API的选择上，Traffic Director 的做法是支持开放的 xDS v2 API，以及计划中的通过 Istio API 来进行配置。一方面在产品层面上和开源的Envoy/Istio保持一致，另一方面也通过这种方式实现了其一直宣传的不锁定的目标，对于市场宣传和争取客户应该是有利的，也有助于实现混合云和多云战略。
 
-目前 Traffic Director 还处于 beta 测试阶段，尤其流量配置更是还在 alpha 阶段，产品的成熟度还不够高，roadmap中也还有很多非常重要甚至急迫（如可观测性）的内容有待完成。因此不适合对 Traffic Director 过早的做判断和评论，个人的观点是 Traffic Director 代表的产品方向应该是非常有前途，可以给客户带来实际价值。这是Google 在ServiceMesh领域（甚至是Serverless领域）新的探索和尝试，期望有好的结果。
+目前 Traffic Director 还处于 beta 测试阶段，尤其流量配置更是还在 alpha 阶段，产品的成熟度还不够高，roadmap中也还有很多非常重要甚至急迫（如可观测性）的内容有待完成。因此不适合对 Traffic Director 过早的做判断和评论，我的观点是 Traffic Director 代表的产品方向应该是非常有前途，可以给客户带来实际价值。这是Google 在ServiceMesh领域（甚至是Serverless领域）新的探索和尝试，期望有好的结果。
+
+对 Traffic Director 的理解，我的观点是不能单独的只看 Traffic Director  这一个产品，而是要结合近期 Google 陆续推出的几个相关产品：
+
+- Google Cloud Service Mesh：ServiceMesh产品，简单理解为 Istio 的GCP托管版本（猜测可能是兼容Istio API的内部实现/扩展版本），探索方向为在公有云上提供 Service Mesh 托管服务
+- Google Cloud Run：Serverless 产品，简单理解为 knative 的GCP托管版本（猜测依然可能是兼容 Knative API的内部实现/扩展版本），探索方向为在公有云上提供 Serverless 托管服务
+- Anthos：Hybird/Multi-Cloud产品，号称业界"第一个真正的混合和多云平台"，探索方向为 Google 宣称要 "All in"的混合云市场
+
+然后再来看，作为托管版 Service Mesh 控制平台而推出 Traffic Director 产品，我们前面列出的三个卖点和特色：对混合云/多云的支持；对VM服务（或者说非云原生服务）的支持；整合 serverless 的部分特性。和这三个新产品可谓交相呼应。
+
+摘录两句从最近的  Google Cloud Next 大会信息中看到的话，是不是更有体会？
+
+1. Write once, Run Anywhere/一次写好，哪都能跑
+2. Use open-source technology easily and in a cloud-native way / 以云原生的方式，轻松使用开源技术
+
+**Google / Google Cloud 在下一盘很大的棋，一盘围绕云和云原生的大棋:**
+
+以云为战场，以kubernetes为根据地，以开源开放不锁定为口号，以云原生为旗帜，以ServiceMesh和Serviceless为桥梁连接起应用和基础设施，以混合云为突破口……剑指当前云计算市场排名第一/第二的AWS/Azure。
 
 ## 参考资料
 
-Traffic Director目前能找到的资料不多，基本都是Google Cloud放出来的新闻稿/博客和官方文档，还有两次cloud next大会上的介绍演讲及PPT。第三方的介绍文章非常的少，因此在调研和整理资料时不得不大量饮用了来自Traffic Director官方渠道的资料和图片。
+Traffic Director目前能找到的资料不多，基本都是Google Cloud放出来的新闻稿/博客和官方文档，还有两次cloud next大会上的介绍演讲及PPT。第三方的介绍文章非常的少，因此在调研和整理资料时不得不大量引用来自Traffic Director官方渠道的资料和图片。
 
 - [Traffic Director concepts](https://cloud.google.com/traffic-director/docs/traffic-director-concepts): Google Cloud 上的 Traffic Director 官方文档
 - [Google Cloud networking in depth: How Traffic Director provides global load balancing for open service mesh](https://cloud.google.com/blog/products/networking/traffic-director-global-traffic-management-for-open-service-mesh)：来自Google Cloud网站的官方博客文章，发表时间为 2019-04-18
 - [Google Cloud’s Traffic Director — What is it and how is it related to the Istio service-mesh?](https://medium.com/cloudzone/google-clouds-traffic-director-what-is-it-and-how-is-it-related-to-the-istio-service-mesh-c199acc64a6d)：来自Medium网站的博客文章，原作者为 [Iftach Schonbaum](https://medium.com/@iftachsc)，发表时间 2019-04-16
 -  [Introducing Traffic Director: Google’s Service Mesh Control Plane](https://www.infoq.com/news/2019/04/google-traffic-director)：来自 InfoQ 网站的文章，发布时间 2019-04-25
-- [Traffic Director & Envoy-Based L7 ILB for Production-Grade Service Mesh & Istio](https://www.youtube.com/watch?v=FUITCYMCEhU): Google 在 Cloud Next '19 大会上的主题演讲，发表时间 2019-04-10
+- [Traffic Director & Envoy-Based L7 ILB for Production-Grade Service Mesh & Istio](https://www.youtube.com/watch?v=FUITCYMCEhU): Google 在 Cloud Next '19 大会上的主题演讲，发表时间 2019-04-10（本文的很多图片摘录自这个演讲的ppt）
 - [Hybrid and Open Services with GCP, Envoy and Istio: A Talk with Google and Lyft ](https://www.youtube.com/watch?time_continue=2759&v=4U4X_OzJaNY): Google 在 Cloud Next '18 大会上的主题演讲，发表时间 2018-07-26
