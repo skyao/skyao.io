@@ -81,5 +81,10 @@ Envoy xDS API最新的定义请见：https://github.com/envoyproxy/data-plane-ap
 
 不仅仅在于 Envoy 表现稳定、使用广泛、顺利从CNCF毕业，也在于 Envoy 的 xDS v2 API，已经成为数据平面的事实标准。而这一次CNCF组织通用数据平面API工作组，准备基于 xDS v2 API 制定官方标准，可以说是水到渠成。
 
-我目前唯一担心的是：Bueyant会不会参与进来？Linkerd2 会不会选择放弃现在使用的私有API而遵循新标准？
+我目前唯一担心的是：Buoyant会不会参与进来？Linkerd2 会不会选择放弃现在使用的私有API而遵循新标准？
 
+最新更新：在Slack上咨询 Buoyant 是否会加入 UDPA 和 Linkerd2 是否会遵循新的标准API，CEO William 的回复是：I don’t see anything that is relevant to Linkerd in there。有些可惜，目前 Linkerd2 的基于Rust的 proxy 是市面上唯一做的不错又不遵循 xDS API 的开源数据平面。
+
+## 相关资讯
+
+- https://lists.cncf.io/g/udpa-wg/：Universal Data Plane API Working Group 的 mail list。
