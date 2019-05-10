@@ -1,13 +1,13 @@
 +++
 title = "Google Cloud Run详细介绍"
 
-date = 2019-05-09
-lastmod = 2019-05-09
+date = 2019-05-10
+lastmod = 2019-05-10
 draft = false
 
-tags = ["服务网格", "Traffic Director"]
-summary = "在这篇文章中，我将介绍Traffic Director是什么，它与Istio服务网格有什么关系，以及对于那些已经在GKE上运行生产Istio网格的人来说意味着什么。"
-abstract = "在这篇文章中，我将介绍Traffic Director是什么，它与Istio服务网格有什么关系，以及对于那些已经在GKE上运行生产Istio网格的人来说意味着什么。"
+tags = ["serverless", "Cloud Run"]
+summary = "在Cloud Next 2019 大会上，Google 宣布了 Cloud Run，这是一个新的基于容器运行 Serverless 应用的解决方案。Cloud Run 基于开源的 knative 项目，宣称要将 serverless 带入容器世界。"
+abstract = "在Cloud Next 2019 大会上，Google 宣布了 Cloud Run，这是一个新的基于容器运行 Serverless 应用的解决方案。Cloud Run 基于开源的 knative 项目，宣称要将 serverless 带入容器世界。"
 
 [header]
 image = "headers/post/project-google-cloud-run.jpg"
