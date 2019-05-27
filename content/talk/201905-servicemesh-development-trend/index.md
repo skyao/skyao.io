@@ -53,7 +53,7 @@ url_source = ""
 
 # Custom links (optional).
 #   Uncomment line below to enable. For multiple links, use the form `[{...}, {...}, {...}]`.
-url_custom = [{name = "PPT下载", url = "/files/pdf/201905-servicemesh-development-trend.pdf"}, {name = "图文实录(PDF格式)", url = "/files/pdf/201811-service-mesh-step-by-step-record.pdf"},  {name = "Meetup资料介绍", url = "https://yq.aliyun.com/articles/701464"}]
+url_custom = [{name = "PPT下载", url = "/files/pdf/201905-servicemesh-development-trend.pdf"}, {name = "图文实录(PDF格式)", url = "/files/pdf/201905-servicemesh-development-trend-text.pdf"},  {name = "Meetup资料介绍", url = "https://yq.aliyun.com/articles/701464"}]
 
 # Does the content use math formatting?
 math = false
