@@ -68,8 +68,6 @@ image = "headers/talk/201905-servicemesh-development-trend.png"
 caption = ""
 +++
 
-![](images/logo.jpg)
-
 ## 前言
 
 本文内容整理自5月25日在 Kubernetes & Cloud Native Meetup 上海站发表的主题演讲，主要介绍了ServiceMesh最新的产品动态，分析其发展趋势和未来走向；结合蚂蚁的上云实践，阐述在云原生背景下Service Mesh的核心价值，以及对云原生落地的关键作用。
