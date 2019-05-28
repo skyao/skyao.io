@@ -84,7 +84,7 @@ caption = ""
 
 ### Istio1.1发布
 
-Istio是目前 Service Mesh 社区最引人注目的开源项目，在今年的3月份发布了期待已久的 Istio 1.1 版本，我们来看看Istio最近几个版本的发布情况：
+Istio是目前 Service Mesh 社区最引人注目的开源项目，在今年的3月份发布了期待已久的 Istio 1.1 版本，我们来看看 Istio 最近几个版本的发布情况：
 
 - 2018年6月1日，Istio 发布了 0.8 版本，这是Istio历史上第一个LTS版本，也是Istio历史上变动最大的一个版本
 - 2018年7月31日，Istio发布了1.0版本，号称 "Product Ready"
@@ -104,33 +104,33 @@ Istio是目前 Service Mesh 社区最引人注目的开源项目，在今年的3
 
 Istio 1.1的第一个架构变化来自 Galley：在 Istio 1.1 的架构图中增加了 Galley 组件。但是实际上在 Istio 1.0 版本中 Gallay 组件就已经存在，只是当时 Galley 的功能非常简单，只是做配置更新之后的验证（Validation），在 Istio 1.0 的架构图中都没有出现。而在 Istio 1.1 版本之后，Galley 的定位发生了巨大的变化：Galley开始分担 Pilot/Mixer 的职责。
 
-在 Istio 1.1 版本之前的设计中，Istio的三大组件 Pilot/Mixer/Citadel 都需要访问 kubernetes 的 API Server，以获取服务注册信息和配置信息，包括kubernetes原生资源如service/deployment/pod等，还有 Istio 的自定义资源（数量多达50多个的 CRD） 。这个设计导致Istio的各个组件都不得不和 kubernetes 的 API Server产生强绑定，不仅仅代码大量冗余，而且在测试中也因为需要和kubernetes 的 API Server 交互导致 Pilot/Mixer 模块测试困难。
+在 Istio 1.1 版本之前的设计中，Istio的三大组件 Pilot/Mixer/Citadel 都需要访问 kubernetes 的 API Server，以获取服务注册信息和配置信息，包括kubernetes原生资源如 service/deployment/pod 等，还有 Istio 的自定义资源（数量多达50多个的 CRD） 。这个设计导致 Istio 的各个组件都不得不和 kubernetes 的 API Server产生强绑定，不仅仅代码大量冗余，而且在测试中也因为需要和 kubernetes 的 API Server 交互导致 Pilot/Mixer 模块测试困难。
 
 为了解决这个问题，在 Istio 1.1 之后，访问 kubernetes 的 API Server 的工作将逐渐交给 Galley 组件，而其他组件如 Pilot/Mixer 就会和  kubernetes 解耦。
 
 ![](images/galley.png)
 
-这个工作还在进行中，目前 Istio 的CRD 已经修改为由 Galley 读取，而 K8s 的原生资源（Service/Deployment/Pod等），暂时还是由 Pilot 读取。
+这个工作还在进行中，目前 Istio 的CRD 已经修改为由 Galley 读取，而 K8s 的原生资源（Service / Deployment / Pod等），暂时还是由 Pilot 读取。
 
-为了方便在各个组件中同步数据，Istio 引入了MCP（Mesh Configuration Protocol）协议。在 Istio 1.1 版本中，Pilot 通过MCP协议从 Galley 同步数据。MCP是受 xDS v2 协议（准确说是 aDS）的启发而制定的新协议，用于在Istio各模块之间同步数据。
+为了方便在各个组件中同步数据，Istio 引入了MCP（Mesh Configuration Protocol）协议。在 Istio 1.1 版本中，Pilot 通过MCP协议从 Galley 同步数据。MCP是受 xDS v2 协议（准确说是 aDS）的启发而制定的新协议，用于在Istio 各模块之间同步数据。
 
 Istio 1.1的第二个架构变化来自于 Mixer，在 Istio 1.1 版本中，推荐使用 Out-of-Process Adapter，即进程外适配器。Istio预计下一个版本将弃用 In-Proxy Adapter，目前所有的 Adapter 都将改为 Out-of-Process adapter。
 
-什么是In-Proxy Adapter？下图是 Mixer 的架构图，在 Istio 的设计中，Mixer 是一个独立进程，Proxy 通过远程调用来和 Mixer 交互。而 Mixer 的实现了 Adapter 模式，定义了 Adapter API，然后内建了数量非常多的各种Adapter。这些Adatper的代码存放在 Mixer 代码中，运行时也在 Mixer 的进程内，因此称为 In-Proxy Adapter。
+什么是In-Proxy Adapter？下图是 Mixer 的架构图，在 Istio 的设计中，Mixer 是一个独立进程，Proxy 通过远程调用来和 Mixer 交互。而 Mixer 的实现了 Adapter 模式，定义了 Adapter API，然后内建了数量非常多的各种Adapter。这些 Adatper 的代码存放在 Mixer 代码中，运行时也在 Mixer 的进程内，因此称为 In-Process Adapter。
 
 ![](images/in-process-adapter.png)
 
-In-Proxy Adapter 的问题在于所有的 Adapter 的实现都和 mixer 直接绑定，包括代码和运行时。因此当 Adapter 需要更新时就需要更新整个 Mixer，任意一个 Adapter 的实现出现问题也会影响整个 Mixer，而且数量众多的Adapter也带来了数量众多的CRD。为此，Istio 1.1 版本中通过引入 Out-of-Process Adapter 来解决这个问题。
+In-Process Adapter 的问题在于所有的 Adapter 的实现都和 Mixer 直接绑定，包括代码和运行时。因此当 Adapter 需要更新时就需要更新整个 Mixer，任意一个 Adapter 的实现出现问题也会影响整个 Mixer，而且数量众多的 Adapter 也带来了数量众多的CRD。为此，Istio 1.1 版本中通过引入 Out-of-Process Adapter 来解决这个问题。
 
 ![](images/out-of-process-adapter.png)
 
-Out-of-Process Adapter以独立进程的方式运行在Mixer进程之外，因此 Out-of-Process Adapter 的开发/部署和配置都可以独立与 Mixer，从而将Mixer从adaper的细节实现中解脱出来。
+Out-of-Process Adapter以独立进程的方式运行在 Mixer 进程之外，因此 Out-of-Process Adapter 的开发/部署和配置都可以独立于 Mixer，从而将 Mixer 从 Adaper 的实现细节中解脱出来。
 
-但是，Out-of-Process Adapter的引入，会导致新的性能问题：原来 Mixer 和 In-Proxy Adapter 之间是方法调用，现在  改成 Out-of-Process Adapter 之后就变成远程调用了。而Mixer一直以来都是Istio架构设计中最大的争议，之前 Proxy 和 Mixer 之间的远程调用，已经造成非常大的性能瓶颈所在，而引入 Out-of-Process Adapter 之后远程调用会从一次会变成多次（每个配置生效的 Out-of-Process Adapter 就意味着一次远程调用），这会让性能雪上加霜。
+但是，Out-of-Process Adapter的引入，会导致新的性能问题：原来 Mixer 和 In-Process Adapter 之间是方法调用，现在改成 Out-of-Process Adapter 之后就变成远程调用了。而 Mixer 一直以来都是 Istio 架构设计中最大的争议，之前 Proxy 和 Mixer 之间的远程调用，已经造成非常大的性能瓶颈，而引入 Out-of-Process Adapter 之后远程调用会从一次会变成多次（每个配置生效的 Out-of-Process Adapter 就意味着一次远程调用），这会让性能雪上加霜。
 
 总结 Out-of-Process Adapter 的引入：**架构更加的优雅**，**性能更加的糟糕**。
 
-在 Istio 1.1 为了架构而不顾性能的同时，Istio 内部也有其他的声音传出，如正在规划中的 Mixer v2。这个规划最终的决策就是放弃 Mixer 独立进程的想法，改为将 Mixer 的功能合并到 Envoy 中，从而消除 Envoy 和 Mixer 之间远程调用的开销。关于 Mixer 的性能问题和 Mixer 合并的思路，蚂蚁金服在去年六月份开始 SOFAMesh 项目时就有清晰的认识和计划，时隔一年，终于欣喜的看到 Istio 开始正视 Mixer 的架构设计问题并回到正确的方向上。
+在 Istio 1.1 为了架构而不顾性能的同时，Istio 内部也有其他的声音传出，如正在规划中的 Mixer v2。这个规划最重要的决策就是放弃 Mixer 独立进程的想法，改为将 Mixer 的功能合并到 Envoy 中，从而避免 Envoy 和 Mixer 之间远程调用的开销。关于 Mixer 的性能问题和 Mixer 合并的思路，蚂蚁金服在去年六月份开始 SOFAMesh 项目时就有清晰的认识和计划，时隔一年，终于欣喜的看到 Istio 开始正视 Mixer 的架构设计问题并回到正确的方向上。
 
 对此有兴趣的朋友可以通过阅读下面的文章获取更详细的信息（发表于一年前，但是依然有效）：
 
@@ -139,19 +139,19 @@ Out-of-Process Adapter以独立进程的方式运行在Mixer进程之外，因�
 - [Mixer Cache: Istio的阿克琉斯之踵?](https://skyao.io/post/201804-istio-achilles-heel/)： 系列文章，有两篇
 - [Istio Mixer Cache工作原理与源码分析](https://skyao.io/post/201804-istio-mixer-cache-concepts/): 系列文章，有四篇
 
-目前 Mixer v2 的规划还处于 Review 状态，实现方式尚未有明确决定。如果要合并 Mixer，考虑到目前 Mixer 是基于 Golang 编写，而 Envoy 是基于c++ ，这意味着需要用c++重写所有的 Adapter，工作量巨大，恐怕不是短期之类能够完成的。当然也有另外一个新颖（或者说脑洞大开）的思路：引入 Web Assembly（WASM）。目前 Envoy 在进行支持 Web Assembly 的尝试，如果成功，则通过 Web Assembly 的方式来支持 Mixer Adapter 不失为一个好选择。
+目前 Mixer v2 的规划还处于 Review 状态，实现方式尚未有明确决定。如果要合并 Mixer，考虑到目前 Mixer 是基于 Golang 编写，而 Envoy 是基于c++ ，这意味着需要用c++重写所有的 Adapter，工作量巨大，恐怕不是短期之内能够完成的。当然也有另外一个新颖（或者说脑洞大开）的思路：引入 Web Assembly（WASM）。目前 Envoy 在进行支持 Web Assembly 的尝试，如果成功，则通过 Web Assembly 的方式来支持 Mixer Adapter 不失为一个好选择。
 
 ### 其他社区产品动态
 
 最近，CNCF 在筹建 Universal Data Plane API （UDPA/通用数据平面API）工作组，以制定数据平面的标准API，为L4/L7数据平面配置提供事实上的标准。Universal Data Plane API 的创意来自 Envoy，实现为 xDS API。而目前 xDS v2 API 已经是数据平面API的事实标准，这次的 UDPA 会以xDS v2 API 为基础。工作组的初始成员来自包括 Envoy 和 gRPC 项目的代表，蚂蚁金服也在积极参与 UDPA 工作组，目前还处于非常早期的筹备阶段。
 
-Linkerd2 在2019年4月17日发布了最新的稳定版本 Linkerd 2.3 版本。Linkerd2 是目前开源产品中唯一正面对抗 Istio 的存在，不过在国内知名度不高，使用者也很少。比较有意思的是，Buoyant 最近的B轮融资来自 Google 的投资部门。
+Linkerd2 在2019年4月17日发布了最新的稳定版本 Linkerd 2.3 版本。Linkerd2 是目前开源产品中唯一正面对抗 Istio 的存在，不过在国内知名度不高，使用者也很少。比较有意思的是，开发Linkerd2 的初创公司 Buoyant 最近的B轮融资来自 Google 的投资部门。
 
 ### 云厂商的产品动态
 
 随着 Service Mesh 技术的发展，和各方对 Service Mesh 前景的看好，各大主流云提供商都开始在 Service Mesh 技术上发力。
 
-首先看AWS，在2019年4月，AWS宣布App Mesh GA。App Mesh 是 AWS 推出的AWS原生服务网格，与AWS完全集成，包括：
+首先看 AWS，在2019年4月，AWS 宣布 App Mesh GA。App Mesh 是 AWS 推出的AWS原生服务网格，与AWS完全集成，包括：
 
 - 网络（AWS cloud map）
 - 计算（Amazon EC2和AWS Fargate）
@@ -159,11 +159,11 @@ Linkerd2 在2019年4月17日发布了最新的稳定版本 Linkerd 2.3 版本。
 
 ![](images/appmesh.png)
 
-App Mesh的数据平面采用 Envoy，产品非常有创意的选择同时支持VM和容器。
+App Mesh的数据平面采用 Envoy，产品非常有创意的同时支持VM和容器，支持多种产品形态，如上图所示。
 
-> AWS App Mesh 的更多详细内容，请浏览翻译文章 [用AWS App Mesh重新定义应用通讯](https://skyao.io/post/201904-aws-app-mesh/) 。
+> AWS App Mesh 的更多详细内容，请浏览文章 [用AWS App Mesh重新定义应用通讯](https://skyao.io/post/201904-aws-app-mesh/) 。
 
-Google 的打法则是围绕 Istio 。首先是在2018年底推出了 Istio on GKE，即"一键集成Istio"，并提供遥测、日志、负载均衡、路由和mTLS 安全能力。接着 Google 又推出 Google Cloud Service Mesh，这是 Istio的完全托管版本，不仅仅提供Istio开源版本的完整特性，还集成了google cloud上的重要产品 stackdriver 。
+Google 的打法则是围绕 Istio 。首先是在2018年底推出了 Istio on GKE，即"一键集成Istio"，并提供遥测、日志、负载均衡、路由和mTLS 安全能力。接着 Google 又推出 Google Cloud Service Mesh，这是 Istio的完全托管版本，不仅仅提供Istio开源版本的完整特性，还集成了 Google Cloud上的重要产品 Stackdriver 。
 
 近期，Google推出 Traffic Director 的 beta 测试版本，Traffic Director 是完全托管的服务网格流量控制平面，支持全局负载均衡，适用于虚拟机和容器，提供混合云和多云支持、集中式健康检查和流量控制，还有一个非常特别的特性：支持基于流量的自动伸缩。
 
@@ -187,7 +187,7 @@ SMI是一个开放项目，由微软，Linkerd，HashiCorp，Solo，Kinvolk和We
 
 ### 趋势1：上云+托管
 
-在微服务/容器这些年的发展历程中，我们会发现一个很有意思（甚至有些哭笑不得）的事实：
+在微服务/容器这些年的发展历程中，我们会发现一个很有意思（甚至有些哭笑不得）的现象：
 
 ![](images/trend1.png)
 
@@ -207,7 +207,7 @@ SMI是一个开放项目，由微软，Linkerd，HashiCorp，Solo，Kinvolk和We
 
 ### 趋势2：VM和容器混用
 
-第二个趋势就是VM和容器混用，即 Service Mesh 对服务的运行环境的支持，即支持容器（尤其指k8s），也支持虚拟机，而且支持运行在这两个环境下的服务相互访问，甚至直接在产品层面上屏蔽两者的差异。
+第二个趋势就是VM和容器混用，即 Service Mesh 对服务的运行环境的支持，不仅支持容器（尤其指k8s），也支持虚拟机，而且支持运行在这两个环境下的服务相互访问，甚至直接在产品层面上屏蔽两者的差异。
 
 比如 Google 的 Traffic Director 产品：
 
@@ -227,11 +227,11 @@ Google Traffic Director 旗帜鲜明的表达了 Google Cloud 对混合云的重
 
 ![](images/google-traffic-director-hybird.png)
 
-下图是 Google Traffic Director  给出的一个应用改造示例，从单体结构转为微服务架构，从私有云转为公有云加私有云的混合云模式。
+下图是 Google Traffic Director  给出的一个应用改造示例：从单体结构转为微服务架构，从私有云转为公有云加私有云的混合云模式。
 
 ![](images/google-traffic-director-hybird2.png)
 
-Service Mesh 毫无疑问是实现混合云和多云支持的一个非常理想的技术方案。
+Service Mesh 毫无疑问是实现上述转型并提供混合云和多云支持的一个非常理想的解决方案。
 
 ### 趋势4：和 Serverless 的结合
 
@@ -240,7 +240,7 @@ Service Mesh 技术和 Serverless 技术是工作在不同纬度的两个技术�
 - Service Mesh技术的关注点在于**服务间通讯**，其目标是剥离客户端SDK，为应用减负，提供的能力主要包括安全性、路由、策略执行、流量管理等。
 - Serverless 技术的关注点在于**服务运维**，目标是客户无需关注服务运维，提供服务实例的自动伸缩，以及按照实际使用付费。
 
-理论上 Service Mesh 技术和 Serverless 技术并没有冲突的地方，可以结合使用。事实上目前业界也开始有这个趋势，而融合的方式有两种：
+理论上 Service Mesh 技术和 Serverless 技术并没有冲突的地方，可以结合使用。事实上目前业界也开始出现这个趋势，而融合的方式有两种：
 
 1. 在Serverless中引入Servicemesh：典型如 knative 项目和 knative 的 Google Cloud 托管版本 Google Cloud Run，通过引入对容器的支持和使用 Istio，knative 将 Serverless 的支持扩展到 Function 之外，在极大的扩展 Serverless 适用范围的前提下，也将服务间通讯的能力引入到 Serverless。
 2. 在Servicemesh中引入 Serverless：典型如 Google Traffic Director 产品，在提供 Service Mesh 各种能力的同时，支持按照流量自动伸缩服务的实例数量，从而融入了部分 serverless 的特性。
@@ -263,7 +263,7 @@ Service Mesh 技术和 Serverless 技术是工作在不同纬度的两个技术�
 
 以上模式的产品蚂蚁金服都在探索中，相关的产品正在开发和尝试落地。社区也有一些相关的产品，比如 Database Mesh 方面张亮同学在力推的  [Apache Shardingsphere](https://shardingsphere.apache.org/) 项目。
 
-通过更多的 Mesh 模式，我们可以覆盖更多的场景，从而实现让应用在各个方面都做到减负，而不仅仅是 Service Mesh 针对的服务间通讯，从而为后续的应用云原生化奠定基础。
+通过更多的 Mesh 模式，我们可以覆盖更多的场景，从而实现让应用在各个方面都做到减负，而不仅仅是 Service Mesh 对应的服务间通讯，从而为后续的应用云原生化奠定基础。
 
 ### 趋势6：标准化，不锁定
 
@@ -299,7 +299,7 @@ Service Mesh 技术和 Serverless 技术是工作在不同纬度的两个技术�
 
 最终实现让业务应用**专注业务**的战略目标。
 
-对于 Service Mesh 技术未来的走向，我的看法是：Service Mesh 技术必然不是孤立的自行发展，而是在云原生的大环境下，与云原生的其他技术、理念、最佳实践一起相互影响，相互促进，相互提供，共同发展。云原生是一个庞大的技术体系，Service Mesh 需要在这个体系中获得各种支撑和配合，才能最大限度的发挥自身的优势。
+对于 Service Mesh 技术未来的走向，我的看法是：Service Mesh 技术必然不是孤立的自行发展，而是在云原生的大环境下，与云原生的其他技术、理念、最佳实践一起相互影响、相互促进、相互支撑、共同发展。云原生是一个庞大的技术体系，Service Mesh 需要在这个体系中获得各种支撑和配合，才能最大限度的发挥自身的优势。
 
 ## Service Mesh与云原生
 
@@ -309,7 +309,7 @@ Service Mesh 技术和 Serverless 技术是工作在不同纬度的两个技术�
 
 ### 什么是云原生？
 
-在解释之前，首先问另外一个问题：什么是云原生？相信这个问题很多同学都问过，或者被问过，每个人心里可能都有自己的理解和表述。在今年年初，我也特意就这个问题问了自己，然后尝试着给出了一个我的答案：
+在解释之前，首先问一个问题：什么是云原生？相信这个问题很多同学都问过，或者被问过，每个人心里可能都有自己的理解和表述。在今年年初，我也特意就这个问题问了自己，然后尝试着给出了一个我的答案：
 
 云原生指 "原生为云设计"，具体说就是：**应用原生被设计为在云上以最佳方式运行，充分发挥云的优势。**
 
@@ -322,11 +322,11 @@ Service Mesh 技术和 Serverless 技术是工作在不同纬度的两个技术�
 
 ### Service Mesh的核心价值
 
-关于Service Mesh的核心价值，我个人的理解，不在于 Service Mesh 提供的玲琅满目的各种功能和特性，而是：
+关于 Service Mesh 的核心价值，我个人的理解，不在于 Service Mesh 提供的玲琅满目的各种功能和特性，而是：
 
 **实现业务逻辑和非业务逻辑的分离**
 
-将功能实现，从客户端SDK中剥离出来，放到独立的Proxy进程中，这是 Service Mesh 在技术实现上走出的第一步，也是至关重要的第一步：因为这一步，实现了**业务逻辑**和**非业务逻辑**的分离，而且是最彻底的物理分离，哪怕需要付出一次远程调用的代价。
+将非业务逻辑的功能实现，从客户端SDK中剥离出来，放到独立的 Proxy 进程中，这是 Service Mesh 在技术实现上走出的第一步，也是至关重要的第一步：因为这一步，实现了**业务逻辑**和**非业务逻辑**的分离，而且是最彻底的物理分离，哪怕需要为此付出一次远程调用的代价。
 
 而这一步迈出之后，前面就是海阔天空：
 
@@ -353,9 +353,9 @@ Service Mesh 技术和 Serverless 技术是工作在不同纬度的两个技术�
 如上图所示：
 
 - 最下方是云，基于k8s和容器打造，提供各种基础能力，这些能力有一部分来自传统中间件的下沉
-- 在云上是 Mesh 层，包含 Service Mesh 以及我们前面提到的各种扩展的Mesh模式，实现了通信的标准化
+- 在云上是 Mesh 层，包含 Service Mesh 以及我们前面提到的各种扩展的Mesh模式，实现通信的标准化
 - 在通过 Mesh 剥离非业务功能并下沉之后，应用实现了轻量化，传统的App和新兴的微服务都可以受益于此
-- 更进一步，轻量化之后的业务应用，其工作负载在瘦身减负之后变得相当的干净，基本只剩业务逻辑，包括传统的App，以Container形式运行的服务和新颖的Function，这些负载在往 serverless 形态转换时相对要轻松很多
+- 更进一步，轻量化之后的业务应用，其工作负载在瘦身减负之后变得相当的干净，基本只剩业务逻辑，包括传统的App，以Container形式运行的服务和新颖的Function，这些负载在往 Serverless 形态转换时相对要轻松很多
 
 配合 Serverless 技术领域最新的技术潮流和产品发展（如以 knative 项目为代表，Serverless 不再仅仅是 Function 形式，也支持 BaaS 等偏传统的工作负载），Mesh化为现有应用转型为 Serverless 模式提供助力。
 
@@ -363,13 +363,13 @@ Service Mesh 技术和 Serverless 技术是工作在不同纬度的两个技术�
 
 ![](images/middleware-future.png)
 
-左边是传统的中间件形态，在云原生时代，我们希望将非业务功能从传统中间件的富客户端中剥离出来，然后将这些能力以及这些能力背后的中间件能力，下沉到基础设施，下沉到云。而中间件产品，也会由此融入基础设施，如图中右边所示。未来的中间件将作为基础设施和云的一部分，而 Mesh 则成为连接应用和基础设施以及其他中间件产品的桥梁。
+左边是传统的中间件形态，在云原生时代，我们希望将非业务功能从传统中间件的富客户端中剥离出来，然后将这些能力以及这些能力背后的中间件能力，下沉到基础设施，下沉到云。而中间件产品也会融入基础设施，如图中右边所示。未来的中间件将作为基础设施和云的一部分，而 Mesh 则成为连接应用和基础设施以及其他中间件产品的桥梁。
 
-更重要的是：业务应用因此而实现轻量化，在剥离各种非业务功能之后，业务应用就实现了关注业务逻辑的战略目标，从而实现从传统应用到云原生应用的转型。
+更重要的是：业务应用因此而实现轻量化，在剥离各种非业务功能之后，业务应用就实现了只关注业务逻辑的战略目标，从而实现从传统应用到云原生应用的转型。
 
 总结：通过 Service Mesh 技术，我们实现了业务逻辑和非业务逻辑的分离，为应用的轻量化和云原生化提供可能；并通过将非业务逻辑的各种功能下沉到基础设施和云，极大的增强了基础设施和云的能力，为云原生的落地提供了极大助力。
 
-因此，我们认为： Service Mesh技术在云原生落地中扮演了非常重要的作用，不可或缺。
+因此，我们认为： Service Mesh技术将在云原生落地中扮演了非常重要的作用，不可或缺。
 
 ### Service Mesh发展展望
 
@@ -388,11 +388,11 @@ Service Mesh 的未来，不会停留在仅仅满足多语言支持和类库升�
 3. 针对右边的 Service Mesh 的六个趋势，忘记我前面讲述的内容，只考虑其背后的实际场景和客户需求，以及这个场景带来的业务价值，然后认真对比使用 Service Mesh 和不使用 Service Mesh 两种情况下的解决方案
 4. 请在上述思考的过程中，更多的从业务应用的角度来看待问题，假设你是那个云上的应用（还记得前面图上的小baby吗？），你会希望被如何对待
 
-如果您有所收获，欢迎和我联系。
+希望这样的思考能让您有所收获。
 
 ## 尾声
 
-最后做个广告，欢迎大家参加 SOFAStack 云原生工作坊，我们将在这次活动中，推出蚂蚁金服金融云完全托管版本的SOFAMesh的体验版本，欢迎报名参加。我将在上海 kubeconf 的 workshop 现场恭候大家。
+最后做个广告，欢迎大家参加 SOFAStack 云原生工作坊，我们将在这次活动中，推出蚂蚁金服金融云完全托管版本的SOFAMesh的体验版本，欢迎报名参加。我将在上海 kubeconf 的 workshop 现场恭候大驾。
 
 ![](images/workshop.png)
 
