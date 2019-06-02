@@ -1,8 +1,8 @@
 +++
 title = "Service Mesh Interface详细介绍"
 
-date = 2019-05-22
-lastmod = 2019-05-22
+date = 2019-05-31
+lastmod = 2019-05-31
 draft = true
 
 tags = ["SMI", "Service Mesh"]
@@ -94,9 +94,9 @@ caption = ""
 
 其他公司就不再一一列出来了，主要是不清楚他们在 SMI 这个事情上扮演什么角色。
 
+而关键点在于，Google （还有同属Istio阵营的 IBM / Lyft）
 
-
-
+![](images/two-api.png)
 
 ## SMI规范内容
 
