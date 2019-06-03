@@ -15,7 +15,11 @@ caption = ""
 
 +++
 
-> 英文原文来自 [Service Mesh Wars with William Morgan](https://softwareengineeringdaily.com/2019/05/31/service-mesh-wars-with-william-morgan/)，这是我见过的抨击Istio最为猛烈的一篇文章，极其火爆，又很有道理的样子。特别申明：仅做翻译，不代表本人立场。
+## 前言
+
+英文原文来自 [Service Mesh Wars with William Morgan](https://softwareengineeringdaily.com/2019/05/31/service-mesh-wars-with-william-morgan/)，这是我见过的抨击Istio最为猛烈的一篇文章，极其火爆，又很有道理的样子。特别申明：仅做翻译，不代表本人立场。
+
+## 正文
 
 服务网格是一种抽象，为分布式应用程序提供流量路由，策略管理和遥测。
 
@@ -90,3 +94,9 @@ CNCF是在AWS的阴影下形成的。CNCF由谷歌捐赠Kubernetes播种。就�
 正是在这种环境下，我们开始了当前云原生生态系统的下一系列节目。
 
 感谢Cloud Native Computing Foundation在KubeCon上组建了一个令人惊叹的播客区，并允许我进行这些采访。
+
+## 译者注
+
+文章有些偏激，用词夸张，有种美式脱口秀节目的味道，因此读者们请保持冷静。
+
+不过Istio的确存在很多问题，问世两年来，期望和现实差距太大，伤了很多人的心，大概是爱之深责之切吧。Istio 也到了该好好骂一骂的时候了，我个人只想问一句：Mixer V2 什么时候能实现啊？
