@@ -1,8 +1,8 @@
 +++
 title = "Service Mesh Interface详细介绍"
 
-date = 2019-06-02
-lastmod = 2019-06-02
+date = 2019-06-03
+lastmod = 2019-06-03
 draft = true
 
 tags = ["SMI", "Service Mesh"]
@@ -298,15 +298,158 @@ sources: # 通过 ServiceAccount 选择pods
 
 SMI 流量访问控制的规则是默认都不容许访问，只有通过 TrafficTarget 指定的符合条件的流量才容许访问。而访问控制的执行，是明确要求在访问的服务器端（即Destination）强制执行，而是否在客户端（即Source）进行访问控制则由SMI的具体实现来决定。
 
-## SMI实现机制
+注意目前 Traffic Access Control 在定义 Source 和 Destination 时，都是通过 Selector 来定义的，我们细看这张图片：
 
-### 技术概述
+![](images/smi-traffic-target.png)
 
-SMI被指定为Kubernetes自定义资源定义（CRD）和 Extension API Server 的集合。 这些API可以安装到任何Kubernetes集群上，并使用标准工具进行操作。 API要求SMI 供应商执行某些操作。
+从访问控制的业务语义上看，上面两个 TrafficTarget 翻译出来就是：
 
-要激活这些API，SMI 供应商将在Kubernetes集群中运行。对于启用配置的资源，SMI 供应商会体现其内容并配置在群集中的供应商组件以实现其所要求的行为。对于extension API，SMI 供应商将从内部类型转换为API期望返回的类型。
+- 容许以 ServiceAccount prometheus 运行的服务访问以 ServiceAccount api-service 运行的服务的 metrics
+- 容许以 ServiceAccount web-service 和 payment-service 运行的服务访问以 ServiceAccount api-service 运行的服务的 api
 
-这种可插拔接口的方式类似于其他核心Kubernetes API，如 NetworkPolicy，Ingress 和 CustomMetrics 。
+而不是我们平时熟悉的资源方式如"容许A服务访问B服务"，即访问控制中对服务的标示目前只能通过 ServiceAccount + Selector 来完成，而不是通过简单的服务Id或者名称来指定资源。请注意"容许以身份A运行的服务访问以身份B运行的服务" 和 "容许A服务访问B服务" 的细微差别。
+
+关于这一点，在 SMI 的文档的"Tradeoffs"中提到：
+
+> Resources vs selectors - it would be possible to reference concrete resources such as a deployment instead of selecting across pods.
+>
+> 资源 vs 选择器 - 可以引用具体资源（如deployment）而不是pod选择。
+
+### Traffic Split
+
+Traffic Split 资源用来实现流量的百分比拆分，熟悉Istio的同学应该非常了解这个功能的强大。
+
+但是 SMI 中 Traffic Split 的配置方式和 Istio 有非常大的不同，比如下面的配置，要对 foobar 服务按照版本进行流量拆分，v1 和 v2 权重分别为 1 和 500m （1=1000m），在 Traffic Split 的配置中会出现多个 service：
+
+```yaml
+apiVersion: split.smi-spec.io/v1alpha1
+kind: TrafficSplit
+metadata:
+  name: foobar-rollout
+spec:
+  service: foobar # root service，客户端用这个服务名来连接目标应用
+  backends: # root service 后面的服务，有自己的selectors, endpoints 和 configuration
+  - service: foobar-v1
+    weight: 1
+  - service: foobar-v2
+    weight: 500m
+```
+
+- "foobar"：通过 `spec.service` 指定，这是 Traffic Split 的 root service，是要配置进行流量拆分的目标服务的FQDN，客户端用这个 service 进行通信，也就是说这个 root service 是暴露给客户端的。
+- "footer-v1" 和 "footer-v2"：这两个后端服务，是"隐藏"在 root service 后面的，通常是 root service 的子集，典型实现上是 selector 多加一个 version label 限制。 
+
+这样，如果要对某个服务的两个子集进行流量拆分，典型如版本v1和版本v2，在 SMI 中就会有三个 k8s service 定义：
+
+| 资源                 | selector （label）         | 描述            |
+| -------------------- | -------------------------- | --------------- |
+| service foobar       | `app: foobar`             | root service    |
+| service foobar-v1    | `app: foobar`, `version: v1` | backend service |
+| service foobar-v2    | `app: foobar`, `version: v2` | backend service |
+
+这三个 service 和 pod 的关系如下图所示：
+
+![](images/smi-traffic-split.png)
+
+我们来对比 Istio 中实现类似功能的方式，Istio中需要为准备进行流量拆分的服务定义 VirtualService，通过 subset 来区分不同的流量去向：
+
+```yaml
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: foobar-route
+spec:
+  hosts:
+  - foobar
+  http:
+  - route:
+    - destination:
+        host: foobar
+        subset: v2
+      weight: 25
+    - destination:
+        host: foobar
+        subset: v1
+      weight: 75
+```
+
+subset 在 DestinationRule 中定义，注意这里只涉及到 labels，服务（以host标志）并没有多个，还是 foobar：
+
+```yam
+apiVersion: networking.istio.io/v1alpha3
+kind: DestinationRule
+metadata:
+  name: foobar-destination
+spec:
+  host: foobar
+  subsets:
+  - name: v1
+    labels:
+      version: v1
+  - name: v2
+    labels:
+      version: v2
+```
+
+在Istio 中，service 和 subset 的关系如下图所示：
+
+![](images/istio-traffic-split.png)
+
+可以看到 SMI 中的 backend service 和 Istio 中的 subset 在功能上几乎是对等的。
+
+但是：SMI 和 Istio 的根本差异在于 Istio 中的 subset 是一个虚拟的抽象对象，在k8s中并没有实体资源。而在 SMI 中，backend service 是实实在在存在的 k8s service 资源。
+
+这里个人觉得有一个隐忧：在 SMI 中，为了进行流量拆分，就不得不为每个版本建立一个独立的k8s service，service 数量会比 Istio 方案多很多。
+
+另外就是在权重设置上的细微的差别，SMI 用的是相对weight（比如可以设置为1:2），而 Istio 是严格的百分比，而且要求总和为100。
+
+### Traffic Metrics
+
+Traffic Metrics 资源提供通用集成点，工具可以通过访问这些集成点来抓取指标。Traffic Metrics 遵循 `metrics.k8s.io` 的模式，其即时指标可用于各种 CLI工具，HPA伸缩等。
+
+和大多数Metrics系统一致，SMI的Traffic Metrics 数据包含两个核心对象：
+
+1. Resource：Metrics 和资源绑定，资源可以是 pod 和更高级别的概念如 namespaces, deployments 或者 services 。Pod是 Metrics 可以关联的最细粒度的资源，通过集合可以得到推断出其他。
+2. Edge：表示流量来源或其目的地，描述力量的方向。
+
+**TrafficMetrics**
+
+TrafficMetrics是核心资源，关联到资源，具有edge，延迟百分位数和请求量：
+
+```yaml
+apiVersion: metrics.smi-spec.io/v1alpha1
+kind: TrafficMetrics
+resource:
+  name: foo-775b9cbd88-ntxsl
+  namespace: foobar
+  kind: Pod
+edge:
+  direction: to
+  resource:
+    name: baz-577db7d977-lsk2q
+    namespace: foobar
+    kind: Pod
+timestamp: 2019-04-08T22:25:55Z
+window: 30s
+metrics:
+- name: p99_response_latency
+  unit: seconds
+  value: 10m
+- name: p90_response_latency
+  unit: seconds
+  value: 10m
+- name: p50_response_latency
+  unit: seconds
+  value: 10m
+- name: success_count
+  value: 100
+- name: failure_count
+  value: 100
+```
+
+TrafficMetrics 的定义和使用暂时没看到有特殊之处。
+
+### SMI分析
+
 
 
 ## 参考资料
@@ -320,5 +463,6 @@ SMI被指定为Kubernetes自定义资源定义（CRD）和 Extension API Server 
 - [Service Mesh Interface (SMI) and our Vision for the Community and Ecosystem](https://medium.com/solo-io/service-mesh-interface-smi-and-our-vision-for-the-community-and-ecosystem-2edc7b728c43)：作者 [Idit Levine](https://medium.com/@idit.levine_92620)，是初创公司 solo.io 的创始人兼CEO，本文同样大量援引此文的内容
 - [Democratizing Service Mesh on Kubernetes](https://kccnceu19.sched.com/event/MRz7/sponsored-keynote-democratizing-service-mesh-on-kubernetes-gabe-monroy-lead-product-manager-microsoft-azure-container-compute): kubecon上宣布SMI的 keynote，作者 Gabe Monroy ，Microsoft Azure Container Compute的 Lead Product Manager，本文部分图片来自这个演讲的PPT
 - [How the Service Mesh Interface (SMI) fits into the Kubernetes landscape](https://kinvolk.io/blog/2019/05/how-the-service-mesh-interface-smi-fits-into-the-kubernetes-landscape/): 介绍SMI和其他类似的kubernetes Interface 如 CNI、CRI、CSI等。
+- [Service Mesh Wars with William Morgan](https://softwareengineeringdaily.com/2019/05/31/service-mesh-wars-with-william-morgan/)：这是我见过的抨击Istio最为猛烈的一篇文章，极其火爆，又很有道理的样子
 
 
