@@ -1,13 +1,13 @@
 +++
-title = "[译] Hello Service Mesh Interface(SMI):服务网格互操作性规范"
+title = "[译] Hello Service Mesh Interface(SMI):服务网格互通性规范"
 
 date = 2019-05-22
 lastmod = 2019-05-22
 draft = false
 
 tags = ["SMI", "Service Mesh"]
-summary = "我们很高兴的推出 Service Mesh Interface。SMI定义了一组通用可移植的API，为开发人员提供跨不同服务网格技术的互操作性，包括Istio，Linkerd和Consul Connect。"
-abstract = "我们很高兴的推出 Service Mesh Interface。SMI定义了一组通用可移植的API，为开发人员提供跨不同服务网格技术的互操作性，包括Istio，Linkerd和Consul Connect。"
+summary = "我们很高兴的推出 Service Mesh Interface。SMI定义了一组通用可移植的API，为开发人员提供跨不同服务网格技术的互通性，包括Istio，Linkerd和Consul Connect。"
+abstract = "我们很高兴的推出 Service Mesh Interface。SMI定义了一组通用可移植的API，为开发人员提供跨不同服务网格技术的互通性，包括Istio，Linkerd和Consul Connect。"
 
 [header]
 image = ""
@@ -19,7 +19,7 @@ caption = ""
 
 ------
 
-今天，我们很高兴的推出 Service Mesh Interface（SMI）。SMI定义了一组通用可移植的API，为开发人员提供跨不同服务网格技术的互操作性，包括Istio，Linkerd和Consul Connect。SMI是一个开放项目，由微软，Linkerd，HashiCorp，Solo，Kinvolk和Weaveworks联合启动; 并得到了Aspen Mesh，Canonical，Docker，Pivotal，Rancher，Red Hat和VMware的支持。
+今天，我们很高兴的推出 Service Mesh Interface（SMI）。SMI定义了一组通用可移植的API，为开发人员提供跨不同服务网格技术的互通性，包括Istio，Linkerd和Consul Connect。SMI是一个开放项目，由微软，Linkerd，HashiCorp，Solo，Kinvolk和Weaveworks联合启动; 并得到了Aspen Mesh，Canonical，Docker，Pivotal，Rancher，Red Hat和VMware的支持。
 
 多年来，网络架构的口头禅是让网络管道尽可能愚蠢，并在应用中构建智能。网络的工作是转发数据包，而加密，压缩或身份的任何逻辑都存在于网络端点内。互联网是以这个口头禅为前提的，运作得相当好。
 
@@ -54,7 +54,7 @@ Service Mesh Interface背后的想法并不新鲜。它追随 Ingress，Network 
 
 ## 生态系统友好
 
-对于服务网格这样的早期技术，我们必须为生态系统创造空间，以进行创新并探索解决客户问题的不同方法。随着服务网格技术的不断发展，SMI提供的互操作性将有助于与现有网格供应商集成的新兴工具和实用程序的生态系统。而不是单独与每个网格集成，像flagger和SuperGloo这样的工具可以与SMI集成，从而获得跨网格功能。
+对于服务网格这样的早期技术，我们必须为生态系统创造空间，以进行创新并探索解决客户问题的不同方法。随着服务网格技术的不断发展，SMI提供的互通性将有助于与现有网格供应商集成的新兴工具和实用程序的生态系统。而不是单独与每个网格集成，像flagger和SuperGloo这样的工具可以与SMI集成，从而获得跨网格功能。
 
 > VMware NSX Service Mesh 首席架构师 Sushil Singh表示：“服务网络的兴趣和动力已达到一个关键点——行业需要在一系列的标准上进行协作，以确保成功。” “服务网络为应用程序的未来提供了丰富的基础功能。现在是制定标准API的最佳时机，这些API可简化服务网格技术的使用和功能，从而实现健康的生态系统。VMware很高兴可以参与这项非常重要的工作”
 >

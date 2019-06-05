@@ -1,9 +1,9 @@
 +++
 title = "Service Mesh Interface详细介绍"
 
-date = 2019-06-03
-lastmod = 2019-06-03
-draft = true
+date = 2019-06-05
+lastmod = 2019-06-05
+draft = false
 
 tags = ["SMI", "Service Mesh"]
 summary = "Service Mesh Interface详细介绍"
@@ -31,9 +31,7 @@ caption = ""
 
 微软的 [官方博客文章](https://msft.today/hello-service-mesh-interface-smi-a-specification-for-service-mesh-interoperability/) 这样介绍SMI：
 
-> SMI定义了一组通用可移植的API，为开发人员提供跨不同服务网格技术的互操作性，包括Istio，Linkerd和Consul Connect。
-
-下图可以帮助我们理解SMI的功能和定位：
+> SMI定义了一组通用可移植的API，为开发人员提供跨不同服务网格技术的互通性，包括Istio，Linkerd和Consul Connect。
 
 ![](images/smi.jpg)
 
@@ -43,7 +41,7 @@ SMI 是希望在各家 Service Mesh 的实现之上建立一个抽象的API层�
 
  [Idit Levine](https://medium.com/@idit.levine_92620)，初创公司 solo.io 的创始人兼CEO，作为SMI推出的重要力量之一，撰文描述了 SMI 推出的背景：
 
-> 服务网格生态系统正在兴起，众多的网格供应商和不同的用例需要不同的技术。所以问题来了：我们如何实现在不破坏最终用户体验的前提下促进行业创新？通过以一组标准API达成一致，我们可以提供互操作性，并在不同网格以及为这些网格构建的工具之上维持最终用户体验。
+> 服务网格生态系统正在兴起，众多的网格供应商和不同的用例需要不同的技术。所以问题来了：我们如何实现在不破坏最终用户体验的前提下促进行业创新？通过以一组标准API达成一致，我们可以提供互通性，并在不同网格以及为这些网格构建的工具之上维持最终用户体验。
 >
 > 今天发布的 Service Mesh Interface（SMI）是使这一构想走向行业现实的重要一步。
 
@@ -145,9 +143,9 @@ Service Mesh Interface 规范涵盖最常见服务网格能力：
 SMI规范由多个API组成：
 
 - Traffic Access Control/流量访问控制 - 根据客户端的身份配置对特定pod和路由的访问，以将应用程序锁定到仅允许的用户和服务。
-  - Traffic Specs/流量规范 - 定义流量的表示方式，基于每个协议的基础。 这些资源与访问控制和其他类型的策略协同工作，以在协议级别管理流量。
-  - Traffic Split/流量分割 - 逐步引导各种服务之间的流量百分比，以帮助构建金丝雀推出。
-  - Traffic Metrics/流量指标 - 暴露通用的流量指标，供dashboard和autoscaler等工具使用。
+- Traffic Specs/流量规范 - 定义流量的表示方式，基于每个协议的基础。 这些资源与访问控制和其他类型的策略协同工作，以在协议级别管理流量。
+- Traffic Split/流量分割 - 逐步引导各种服务之间的流量百分比，以帮助构建金丝雀推出。
+- Traffic Metrics/流量指标 - 暴露通用的流量指标，供dashboard和autoscaler等工具使用。
 
 注意：SMI 被指定为 Kubernetes Custom Resource Definitions（CRD）和 Extension API Servers 的集合。 这些API可以安装到Kubernetes集群上，并使用标准工具进行操作。
 
@@ -448,9 +446,43 @@ metrics:
 
 TrafficMetrics 的定义和使用暂时没看到有特殊之处。
 
-### SMI分析
+### SMI规范总结
 
+从上面我们详细分析的 SMI 主要规范的定义看，Traffic Access Control / Traffic Specs / Traffic Split / Traffic Metrics 这四个目前定义好的规范，无论从功能还是从API设计上看，都缺乏亮点，至少与目前大家熟悉的 Istio API 相比，没有明显优势：
 
+- Traffic Specs 中 HTTPRouteGroup 只支持HTTP1.1，甚至不支持header，TCPRoute更是简陋到极致
+- Traffic Access Control 只支持 ServiceAccount
+- Traffic Split：需要为每个需要拆分的流量额外增加 k8s service
+- TrafficMetrics：平平无奇
+
+考虑到目前 SMI 还是第一个版本，处于项目早期阶段，不够成熟情有可原，我们更要关注的是其后续版本的演进，希望未来 SMI 可以成长为一个足够坚实而可用的标准API。
+
+## SMI分析
+
+前面我们分析过 SMI 推出的背景，我归结为关键的两点：
+
+1. 有利可图：Service Mesh技术被普遍看好，其长远价值被各大厂商认可
+2. 有机可趁：作为市场领头羊的Google和Istio，表现疲软
+
+另外Google在Istio项目上，表现也有些令人费解：
+
+1. 迟迟不进CNCF：早先还有未能发布1.0版本不满足CNCF要求的借口，而最近则感觉Google一直在避免讨论这个话题
+2. Istio一直没有对 Service Mesh 技术进行标准化：只关注自己的 Istio API，对于标准化和基于标准化构建生态系统完全没兴趣。即便是统一数据平面API的标准化动作，也让人觉得是 Envoy 在推动。
+3. 宣传和现实的差距：Istio 1.0 的 "Product Ready"，1.1 版本的"Enterprise Ready"，很让人无语，我很期待 1.2 版本出来时的口号。
+4. 架构设计的不务实：Mixer 是被嘲弄的重灾区，躲在Mixer身后的Pilot其实问题也一堆，而 Mixer v2 的进展则成为衡量 Istio 未来走向的风向标，是要成为工业级可用的坚实产品，还是继续摆弄优雅架构做花瓶？未来一年我们拭目以待。
+5. 整个社区对Istio的不满情绪一直在酝酿和累积：这次 SMI 推出引发的轰动，很大程度是这种情绪的发泄——除了Google之外几乎所有的 Servic Mesh 的玩家都参与进来了，这就足够说明问题了。
+
+在过去两年，社区一直在期待Google和Istio，但是，这种期待在持续两年的失望之后，开始转向另外的方向：或许我们要更多的考虑Istio之外的选择了。
+
+Service Mesh 的战争，我们原以为会以Istio的胜利而迅速结束，但是现在看来，可能这场战争才刚刚开始。
+
+是重新认真审视这张图片的时候了：
+
+![](images/gartner.jpg)
+
+SMI 的推出，意义并不仅仅在于这个 Service Mesh 标准本身，而是带有另外一种特殊含义，就如陈胜吴广的揭竿而起，传递给四方的消息是：天下苦秦久矣！
+
+文章最后，希望未来有更多的优秀 Service Mesh 产品出现，也希望 Istio 可以知耻而后勇。Service Mesh 技术要想成功普及，一定需要一个或者多个强力产品的出现，而 SMI 的出现则为这场短期不能结束的纷争带来了一个理论可能：无论产品竞争如何激烈，都不影响上层生态，从而避免站队失败的风险和由此带来的犹豫与观望。这才是我个人觉得 SMI 推出的最大意义所在。
 
 ## 参考资料
 
@@ -463,6 +495,9 @@ TrafficMetrics 的定义和使用暂时没看到有特殊之处。
 - [Service Mesh Interface (SMI) and our Vision for the Community and Ecosystem](https://medium.com/solo-io/service-mesh-interface-smi-and-our-vision-for-the-community-and-ecosystem-2edc7b728c43)：作者 [Idit Levine](https://medium.com/@idit.levine_92620)，是初创公司 solo.io 的创始人兼CEO，本文同样大量援引此文的内容
 - [Democratizing Service Mesh on Kubernetes](https://kccnceu19.sched.com/event/MRz7/sponsored-keynote-democratizing-service-mesh-on-kubernetes-gabe-monroy-lead-product-manager-microsoft-azure-container-compute): kubecon上宣布SMI的 keynote，作者 Gabe Monroy ，Microsoft Azure Container Compute的 Lead Product Manager，本文部分图片来自这个演讲的PPT
 - [How the Service Mesh Interface (SMI) fits into the Kubernetes landscape](https://kinvolk.io/blog/2019/05/how-the-service-mesh-interface-smi-fits-into-the-kubernetes-landscape/): 介绍SMI和其他类似的kubernetes Interface 如 CNI、CRI、CSI等。
+- [KubeCon EU 2019: Top 10 Takeaways](https://blog.getambassador.io/kubecon-eu-2019-top-10-takeaways-123b5fcb30a8): 来自网红 Daniel Bryant 的文章，包含对 SMI 和 Istio 的看法。
 - [Service Mesh Wars with William Morgan](https://softwareengineeringdaily.com/2019/05/31/service-mesh-wars-with-william-morgan/)：这是我见过的抨击Istio最为猛烈的一篇文章，极其火爆，又很有道理的样子
+- [To Istio and beyond: Azure’s Service Mesh Interface](https://www.infoworld.com/article/3400116/introducing-the-service-mesh-interface.html): 有软文嫌疑，但是还是能看出微软推出SMI的基本想法
+- [HashiCorp Consul supports Microsoft’s new Service Mesh Interface](https://www.hashicorp.com/blog/hashicorp-consul-supports-microsoft-s-new-service-mesh-framework): 介绍 Consul Connect 对 SMI 的支持
 
 
