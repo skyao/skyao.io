@@ -6,8 +6,8 @@ lastmod = 2019-06-05
 draft = false
 
 tags = ["SMI", "Service Mesh"]
-summary = "Service Mesh Interface详细介绍"
-abstract = "Service Mesh Interface详细介绍"
+summary = "微软最近宣布了 Service Mesh Interface 服务网格规范，定义了通用标准，包含基本特性以满足大多数场景下的通用需求。本文将带您深入了解 Service Mesh Interface。"
+abstract = "微软最近宣布了 Service Mesh Interface 服务网格规范，定义了通用标准，包含基本特性以满足大多数场景下的通用需求。本文将带您深入了解 Service Mesh Interface。"
 
 [header]
 image = "headers/post/201906-smi.jpg"
@@ -120,15 +120,16 @@ SMI 是希望在各家 Service Mesh 的实现之上建立一个抽象的API层�
 阵营还是挺强大的：
 
 - 微软：SMI的带头大哥，云计算的三巨头之一
-- Linkerd：Service Mesh 技术的拓荒牛 + 布道者，小而弥坚的初创公司，有一个不大但是力量很强又非常有经验还很务实的团队
-- HashiCorp：大名鼎鼎的 consul 就出自这里，Consul Connect 也是目前活跃的 service mesh 实现之一，虽然Consul Connect在国内知名度和影响力都很小（也就年度总结的时候捎带着看一眼状态的那种）。
-- Solo.io：深藏不露的初创型小公司，"产品面很广，除了 Service Mesh 方面大有名气的 SuperGloo 和 Service Mesh hub 之外，还有远程调试、混沌工程、unikernels 以及微服务网关等几个产品。"（这段话我从秀龙的文章里面抄过来的，总结的很好）。另外，业界网红 Christian Posta 前段时间加入这家公司。
+- Buoyant：Service Mesh 技术的拓荒牛 + 布道者，小而弥坚的初创公司，有一个不大但是力量很强又非常有经验还很务实的团队。其旗下的 Linkerd2 已经明确表示将支持 SMI。
+- HashiCorp：大名鼎鼎的 consul 就出自这里，Consul Connect 也是目前活跃的 service mesh 实现之一，虽然Consul Connect在国内知名度和影响力都很小（也就年度总结的时候捎带着看一眼状态的那种）。Consul Connect 目前也表示提供了对 SMI 的支持。
+- Solo.io：深藏不露的初创型小公司，"产品面很广，除了 Service Mesh 方面大有名气的 SuperGloo 和 Service Mesh hub 之外，还有远程调试、混沌工程、unikernels 以及微服务网关等几个产品。"（这段话我从秀龙的文章里面抄过来的，总结的很好）。另外，业界网红 Christian Posta 前段时间加入这家公司。solo公司旗下的 SuperGloo 是业界第一个 service mesh 编排产品，因此对 SMI 的热爱和支持是无可复加的。SuperGloo 和 Service Mesh Hub 已经实现了对 SMI 的支持。
 - Mesery 和 Kinvolk：这两家公司最近在 service mesh社区有点名气，因为他们近期做了 Istio vs Linkerd 的性能测试并给出了报告，闹的满城风雨。而且他们也都喜欢用 solo 出的 SuperGloo（毕竟业界号称 service mesh 编排的也就独此一家）。
-- Aspen Mesh： F5 （没错，就是那个巨贵的F5）出的的Istio商业版本。
+- Aspen Mesh： F5 （没错，就是那个巨贵的F5）出的的Istio商业版本。但是没有看到 Aspen Mesh 给出支持 SMI 的信息，暂时还不知道 Aspen Mesh 和 SMI 的关系。 
+- vmware：vmware在2018年底推出了 VMware NSX Service Mesh ，和Aspen Mesh一样也是基于 Istio 。
 
 其他公司就不再一一列出来了，主要是不清楚他们在 SMI 这个事情上扮演什么角色。
 
-而关键点在于，Google （还有同属Istio阵营的 IBM / Lyft）不在其列。
+而关键点在于，Google （还有同属Istio阵营的 IBM / Lyft）不在其列。而 Service Mesh 的其他玩家，几乎都参与了 SMI，甚至包括原本在 Istio 项目上和 google 一直合作的公司，耐人寻味。
 
 ## SMI规范内容
 
