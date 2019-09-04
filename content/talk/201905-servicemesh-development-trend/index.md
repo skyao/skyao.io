@@ -31,7 +31,7 @@ abstract_short = "介绍ServiceMesh最新的产品动态，分析其发展趋势
 image_preview = ""
 
 # Is this a featured publication? (true/false)
-featured = true
+featured = false
 
 # Projects (optional).
 #   Associate this publication with one or more of your projects.

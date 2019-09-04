@@ -1,6 +1,6 @@
 +++
 title = "Service Mesh发展趋势(续)：棋到中盘路往何方"
-date = "2019-08-10"
+date = "2019-08-27"
 draft = false
 
 # Authors. Comma separated list, e.g. `["Bob Smith", "David Jones"]`.
@@ -55,6 +55,7 @@ url_source = ""
 
 # Custom links (optional).
 #   Uncomment line below to enable. For multiple links, use the form `[{...}, {...}, {...}]`.
+
 url_custom = [{name = "PPT下载", url = "/files/pdf/201908-servicemesh-development-trend2.pdf"}, {name = "图文实录(PDF格式)", url = "/files/pdf/201908-servicemesh-development-trend2-text.pdf"},  {name = "Meetup资料介绍", url = "https://tech.antfin.com/community/activities/781"}]
 
 # Does the content use math formatting?
@@ -336,7 +337,7 @@ Envoy 最近刚发布了 1.11版本，根据最近两年中Envoy的稳健表现�
 
 Mixer v2 虽然前景美好，奈何还需时日，尤其取决于 Istio 的表现：社区的殷切期待和Istio的犹豫未决可谓耐人寻味。
 
-最后感叹一声：**南望王师又一年，王师还是Review间**......
+最后感叹一声：**南望王师又一年，王师还在Review间**......
 
 ## ServiceMesh灵魂拷问三：要不要支持虚拟机？
 
