@@ -1,9 +1,9 @@
 +++
 title = "[译] WebAssembly接口类型：与所有事物互操作！"
 
-date = 2019-08-27
-lastmod = 2019-08-27
-draft = true
+date = 2019-09-08
+lastmod = 2019-09-08
+draft = false
 
 tags = ["Web Assembly"]
 summary = "WebAssembly宣布开始新的标准化工作--WASI，WebAssembly系统接口。通过WASI，可以将WebAssembly和Web的优势扩展到更多的用户，更多的地方，更多的设备，带来更多的体验。"
@@ -23,12 +23,12 @@ caption = ""
 
 人们兴奋于在浏览器外运行WebAssembly。
 
-这种兴奋不只在于运行在自己的独立运行时中的WebAssembly。人们也对使用Python，Ruby和Rust等语言运行WebAssembly感到兴奋。
+这种兴奋不仅仅在于运行在自身独立运行时中的WebAssembly。人们也对使用Python，Ruby和Rust等语言运行WebAssembly感到兴奋。
 
 为什么想这么做？原因如下：
 
 - **使“原生”模块不那么复杂**
-	像Node或Python的CPython这样的运行时通常允许你用C++等低级语言编写模块。那是因为这些低级语言通常要快得多。因此，您可以在Node中使用原生模块，或在Python中使用扩展模块。但这些模块通常很难使用，因为它们需要在用户的设备上进行编译。使用WebAssembly“原生”模块，您可以获得大部分的速度而避免复杂化。
+	像Node或Python的CPython这样的运行时通常允许你用C++等低级语言编写模块。那是因为这些低级语言通常要快得多。因此，您可以在Node中使用原生模块，或在Python中使用扩展模块。但这些模块通常很难使用，因为它们需要在用户的设备上进行编译。使用WebAssembly“原生”模块，您可以获得差不多的速度而规避复杂化。
 - **使沙箱原生代码更容易**
 	另一方面，像Rust这样的低级语言不会使用WebAssembly来提高速度。但是他们可以用它来保证安全。正如我们在[WASI公告中](https://hacks.mozilla.org/2019/03/standardizing-wasi-a-webassembly-system-interface/)所讨论的那样，WebAssembly默认为您提供轻量级沙盒。因此像Rust这样的语言可以使用WebAssembly来沙箱化原生代码模块。
 - **跨平台共享原生代码**
@@ -40,16 +40,16 @@ caption = ""
 
 但是对于今天的WebAssembly，您不希望以这种方式使用它。您可以在所有这些地方*运行* WebAssembly，但这还不够。
 
-现在，WebAssembly只在数字上进行对话。这意味着两种语言可以相互调用对方的函数。
+现在，WebAssembly只在数值上进行对话。这意味着两种语言可以相互调用对方的函数。
 
-但是如果一个函数接受或返回除数字之外的任何东西，事情变得复杂。你可以：
+但是如果一个函数接受或返回除数值之外的任何东西，事情变得复杂。你可以：
 
-- 运送一个有非常难用的API的模块，该API仅以数字对话......让模块用户很为难。
+- 传递一个有非常难用的API的模块，该API仅以数值对话......让模块用户很为难。
 - 为希望此模块运行的每个环境添加胶水代码......使模块开发人员很为难。
 
 但事实并非如此。
 
-应该可以运送*单个* WebAssembly模块并让它在任何地方运行......而不会让模块的用户或开发人员为难。
+应该可以传递*单个* WebAssembly模块并让它在任何地方运行......而不会让模块的用户或开发人员为难。
 
 ![](images/01-02-user-and-dev-768x737.png)
 
@@ -57,7 +57,7 @@ caption = ""
 
 - 在自己的原生运行时运行的模块（例如，在Python运行时中运行的Python模块）
 - 用不同源代码语言编写的其他WebAssembly模块（例如，在浏览器中一起运行的Rust模块和Go模块）
-- 主机系统本身（例如，为操作系统提供系统接口或提供浏览器的API的WASI模块）
+- 主机系统本身（例如，为操作系统提供系统接口或提供浏览器API的WASI模块）
 
 ![](images/01-03-star-diagram-768x606.png)
 
@@ -65,15 +65,15 @@ caption = ""
 
 https://www.youtube.com/embed/Qn_4F3foB3Q
 
-那么让我们来看看它是如何工作的。但首先，让我们看看我们今天的位置以及我们试图解决的问题。
+那么让我们来看看它是如何工作的。但首先，让我们看看我们今天的处境以及我们试图解决的问题。
 
 ## WebAssembly与JS对话
 
 WebAssembly不仅限于Web。但到目前为止，WebAssembly的大部分开发都集中在Web上。
 
-那是因为当你专注于解决具体的用例时，你可以做出更好的设计。该语言肯定必须在Web上运行，因此这是一个很好的可以开始的用例。
+那是因为当你专注于解决具体的用例时，你可以做出更好的设计。该语言肯定必须在Web上运行，因此这是一个很好的可以作为起点的用例。
 
-这给了MVP一个很好的范围。WebAssembly只需要能够与一种语言 - JavaScript对话。
+这给出一个很好的MVP范围。WebAssembly只需要能够与一种语言对话 - JavaScript。
 
 这样做相对容易。在浏览器中，WebAssembly和JS都在同一个引擎中运行，因此引擎可以帮助它们[有效地相互通信](https://hacks.mozilla.org/2018/10/calls-between-javascript-and-webassembly-are-finally-fast)。
 
@@ -121,7 +121,7 @@ WebAssembly不仅限于Web。但到目前为止，WebAssembly的大部分开发�
 
 这些工具也可以为其他高级类型执行类型转换，例如带有属性的复杂对象。
 
-这个方式可行，但有一些非常明显的用例，它不能很好地工作。
+这个方式可行，但存在一些非常明显的不能很好地工作的用例。
 
 例如，有时您只想通过 WebAssembly 透传字符串。您希望JavaScript函数将字符串传递给WebAssembly函数，然后让WebAssembly将其传递给另一个JavaScript函数。
 
@@ -236,7 +236,7 @@ Web API的参数和返回值可以是许多不同的类型。很难为这些类�
 
 这是因为攻击者有办法利用类型不匹配从而让引擎做不应该做的事情。
 
-如果你正在使用字符串调用东西，但是你试图将函数传递给整数，引擎会对你大喊大叫。它*应该*对你大喊大叫。
+如果你正在使用字符串调用东西，但是你试图将函数传递给整数，引擎会抗议。它也应该抗议。
 
 ![](images/03-09-type-mismatch-768x418.png)
 
@@ -279,7 +279,7 @@ extern "C" {
 
 一旦我们退后一步看看这个解决方案，我们意识到它解决了一个更大的问题。
 
-## WebAssembly与所有事物交谈
+## WebAssembly与所有事物对话
 
 这是我们回到介绍中的承诺的地方。
 
@@ -303,7 +303,7 @@ extern "C" {
 
 ![](images/03-06-langs06.png)
 
-这就是来自Web IDL的洞察力所在。当你眯着眼睛看时，Web IDL看起来像一个IR。
+这就是来自Web IDL的洞察力所在。注意看，Web IDL很像一个IR。
 
 现在，Web IDL非常适合Web。而有很多Web外的WebAssembly用例。因此，Web IDL本身并不是一个很好的IR。
 
@@ -321,24 +321,181 @@ extern "C" {
 
 ![](images/04-07-copy-768x565.png)
 
-In cases where the reference is just passing through the WebAssembly module (like the `anyref` example I gave above), the two sides still don’t need to share a representation. The module isn’t expected to understand that type anyway… just pass it along to other functions.
-
 有一种情况似乎是这条规则的例外：我之前提到的新参考值（如`anyref`）。在这种情况下，在两侧之间复制的是指向对象的指针。所以两个指针指向同一个东西。理论上，这可能意味着他们需要共享一个表示。
 
-如果引用只是传递WebAssembly模块（就像`anyref`我上面给出的示例），双方仍然不需要共享表示。无论如何，模块不会理解该类型......只需将其传递给其他函数即可。
+如果引用只是在WebAssembly模块中透传（就像我上面给出的示例 `anyref`），双方仍然不需要共享表示。无论如何，模块不会理解该类型......只需将其传递给其他函数即可。
 
-但有时双方都希望分享代表。例如，GC提案添加了一种[创建类型定义](https://github.com/WebAssembly/gc/blob/master/proposals/gc/MVP-JS.md#type-definition-objects)的方法，以便双方可以共享表示。在这些情况下，要分享多少表示的选择取决于设计API的开发人员。
+但有时双方都希望共享表示。例如，GC提案添加了一种[创建类型定义](https://github.com/WebAssembly/gc/blob/master/proposals/gc/MVP-JS.md#type-definition-objects)的方法，以便双方可以共享表示。在这些情况下，选择共享多少表示取决于设计API的开发人员。
 
-这使得单个模块与许多不同语言交互变得容易得多。
+这使得单个模块与许多不同语言对话变得容易得多。
 
-在某些情况下，与浏览器一样，从接口类型到主机的具体类型的映射将被引入引擎。
+在某些情况下，如浏览器，从接口类型到主机的具体类型的映射将被引入引擎。
 
-因此，一组映射在编译时被烘焙，另一组映射在加载时被传递给引擎。
+因此，一组映射在编译时完成，另一组映射在加载时被传递给引擎。
 
-But there are times where the two sides will want to share a representation. For example, the GC proposal adds a way to [create type definitions](https://github.com/WebAssembly/gc/blob/master/proposals/gc/MVP-JS.md#type-definition-objects) so that the two sides can share representations. In these cases, the choice of how much of the representation to share is up to the developers designing the APIs.
+![](images/04-08-mapping-symmetry-host-500x243.png)
 
-This makes it a lot easier for a single module to talk to many different languages.
+但在其他情况下，比如当两个WebAssembly模块相互通信时，它们都会发送自己的小册子。它们每个都将它们的函数类型映射到抽象类型。
 
-In some cases, like the browser, the mapping from the interface types to the host’s concrete types will be baked into the engine.
+![](images/04-09-mapping-symmetry-wasm-500x302.png)
 
-So one set of mappings is baked in at compile time and the other is handed to the engine at load time.
+要使用不同源语言编写的模块能够相互通信，这不是唯一需要的内容（我们将来会对此进行更多详细介绍），但这是朝这个方向迈出的一大步。
+
+所以现在你明白了为什么，让我们来看看如何。
+
+## 这些接口类型实际上是什么样的？
+
+在我们审视细节之前，我要再说一遍：这个提案仍在制定之中。因此，最终提案可能看起来非常不同。
+
+![](images/05-01-construction-500x296.png)
+
+此外，这完全由编译器处理。因此，即使提案最终确定，您也只需要知道工具链希望在代码中添加哪些注解（例如上面的wasm-bindgen示例）。你真的不需要知道这一切是如何运作的。
+
+不过该 [提案的细节](https://github.com/WebAssembly/interface-types/blob/master/proposals/interface-types/Explainer.md) 非常简洁，所以让我们深入了解当前的想法。
+
+### 要解决的问题
+
+我们需要解决的问题是当模块与另一个模块（或直接与主机，如浏览器）通信时，在不同类型之间转换值。
+
+我们可能需要四个地方进行转换：
+
+**用于导出的函数**
+
+- 接受来自调用者的参数
+- 将值返回给调用者
+
+**用于导入功能**
+
+- 将参数传递给函数
+- 接受函数的返回值
+
+你可以考虑将这些方面分为两个方向：
+
+- 上升，用于离开模块的值。它们从具体类型变为接口类型。
+- 下沉，进入模块的值。它们从接口类型变为具体类型。
+
+![](images/05-02-incoming-outgoing-500x306.png)
+
+### 告诉引擎如何在具体类型和接口类型之间进行转换
+
+因此，我们需要一种方法来告诉引擎哪些转换可以应用于函数的参数和返回值。我们如何做到这一点？
+
+通过定义接口适配器。
+
+例如，假设我们有一个编译为WebAssembly的Rust模块。它导出一个`greeting_` 函数，这个函数可以在没有任何参数的情况下调用并返回问候语。
+
+就是这个样子（WebAssembly文本格式）。
+
+![](images/05-03-original-function-500x162.png)
+
+现在这个函数返回两个整数。
+
+但我们希望它返回`string`接口类型。所以我们添加一个称为接口适配器的东西
+
+如果引擎理解接口类型，那么当它看到此接口适配器时，它将使用此接口包装原始模块。
+
+![](images/05-04-interface-500x184.png)
+
+它将不再导出该`greeting_`函数...而是包裹了原始函数的 `greeting`函数。这个新`greeting`函数返回一个字符串，而不是两个数字。
+
+这提供了向后兼容性，因为不理解接口类型的引擎将只导出原始`greeting_`函数（返回两个整数的函数）。
+
+接口适配器如何告诉引擎将两个整数转换为字符串？
+
+它使用一系列适配器指令。
+
+![](images/05-05-adapter-inst-return-500x252.png)
+
+上面的适配器指令是提案指定的一小组新指令中的两个。
+
+以下是对上述代码的说明：
+
+1. 使用`call-export`适配器指令调用原始`greeting_`函数。这是原始模块导出的，返回两个数字。这些数字放在堆栈上。
+2. 使用`memory-to-string`适配器指令将数字转换为组成字符串的字节序列。我们必须在这里指定“mem”，因为WebAssembly模块有一天会有多个内存。这告诉引擎要查看哪个内存。然后引擎从堆栈顶部获取两个整数（指针和长度）并使用它们来确定要使用的字节。
+
+这可能看起来像一个成熟的编程语言。但是这里没有控制流 - 没有循环或分支。因此，即使我们提供引擎指令，它仍然是声明性的。
+
+如果我们的函数也将字符串作为参数（例如，要问候的人的姓名），它会是什么样子？
+
+非常相似。我们只需更改适配器函数的接口即可添加参数。然后我们添加两个新的适配器指令。
+
+![](images/05-06-adapter-inst-param-500x291.png)
+
+以下是这些新指令的作用：
+
+1. 使用 `arg.get`指令获取对字符串对象的引用并将其放在堆栈中。
+2. 使用该`string-to-memory`指令从该对象获取字节并将它们放入线性内存中。再次，我们必须告诉它将字节放入哪个内存。我们还必须告诉它如何分配字节。我们通过给它一个分配器函数（这将是原始模块提供的导出函数）来实现这一点。
+
+使用这样的指令的好处是：我们可以在将来扩展它们......就像我们可以扩展WebAssembly核心中的指令一样。我们认为我们所定义的指令是一个很好的集合，但我们并不承诺这些是有史以来唯一的指导。
+
+如果您有兴趣了解更多关于这一切是如何工作的，[解释器](https://github.com/WebAssembly/interface-types/blob/master/proposals/interface-types/Explainer.md)会更加详细。
+
+### 将这些指令发送到引擎
+
+现在我们如何将它发送到引擎？
+
+这些注解会添加到二进制文件中的自定义部分。
+
+![](images/05-07-custom-section-500x252.png)
+
+如果引擎知道接口类型，则可以使用自定义部分。如果没有，引擎可以忽略它，你可以使用polyfill读取自定义部分并创建粘合代码。
+
+## 这与CORBA，Protocol Buffers等有什么不同？
+
+还有其他标准，似乎也可以解决相同的问题 - 例如CORBA，Protocol Buffers和Cap'n Proto。
+
+那些有什么不同？他们正在解决一个更难的问题。
+
+它们都经过精心设计，以便您可以与不共享内存的系统进行交互，因为它在不同的进程中运行，或者因为它位于网络上完全不同的计算机上。
+
+这意味着您必须能够在中间发送事物 - 跨越该边界的对象的“中间表示”。
+
+因此，这些标准需要定义可以有效跨越边界的序列化格式。这是他们标准化的重要组成部分。
+
+![](images/06-01-cross-boundary-ir-500x109.png)
+
+这看起来像一个类似的问题，它实际上完全不一样。
+
+对于接口类型，这个“IR”从来不需要离开引擎。模块本身甚至都看不到它。
+
+模块只能看到引擎在过程结束时为它们突出的内容 - 将哪些内容复制到线性内存中或作为引用给出。因此，我们不必告诉引擎为这些类型提供哪种布局 - 不需要指定。
+
+需要指定的是，和引擎对话的方式。这是发送到引擎的手册的声明性语言。
+
+![](images/06-02-no-boundary-ir-500x115.png)
+
+这有一个很好的边际效应：因为这是声明性的，引擎可以看到何时不需要转换 - 例如两边的两个模块使用相同的类型 - 并完全跳过转换工作。
+
+![](images/06-03-opt-500x327.png)
+
+## 今天你怎么尝试这个？
+
+正如我上面提到的，这是一个早期阶段的提案。这意味着事情会发生迅速变化，你不想在生产中依赖于此。
+
+但是如果你想开始尝试它，我们已经在工具链中实现了这一点，从生产到消费：
+
+- Rust工具链
+- WASM-BindGen
+- Wasmtime WebAssembly运行时
+
+由于我们维护所有这些工具，并且由于我们正在制定标准本身，因此我们可以跟随标准的发展。
+
+尽管所有这些部分都将继续改变，但我们将确保同步我们的更改。因此，只要您使用所有这些的最新版本，就不会有问题。
+
+![](images/07-01-construction-500x296.png)
+
+所以今天有很多方法可以解决这个问题。有关最新版本，请查看此[demo仓库](https://github.com/CraneStation/wasmtime-demos)。
+
+## 谢谢
+
+- 感谢团队，将所有这些语言和运行时间整合在一起：Alex Crichton，Yury Delendik，Nick Fitzgerald，Dan Gohman和Till Schneidereit
+- 感谢提案的联合发起人及其工作与这个提案的同事：Luke Wagner，Francis McCabe，Jacob Gravelle，Alex Crichton和Nick Fitzgerald
+- 感谢我的精彩合作者Luke Wagner和Till Schneidereit对本文的宝贵意见和反馈
+
+### 译者注
+
+简单总结，WASI 就是在使用WASM进行交互时提供的**抽象中间表示**（intermediate representation/IR）：
+
+![](images/04-06-types-as-IR-500x321.png)
+
+然后通过接口适配器来告诉引擎进行转换，以处理函数的参数和返回值，从而实现跨语言使用复杂类型的交互。
