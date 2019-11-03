@@ -33,7 +33,7 @@ abstract_short = "继续探讨ServiceMesh发展趋势：深度分析Istio的重�
 image_preview = ""
 
 # Is this a featured publication? (true/false)
-featured = true
+featured = false
 
 # Projects (optional).
 #   Associate this publication with one or more of your projects.
