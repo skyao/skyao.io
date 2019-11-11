@@ -1,7 +1,7 @@
 +++
 title = "诗和远方：蚂蚁金服Service Mesh深度实践"
 date = "2019-10-18"
-draft = true
+draft = false
 
 # Authors. Comma separated list, e.g. `["Bob Smith", "David Jones"]`.
 
@@ -10,6 +10,7 @@ authors = ["敖小剑"]
 # Publication type.
 
 # Legend:
+
 # 0 = Uncategorized
 # 1 = Conference proceedings
 # 2 = Journal
@@ -57,7 +58,7 @@ url_source = ""
 # Custom links (optional).
 #   Uncomment line below to enable. For multiple links, use the form `[{...}, {...}, {...}]`.
 
-url_custom = [{name = "PPT下载", url = "/files/pdf/201910-ant-finance-service-mesh-deep-practice.pdf"}, {name = "图文稿(PDF格式)", url = "/files/pdf/201910-ant-finance-service-mesh-deep-practice-text.pdf"},  {name = "QCon专题介绍", url = "https://qcon.infoq.cn/2019/shanghai/presentation/1955"}]
+url_custom = [{name = "PPT下载", url = "/files/pdf/201910-ant-finance-service-mesh-deep-practice.pdf"}, {name = "图文稿(PDF格式)", url = "/files/pdf/201910-ant-finance-service-mesh-deep-practice-text.pdf"},  {name = "InfoQ微信公众号推送", url = "https://mp.weixin.qq.com/s/XjbmCxdJLKVcFlEUiM7Pig"},  {name = "QCon专题介绍", url = "https://qcon.infoq.cn/2019/shanghai/presentation/1955"}]
 
 # Does the content use math formatting?
 
@@ -137,6 +138,8 @@ ServiceMesh 技术在蚂蚁金服的落地，先后经历过如下几个阶段�
 因为在ServiceMesh工作原理的各种介绍中，都会提到ServiceMesh是将原来的一次远程调用，改为走Sidecar（而且像Istio是客户端和服务器端两次Sidecar，如上图所示），这样一次远程调用就会变成三次远程调用，对性能的担忧也就自然而然的产生了：一次远程调用变三次远程调用，性能会下降多少？延迟会增加多少？
 
 下图是我们内部的大促压测数据，对比带MOSN和不带MOSN的情况（实现相同的功能）。其中MOSN是我们蚂蚁金服自行开发的基于Golang的Sidecar/数据平面，我们用它替代了Envoy，在去年的演讲中我有做过详细的介绍：
+
+SOFAMosn：https://github.com/sofastack/sofa-mosn
 
 ![](images/ppt-8.png)
 
@@ -327,6 +330,8 @@ Istio的官方实现，默认修改配置（Istio API 对应的各种CRD）时�
 ![](images/ppt-19.png)
 
 优点是支持海量数据（十万级别甚至百万级别），具备极强的分发能力，而且经过十余年间的打磨，稳定可靠可谓久经考验。市面上有很多成熟的开源产品，各大公司也都有自己的稳定实现。如阿里集团的Nacos，蚂蚁金服的SOFARegistry。
+
+SOFARegistry：https://github.com/sofastack/sofa-registry
 
 缺点是注册中心/配置中心与SDK通常是透传数据，即注册中心/配置中心只进行数据的存储和分发。大量的控制逻辑需要在SDK中实现，而SDK是嵌入到应用中的。因此，任何变更都需要改动SDK并要求应用升级。
 
