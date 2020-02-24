@@ -1,5 +1,5 @@
 +++
-title = "UDPA最近进展深度介绍"
+title = "UDPA最新进展深度介绍"
 
 date = 2020-02-24
 lastmod = 2020-02-24
