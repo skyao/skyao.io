@@ -40,17 +40,17 @@ UDPA的愿景，同样援引：
 >  
 > 这些API将在proto3中规范定义，并通过定义良好的 稳定API版本控制策略，从现有的Envoy xDS API逐步演进。 API将涵盖服务发现，负载均衡分配，路由发现，监听器配置，安全发现，负载报告，运行状况检查委托等。
 >  
-> 我们将对API进行改进和成型，以支持客户端后备负载均衡（例如gRPC-LB），Envoy之外的数据平面代理，硬件LB，移动客户端以及其他范围。 我们将努力成为尽可能与供应商和实现无关的公司，同时坚持支持已投入生产的UDPA的项目（到目前为止，Envoy和gRPC-LB）。
+> 我们将对API进行改进和成型，以支持客户端 lookaside 负载均衡（例如gRPC-LB），Envoy之外的数据平面代理，硬件LB，移动客户端以及其他范围。 我们将努力尽可能与供应商和实现无关，同时坚持支持已投入生产的UDPA的项目（到目前为止，Envoy和gRPC-LB）。
 > 
 
 对 UDPA 感兴趣的同学，可以通过以下两个途径进一步深入了解：
 
-1. [UDPA @ GitHub](https://github.com/cncf/udpa)：这是 UDPA 在 github 上的项目，UDPA  API定义的代码都在这里
-2. [Universal Data Plane API Working Group (UDPA-WG)](https://lists.cncf.io/g/udpa-wg)：这是 CNCF 下的 UDPA 工作组，可以通过加入工作组的方式了解更多信息
+1. [UDPA @ GitHub](https://github.com/cncf/udpa)：UDPA 在 github 上的项目，UDPA  API 定义的代码都在这里
+2. [Universal Data Plane API Working Group (UDPA-WG)](https://lists.cncf.io/g/udpa-wg)：CNCF 的 UDPA 工作组，可以通过加入工作组的方式了解更多信息
 
 ## UDPA和xDS的关系
 
-在展开 UDPA 的细节之前，有必要先解释清楚 UDPA 和 xDS 的关系，因为这对后面理解 UDPA 会有很大帮助。
+在展开 UDPA 的细节之前，有必要先解释清楚 UDPA 和 xDS 的关系，因为这对理解 UDPA 会有很大帮助。
 
 在2019年11月的 EnvoyCon 上，Envoy 的 开发者，也是目前 UDPA 最主要的负责人之一，来自 Google 的 [Harvey Tuch](https://github.com/htuch)，有一个演讲非常详细而清晰的解答了这个问题，这个演讲的标题是：["The Universal Dataplane API (UDPA): Envoy’s Next Generation APIs"](https://envoycon2019.sched.com/event/UxwL/the-universal-dataplane-api-udpa-envoys-next-generation-apis-harvey-tuch-google)。
 
@@ -71,9 +71,9 @@ UDPA的愿景，同样援引：
 
 ![](images/envoy-version-support-timeline.png)
 
-目前看这个计划在执行时稍微有一点点延误，原计划于2019年年底推出的 v3 的 stable 版本实际上是在1月中定稿的。（备注：具体可参考 Envoy PR  [api: freeze v3 API](https://github.com/envoyproxy/envoy/pull/9694) ）。然后目前正在广泛使用的 v2 API 将被标记为 depreated。而且在2020年底，v3 API 预计被 v4 API 取代（注意v4 API 将会是基于 UDPA），而目前我们最熟悉的 v2 API 将计划在年底移除，不再支持！
+目前看这个计划在执行时稍微有一点点延误，原计划于2019年年底推出的 v3 的 stable 版本实际上是在1月中定稿的。（备注：具体可参考 Envoy PR  [api: freeze v3 API](https://github.com/envoyproxy/envoy/pull/9694) ）。然后目前正在广泛使用的 v2 API 将被标记为 depreated。而且在2020年底，v3 API 预计被 v4 API 取代（注意v4 API 将会是基于 UDPA），而目前我们最熟悉的 v2 API 将计划在2020年底移除，不再支持！
 
-上图也展示了未来 xDS 协议的大版本演进和更替的方式，总结说是规律是这样：
+上图也展示了未来 xDS 协议的大版本演进和更替的方式，总的来说规律是这样：
 
 1. 一年一个大版本：2019 v2 -》 2020 v3 -》2021 v4  -》2022 v5
 2. 每个大版本都要经历 alpha -》 stable -》deprecated -》removed 四个阶段，每个阶段历时一年
@@ -175,9 +175,9 @@ UDPA目前定义了四个注解（Annotation）：
 2. 一个OpenRcaService服务定义和配套的OracLoadReport数据定义 
 3. 4个注解
 
-考虑到UDPA推出的时间是 2019年5月份，迄今有9个月的时间，这个进展有些出于意外。
+考虑到UDPA推出的时间是 2019年5月份，迄今有9个月的时间，这个进展有些出乎意料。
 
-翻了一遍 https://github.com/cncf/udpa 上的内容，包括所有的 commit 和 PR ，发现活跃的开发者主要是两位同学：Google 的 htuch 和 Tetrate公司的 lizan。然后 cncf/UDPA 项目的 star 数量也非常低，才 55 个 star，可以认为社区基本上没什么人关注。
+翻了一遍 https://github.com/cncf/udpa 上的内容，包括所有的 commit 和 PR ，发现活跃的开发者主要是两位同学：Google 的 htuch 和 Tetrate公司的 Lizan。然后 cncf/UDPA 项目的 star 数量也非常低，才 55 个 star，可以认为社区基本上没什么人关注。
 
 但是，稍后当我看到 UDPA 的设计文档时，才发现原来 UDPA 的精华都在设计中，只是进度原因还未能正式出成型的API。
 
@@ -194,7 +194,7 @@ UDPA对此的解释是：
 
 关于传输协议与数据模型的关注点分离，一个典型的例子是“集装箱运输机制”（类比 UDPA-TP ）和 “集装箱中标准规格”（类比 UDPA-DM）。在 UDPA 的设计中，数据模型的定义和传输协议的实现是分离的，这意味着只要设计不同的数据模型，就可以重用一套统一的传输协议。因此，UDPA 的可扩展性就变得非常强大。
 
-对此，我个人有些惊喜的，因为去年年底我和彦林同学在商讨通过 MCP/xDS/UDPA 协议融合注册中心和控制平面时，发现这三者的工作机制非常类似。考虑到后续可能会有各种不同的资源需要定义并在这个工作机制上做资源同步和分发，当时有过类似的想法，希望能把底层这套资源同步机制标准化，以便重用：
+对此，我个人有些惊喜，因为去年年底我和彦林同学在商讨通过 MCP/xDS/UDPA 协议融合注册中心和控制平面时，就发现这三者的工作机制非常类似。考虑到后续可能会有各种不同的资源需要定义并在这个工作机制上做资源同步和分发，当时有过类似的想法，希望能把底层这套资源同步机制标准化，以便重用：
 
 ![](images/mcp-xds.png)
 
@@ -280,7 +280,7 @@ UDPA-TP的设计目前应该还没有对应的具体的实现产品，而且我�
 
 	小结：**解决容量和性能问题**。
 
-- 其次，Advanced UDPA management server 引入了联邦的概念， 上面的图片显示是为了在两个不同的云供应商（Cloud Provider X 和 Cloud Provider Y）和本地（On-premise）之间进行联邦，这是典型的混合云的场景。而我的理解是，联邦不仅仅用于多云，也可以用于多数据来源，比如打通多个不同的注册中心。
+- 其次，Advanced UDPA management server 引入了联邦的概念， 上面的图片显示是为了在两个不同的云供应商（Cloud Provider X 和 Cloud Provider Y）和本地（On-premise）之间进行联邦，这是典型的混合云的场景。而我的理解是，联邦不仅仅用于多云，也可以用于多数据来源，比如打通多个不同的注册中心，解决异构互通问题。
 
 	小结：**解决多数据来源的全局聚合问题**。
 
@@ -288,7 +288,7 @@ UDPA-TP的设计目前应该还没有对应的具体的实现产品，而且我�
 
 	小结：**复杂的场景必然带来复杂的机制，背后推动力待查**
 
-对于 UDPA-TP 的设计，我个人有些不太理解，主要是对于联邦的使用场景上，我的疑虑在于：真的有这么复杂的场景吗？尤其是将联邦的功能引入到 DPLB，这必然会使得 xDS/UDPA 协议不得不为此提供API 支持，而 Envoy/MOSN 等的实现难度也要大为提升。因此，除非有特别强烈的需求和场景推动，否则最好能在复杂度和功能性之间做好平衡。
+对于 UDPA-TP 的设计，我个人有些不太理解，主要是对于联邦的使用场景上，我的疑虑在于：真的有这么复杂的场景吗？尤其是将联邦的功能引入到 DPLB，这必然会使得 xDS/UDPA 协议不得不为此提供联邦 API 支持，而 Envoy/MOSN 等的实现难度也要大为提升。因此，除非有特别强烈的需求和场景推动，否则最好能在复杂度和功能性之间做好平衡。
 
 我个人更倾向于类似下面的设计：
 
@@ -348,7 +348,7 @@ UDPA-TP 设计中的其他内容，如安全 / 错误处理 / 传输 / 用户故
 
 UDPA 设计的一个核心内容就是将传输（TransPort）与数据模型（Date Model）的关注点分离，前面介绍了 UDPA-TP 的设计，可以说目前还在进行中，并未完全定型。
 
-而 UDPA-DM 的设计，感觉进度上比 UDPA-TP 还要更早期，这多少有点出乎意料：原以为 UDPA 会基于 xDS 现有的成熟 API 定义，快速推出一套覆盖常见通用功能的 API ，甚至直接把 xDS 中的部分内容清理干净之后搬过来。但事实是：目前 UDPA-DM 中已经定义爹 API 内容非常的少，仅有 L7 Routing ，而且还在设计中，其他大家熟悉的 Listener / Cluster / Endpoint / Security / RatingLimit 等API都还没有看到。
+而 UDPA-DM 的设计，感觉进度上比 UDPA-TP 还要更早期，这多少有点出乎意料：原以为 UDPA 会基于 xDS 现有的成熟 API 定义，快速推出一套覆盖常见通用功能的 API ，甚至直接把 xDS 中的部分内容清理干净之后搬过来。但事实是：目前 UDPA-DM 中已经定义的 API 内容非常少，仅有 L7 Routing ，而且还在设计中，其他大家熟悉的 Listener / Cluster / Endpoint / Security / RatingLimit 等API都还没有看到。
 
 而 UDPA-DM 的设计和实现方式，也因为资料较少而有些不够明朗。在 UDPA-DM 的设计文档的开头，有如下一段描述：
 
@@ -360,7 +360,7 @@ UDPA 设计的一个核心内容就是将传输（TransPort）与数据模型（
 >
 > UDPA-DM 将成为事实标准。我们期望它最初将涵盖 DPLB 共有的一些显而易见的通用功能，同时将其他行为留给代理特定的API字段。随着时间的推移，我们期望 UDPA-DM 将通过稳定的API版本控制策略来发展，以容纳各种功能，而我们将协商通用的表示形式。
 
-对这两段文字描述，我是有一些困惑的，主要在不理解 UDPA-DM 的定义和具体的 DPLB 原生实现（典型如 Envoy 的 xDS）之间的关系。下面这张图是我画的：
+对这两段文字描述的理解，我是有一些困惑的，主要在清楚解 UDPA-DM 的定义和具体的 DPLB 原生实现（典型如 Envoy 的 xDS）之间的关系。下面这张图是我画的：
 
 ![](images/udpa-dm-design.png)
 
@@ -417,13 +417,15 @@ Routing API 中有三个术语：
 
 ## 总结
 
-UDPA 目前还处于早期设计阶段，关键的 UDPA-TP 和 UDPA-DM 的设计有推出草稿但是远未完成，内容也和我们期望的一个完整的通用数据平面API有很长的距离。而且项目进展并不理想，感觉重视程度和人力投入都有限。
+UDPA 目前还处于早期设计阶段，关键的 UDPA-TP 和 UDPA-DM 的设计有推出草稿但是远未完成，内容也和我们期望的一个完整的通用数据平面API有很长的距离。
+
+而且项目进展并不理想，感觉重视程度和人力投入都有限。
 
 ## 附言
 
-最近因为想了解一下 UDPA 的进展如果，所以做了 UDPA 的调研和学习，比较遗憾的是 UDPA 的资料非常匮乏，除了我本文列出来的几个官方网站和设计文档之外，基本就只有 Harvey 的演讲和我自己去年写的介绍文章。
+最近因为想了解一下 UDPA 的进展，所以做了 UDPA 的调研和学习，比较遗憾的是 UDPA 的资料非常匮乏，除了我本文列出来的几个官方网站和设计文档之外，基本就只有 Harvey 的演讲。
 
- 调研完成之后发现 UDPA 的进展不如人意，尤其是最近的工作几乎停滞，关键的 UDPA-TP 和 UDPA-DM 的设计未能完稿，xDS v3 中也只引用了极少的 UDPA API 定义。这边总结文章差点难产，因为未知/待定/未完成的内容太多，而且由于缺乏资料输入，很多信息也只是我个人的理解和想法，按说这不是一个严谨的深度介绍文章应有的态度。
+ 调研完成之后发现 UDPA 的进展不如人意，尤其是最近的工作几乎停滞，关键的 UDPA-TP 和 UDPA-DM 的设计未能完稿，xDS v3 中也只引用了极少的 UDPA API 定义。这篇总结文章差点因此难产，因为未知/待定/未完成的内容太多，而且由于缺乏资料输入，很多信息也只是我个人的理解和想法，按说这不是一个严谨的深度介绍文章应有的态度。
 
 但考虑到目前 UDPA 的资料实在是太少，本着“有比没有好”的想法，我硬着头皮完成了这篇文章。后续如果有新的输入，我会及时完善或者修订本文，也欢迎对 UDPA 有兴趣和了解的同学联系我讨论和指导。
 
@@ -435,7 +437,7 @@ UDPA 目前还处于早期设计阶段，关键的 UDPA-TP 和 UDPA-DM 的设计
 - [UDPA-TP strawman](https://docs.google.com/document/d/1eubmNM2Kynzf7Rpms4nncvTSL6NnANTrpHNWzeIBoZw/): UDPA-TP的设计文档
 - [UDPA-DM: L7 routing strawman](https://docs.google.com/document/d/1orxTIL9FXtgmyl5TtPRBqGjgp1ekL7oOKDd95wxeCRY/): UDPA-DM的设计文档
 - [Stable Envoy API versioning](https://docs.google.com/document/d/1xeVvJ6KjFBkNjVspPbY_PwEDHC7XPi0J5p1SqUXcCl8/) ：Envoy 官方文档，讲述 Envoy 的稳定API版本控制策略
-- [CNCF正在筹建通用数据平面API工作组，以制定数据平面的标准API](https://www.servicemesher.com/blog/cncf-udpa-wg/)：我去年写的 UDPA 介绍文章，有些介绍性的资料
+- [CNCF正在筹建通用数据平面API工作组，以制定数据平面的标准API](https://www.servicemesher.com/blog/cncf-udpa-wg/)：我去年写的 UDPA 介绍文章
 
 - [The Universal Dataplane API (UDPA): Envoy’s Next Generation APIs](https://envoycon2019.sched.com/event/UxwL/the-universal-dataplane-api-udpa-envoys-next-generation-apis-harvey-tuch-google)：Harvey Tuch 的演讲，帮助理解 xDS 和 UDPA 的关系
 
