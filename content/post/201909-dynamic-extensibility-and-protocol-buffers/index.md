@@ -6,8 +6,8 @@ lastmod = 2019-09-20
 draft = false
 
 tags = ["Protocol Buffer"]
-summary = "WebAssembly宣布开始新的标准化工作--WASI，WebAssembly系统接口。通过WASI，可以将WebAssembly和Web的优势扩展到更多的用户，更多的地方，更多的设备，带来更多的体验。"
-abstract = "WebAssembly宣布开始新的标准化工作--WASI，WebAssembly系统接口。通过WASI，可以将WebAssembly和Web的优势扩展到更多的用户，更多的地方，更多的设备，带来更多的体验。"
+summary = "Protobuf提供了一些强大的机制来支持将不透明配置嵌入其静态类型的消息模式中。为项目选择正确的方法需要了解这些机制之间的权衡以及如何进行组合。深入探讨动态 Any 和 STRUCT 的一些细微差别和权衡取舍。"
+abstract = "Protobuf提供了一些强大的机制来支持将不透明配置嵌入其静态类型的消息模式中。为项目选择正确的方法需要了解这些机制之间的权衡以及如何进行组合。深入探讨动态 Any 和 STRUCT 的一些细微差别和权衡取舍。"
 
 [header]
 image = ""
@@ -15,7 +15,7 @@ caption = ""
 
 +++
 
-英文原文来自 [Dynamic extensibility and Protocol Buffers](https://hacks.mozilla.org/2019/08/webassembly-interface-types/)，作者 [Harvey Tuch](https://blog.envoyproxy.io/@htuch)。
+英文原文来自 [Dynamic extensibility and Protocol Buffers](https://blog.envoyproxy.io/dynamic-extensibility-and-protocol-buffers-dcd0bf0b8801/)，作者 [Harvey Tuch](https://blog.envoyproxy.io/@htuch)。
 
 > 备注：快速翻译（机翻+人工校对，没有精修），质量不高，一般阅读可以，不适合传播，谢绝转载。
 
@@ -31,9 +31,41 @@ Envoy的主要功能之一是其可扩展性。每个 request/stream/connection 
 
 我们在数据平面API中的 https://github.com/envoyproxy/data-plane-api/tree/master/api  的 `.proto` 文件中定义了固定消息类型，用于Envoy的内置功能和过滤器。例如，Envoy的 [RouteConfiguration](https://github.com/envoyproxy/data-plane-api/blob/30b519882b82d4f6a0cf1b502258e35cae9292a2/api/rds.proto#L534) 消息描述了一个路由表，从虚拟主机和路径到路由操作的映射：
 
+```protobuf
+message RouteConfiguration {
+  // The name of the route configuration. For example, it might match the
+  // router_config_name in the HttpConnectionManager > route_specifier > rds
+  // message.
+  string name = 1;
+
+  // An array of virtual hosts that make up the route table.
+  repeated VirtualHost virtual_hosts = 2;
+
+  // Specifies a list of HTTP headers that the connection manager will consider
+  // to be internal only. If they are found on external requests they will be
+  // cleaned prior to filter invocation. See x-envoy-internal for more
+  // information.
+  repeated string internal_only_headers = 3;
+  
+  ...
+```
+
+
+
 与Envoy核心功能的配置相对应的消息类型在我们的GitHub存储库中指定，并将随着Envoy功能的增长而扩展。但是，在配置更新中，Envoy用户需要一起指定Envoy核心功能的配置以及他们自己的自定义过滤器的配置。
 
 想象一下，Acme Corp编写了一个*AcmeWidget*筛选器，在每次请求时向身份验证服务发起RPC。自定义过滤器的配置将在protobuf中定义，例如：
+
+```protobuf
+message AuthService {
+  string cluster = 1;
+  enum AuthType {
+    OAUTH = 0;
+    JWT = 1;
+  }
+  AuthType auth_type = 2;
+}
+```
 
 
 这个 proto 是专有的，不太可能托管在Envoy的数据平面API存储库中。因此，我们需要提供某种方式在Envoy的配置中进行编码，以更新*AuthService*消息的值，而无需知道静态消息类型。Protobuf 为这种不透明配置嵌入提供了两种众所周知的形式：*Any* 和 *STRUCT* 消息类型。
@@ -44,7 +76,36 @@ Struct是实现此角色的两种消息类型中最容易的，因为它只是JS
 
 这是一种非常灵活的类型，并为protobuf带来了动态类型的优点。今天，我们在Envoy中使用这个方式来嵌入任意过滤器：
 
+```protobuf
+message Filter {
+  // The name of the filter to instantiate. The name must match a supported
+  // filter.
+  string name = 1;
+  // Filter specific configuration which depends on the filter being
+  // instantiated. See the supported filters for further documentation.
+  google.protobuf.Struct config = 2;
+}
+```
+
 下面是一个具体示例，嵌入在 Filter 中的 AcmeValue 的文本 proto 表示：
+
+```protobuf
+filter {
+  name: "acme.widget"
+  config {
+    fields {
+      key: "cluster"
+      value {
+        string_value: "some_cluster"
+      }
+      key: "auth_type"
+      value {
+        string_value: "JWT"
+      }
+    }
+  }
+}
+```
 
 迄今为止，此方法运行良好，但它是有折衷的，这些折衷是灵活的动态类型包的一部分：
 
@@ -60,7 +121,30 @@ Struct是实现此角色的两种消息类型中最容易的，因为它只是JS
 
 Any 消息类型将带有类型信息的二进制序列化的protobuf嵌入到另一protobuf的字段内。在内部，它只是一个字节数组，具有嵌入式消息的protobuf格式序列化和一个包含 type URL 的字符串。Type URL本质上是一个字符串，其中包含形式为type.googleapis.com/packagename.messagename 的类型名称。如果我们使用Any，则上面的Filter定义将如下所示：
 
+```protobuf
+message Filter {
+  // The name of the filter to instantiate. The name must match a supported
+  // filter.
+  string name = 1;
+  // Filter specific configuration which depends on the filter being
+  // instantiated. See the supported filters for further documentation.
+  google.protobuf.Any config = 2;
+}
+```
+
 现在，嵌入在Filter中的AcmeValue的文本 proto 表示的一个具体示例为：
+
+```protobuf
+filter {
+  name: "acme.widget"
+  config {
+    [type.googleapis.com/com.acme.AcmeWidget] {
+      cluster: "some_cluster"
+      auth_type: JWT
+    }
+  }
+}
+```
 
 尽管这看起来类似于Struct示例，但请考虑以下差异：
 
@@ -86,6 +170,20 @@ Any 消息类型将带有类型信息的二进制序列化的protobuf嵌入到�
 
 进一步推动这一设计理念，Lizan Zhou建议，我们在Envoy中使用 Any 作为我们的基础不透明的嵌入类型，然后在 Any proto中嵌入一个Struct，以便实现类似的效果。这是一个超酷的主意，从根本上讲就是嵌套的protobuf类型。Type URL为 type.googleapis.com/google.protobuf.Struct 的任何嵌入式的 protobuf 可以被 Envoy 解释为 Struct，同时在不以这种方式嵌入时保持高效 Any的选项。这将为Envoy最终用户提供最大的灵活性，使他们自己可以进行上述的折衷。双重嵌套的具体示例是：
 
+```protobuf
+message Filter {
+  // The name of the filter to instantiate. The name must match a supported
+  // filter.
+  string name = 1;
+  // Filter specific configuration which depends on the filter being
+  // instantiated. See the supported filters for further documentation.
+  oneof config_specifier {
+    google.protobuf.Any config_any = 2;
+    google.protobuf.Struct config_struct = 3;
+  }
+}
+```
+
 在将来的某个时候，我们很可能会采用上述 Any/Struct 组合方式中的一种来获得两全其美的效果。目前，我们已经冻结了核心数据平面API，以准备在Envoy 1.5版本中投入生产。在执行此操作时，我们将需要以向后兼容的方式进行此切换，同时在我们的可扩展API之间保持机制的一致性。
 
 Protobuf提供了一些强大的机制来支持将不透明配置嵌入其静态类型的消息模式中。为项目选择正确的方法需要了解这些机制之间的权衡以及如何进行组合。在Envoy项目中做出此设计决定时，我们会发现上面的详细信息非常宝贵，希望我们可以通过分享这些经验教训使社区受益。
@@ -93,3 +191,21 @@ Protobuf提供了一些强大的机制来支持将不透明配置嵌入其静态
 致谢：以上对Any与Struct取舍的调查是通过与 John Millikin 和 Lizan Zhou 进行的有益讨论而得出的，非常感谢。当我们制订 Envoy 数据平面API 的 proto 时，也要向 mattklein123 进行有关此主题的许多PR评论和讨论。
 
 免责声明：此处陈述的观点仅代表我个人，而非我公司（Google）的观点。
+
+## 后续补充
+
+在2020年的最新的 UPPA 定义中，定义了名为 TypedStruct 的类型：
+
+```protobuf
+message TypedStruct {
+  // 用于唯一标识序列化 protocol buffer 消息的类型的URL
+  // 这与 google.protobuf.Any 中描述的语义和格式相同：
+  // https://github.com/protocolbuffers/protobuf/blob/master/src/google/protobuf/any.proto
+  string type_url = 1;
+
+  // 上述指定类型的JSON表示形式。
+  google.protobuf.Struct value = 2;
+}
+```
+
+算是为这一话题正式画上了句号。
