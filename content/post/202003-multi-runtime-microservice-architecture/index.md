@@ -6,8 +6,8 @@ lastmod = 2020-03-04
 draft = false
 
 tags = ["Istio"]
-summary = "multi-runtime-microservice-architecture"
-abstract = "multi-runtime-microservice-architecture"
+summary = "使用多个运行时来实现分布式系统。多个运行时，不是因为有多个微服务，而是因为每个微服务由多个运行时组成：一个用于自定义微业务逻辑的运行时，以及一个（或多个）用于分布式原语的现成的可配置运行时。"
+abstract = "使用多个运行时来实现分布式系统。多个运行时，不是因为有多个微服务，而是因为每个微服务由多个运行时组成：一个用于自定义微业务逻辑的运行时，以及一个（或多个）用于分布式原语的现成的可配置运行时。"
 
 [header]
 image = "headers/post/202003-multi-runtime-microservice-architecture.jpg"
