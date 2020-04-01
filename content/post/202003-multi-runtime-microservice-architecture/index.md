@@ -17,8 +17,6 @@ caption = ""
 
 英文原文来自 [Multi-Runtime Microservices Architecture](https://www.infoq.com/articles/multi-runtime-microservice-architecture/)，作者 [Bilgin Ibryam](http://ofbizian.com/)，由 [Daniel Bryant](https://www.infoq.com/profile/Daniel-Bryant/) 复审。 
 
-> 备注：快速翻译（机翻+人工校对，没有精修），质量不高，一般阅读可以，不适合传播，谢绝转载。
-
 ------
 
 ## 重点
