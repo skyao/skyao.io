@@ -286,3 +286,15 @@ AccountReaderService
 > “The existing business ecosystem is the unavoidable burden that most businesses must deal with when they start their microservices journey.”
 >
 > "现有的业务生态体系是大多数企业在开始微服务之旅时必须要面对的不可避免的负担。"
+
+利用云提供商的事件/消息产品如AWS的SQS/SNS、谷歌云Pub/Sub、Azure Service Bus等，或者专有事件传输解决方案如Apache Kafka、IBM MQ和TIBCO EMS，似乎很有吸引力。但这种方法存在着多种问题：
+
+- 锁定。当由于技术或业务原因想离开这个解决方案时，问题就会出现。这需要大量的投资来撤销这个错误，因为几乎所有的服务和业务都是如此。集成受影响。
+- 缺少API。微服务的一个主要优点是它不规定使用什么编程语言，专有的API通常只支持一小部分语言，因此限制了灵活性和选择。
+- 抑制创新。微服务的另一个好处是随着行业和产品的发展而使用新技术和新工艺的能力。由于转换成本太高，被锁定在一个供应商的专有API中，可能意味着你被锁定在创新之外。听起来和单体应用的问题差不多!
+
+当选择事件/消息平台的实现时，重要的是确保它支持标准API，如Spring、JMS、NMS、Paho和Qpid，如MQTT和AMQP v1.0。
+
+
+
+
