@@ -1,11 +1,11 @@
 +++
-title = "Servicemesh和API Gateway关系深度探讨"
+title = "相爱相杀：Servicemesh和API Gateway关系深度探讨"
 
-date = 2020-04-21
-lastmod = 2020-04-21
-draft = true
+date = 2020-04-30
+lastmod = 2020-04-30
+draft = false
 
-tags = ["Istio"]
+tags = ["服务网格"]
 summary = "本文总结了 Servicemesh 和 API Gateway 的关系，整体上说两者的定位和职责“泾渭分明”，但在具体实现上，开始出现融合的趋势：早期传统方式是类库级别的代码复用，最新趋势是API Gateway和Sidecar 合二为一。"
 abstract = "本文总结了 Servicemesh 和 API Gateway 的关系，整体上说两者的定位和职责“泾渭分明”，但在具体实现上，开始出现融合的趋势：早期传统方式是类库级别的代码复用，最新趋势是API Gateway和Sidecar 合二为一。"
 
