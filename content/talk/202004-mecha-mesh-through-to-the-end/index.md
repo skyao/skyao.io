@@ -72,7 +72,7 @@ highlight = true
 # Place your image in the `static/img/` folder and reference its filename below, e.g. `image = "example.jpg"`.
 
 [header]
-image = "headers/talk/202004-mecha-next-stop-of-cloud-native-2.jpg"
+image = "headers/talk/202004-mecha-mesh-through-to-the-end.jpg"
 caption = ""
 +++
 
@@ -357,50 +357,6 @@ Mecha的精髓，要从上面这句名言开始：
 
 > 备注：Mecha有非常多的能力，实现上也有非常多的细节，这里先做一个High Level的概述。细节后面会有一系列文章一一覆盖，欢迎多交流讨论。
 
-## Mecha@蚂蚁
-
-### 蚂蚁的现状和目标
-
-在过去几年的云原生实践中，蚂蚁金服的很多分布式能力都在积极探索新的产品形态。长远说，云原生是我们追求的目标，而通过Mesh化实现能力下沉到是一个明显的方向。
-
-我简单归纳一下现有的分布式能力及其产品（不全，有待后续补充，如有谬误欢迎指正）：
-
-- Service Mesh
-
-- Message Mesh
-
-- Serverless Eventing
-
-- Database Mesh
-
-- Transaction Mesh ：设计中
-
-- Configuration Runtime：设计中，包括DRM4.0以及云原生配置管理
-
-- State Management ：调研完成，规划中
-
-- Cache Mesh ：有规划，Mesh模式存在性能问题，产品形态待探索
-
-- 可信和安全：Identity/Secret管理/用户组管理/策略/审计，也就是可信原生的概念。
-
-- 以及各种以SDK方式存在的分布式能力：如分布式锁 / 幂等 / ID生成 / Leader Election等
-
-按照 Bilgin Ibryam 提出的分布式应用四大需求的理论，我将这些能力和产品大体描述在下图中：
-
-![](images/antfin-overview.png)
-
-这幅图目前还远不够精确，后续我会继续补充和更正。这里画出来，主要是想在文字描述之外，给大家一个更有体验的认知：Mecha 涉及到的能力和产品，非常的多，远远超出servicemesh的范畴。
-
-而按照 Mecha 的理念， 未来的目标应该是：将这些分布式能力继续全面下沉。可谓任重道远。
-
-### Mecha对蚂蚁的特殊意义
-
-在Mecha的理念出现之前，蚂蚁事实上已经遵循Mesh化的思路，在大家熟悉的Servicemesh之外，尝试将其他能力下沉，典型如Message Mesh/Database Mesh已经开发并有小规模的落地，最近Transaction Mesh/State Mesh/DRM 4.0/Kusion等项目都在开始规划和设计。Mecha和Multiple Runtime理念的出现，非常契合我们的实践，给出了非常好的理论指导。
-
-Mecha的意义不言而喻，和Servicemesh下沉服务间通讯能力带来的好处类似，熟悉servicemesh的同学想必容易推倒出Mecha的各种价值。
-
-而对于蚂蚁这样金融背景浓厚的企业，Mecha将下沉的分布式能力扩展到如此之大的范围，如果真能预期的大规模铺开，则会带有一个特别的意义：应用的各种分布式能力都下沉到Mecha后，如果在Mecha这里做一个“切面”，则可以植入和身份（Identity）/用户管理/Secret管理/策略引擎/审计等一系列安全和可信相关的功能，配合安全容器等技术，可以更好的帮助我们在容器和云上实现安全和可信。这块的内容后续会再继续深入展开。
-
 ## Mecha总结
 
 大概是在3月初，当时我第一次阅读 “Multi-Runtime Microservices Architecture” 这篇文章，有一种豁然开朗的感觉，尤其是有很多之前在反复考虑和权衡但是下不了结论的问题，在这个文章中得到了清晰的解答。可谓受益匪浅。
@@ -415,12 +371,6 @@ Mecha的意义不言而喻，和Servicemesh下沉服务间通讯能力带来的�
 正如曾有说法，说“微服务是SOA实践中正确的部分（the Good Part）”，我希望在 Mecha 的探索和实践中，能够从Servicemesh的实践中吸取成功的经验和失败的教训，希望 Mecha 也能成为Servicemesh的Good Part。希望在云原生的演进路线中，Mecha 可以继微服务和Servicemesh之后，成为云原生落地实践的下一站。
 
 回到现实，目前 Mecha 和 Multi-Runtime 还是一个非常新的想法，Dapr 项目也才刚刚起步，Mecha 要探索的道路还很漫长，一切都还需要摸索着前进。
-
-**关于后续内容的补充说明**
-
-后面陆陆续续会继续补充相关的内容，都是这段时间围绕Mecah的所思所想，团队内部的各种脑暴，以及来自部分同学的珍贵的反馈，鸣谢所有同学（尤其我的Leader典韦）对我胡思乱想的理解和支持。还有，我特别特别喜欢蚂蚁可信原生部门的新口号，“**不将就**”，这给了我很大的勇气，让我有勇气把之前敢想不敢说的脑洞大开的想法放出来。
-
-能力所限，必然有很多考虑不周之处，有些想法也只是有雏形远没有成熟，欢迎指正，欢迎交流。抛砖引玉，期待思想碰撞后彼此都有新的收获。
 
 
 ## 附录：参考资料
