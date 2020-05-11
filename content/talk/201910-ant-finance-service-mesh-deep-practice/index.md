@@ -34,7 +34,7 @@ abstract_short = "2019 年，蚂蚁金服在 Service Mesh 领域继续高歌猛�
 image_preview = ""
 
 # Is this a featured publication? (true/false)
-featured = true
+featured = false
 
 # Projects (optional).
 

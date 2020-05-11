@@ -180,7 +180,7 @@ Micrologic 和 Mecha 可以是一对一部署（称为sidecar模型），也可�
 - Mecha不对Micrologic运行时做任何假设。它与使用开放协议和格式（例如HTTP/gRPC，JSON，Protobuf，CloudEvents）的多语言微服务甚至单体系统一起使用。
 - Mecha以简单的文本格式（例如YAML，JSON）声明式地配置，指示要启用的功能以及如何将其绑定到Micrologic端点。对于特定的API交互，可以为Mechan附加规范，例如[OpenAPI](https://github.com/OAI/OpenAPI-Specification)，[AsyncAPI](https://github.com/asyncapi/asyncapi)，ANSI-SQL等。对于由多个处理步骤组成的有状态工作流，可以使用诸如 [Amazon State Language](https://states-language.net/spec.html) 的规范。对于无状态集成，可以使用与 [Camel-K YAML DSL](https://github.com/apache/camel-k-runtime/tree/master/camel-k-loader-yaml) 类似的方法来使用企业集成模式（[EIP](https://www.enterpriseintegrationpatterns.com/)）。这里的关键点是，所有这些都是简单的，基于文本的，声明性的，多语言的定义，Mecha无需编码即可实现。请注意，这些都是未来派的预测，目前，尚无用于有状态编排或EIP的Mechas，但我希望现有的Mechas（Envoy，Dapr，Cloudstate等）很快就会开始添加此类功能。Mecha是应用级的分布式原语抽象层。
 - 与其依靠多个代理来实现不同的目的（例如网络代理，缓存代理，绑定代理），不如使用一个Mecha提供所有这些能力。一些功能（例如存储，消息持久化，缓存等）的实现将被其他云或本地服务插入并支持。
-- 某些与生命周期管理有关的分布式系统问题可以由管理平台（例如Kubernetes或其他云服务）提供 ，而不是使用诸如 [Open App Model](https://github.com/oam-dev/spec) 这样的通用开放规范的Mecha运行时提供。
+- 某些与生命周期管理有关的分布式系统问题可以由管理平台（例如Kubernetes或其他云服务）提供 ，而Mecha运行时则使用诸如 [Open App Model](https://github.com/oam-dev/spec) 这样的通用开放规范。
 
 ### 这种架构的主要好处是什么？
 
