@@ -3,7 +3,7 @@ title = "[译] 公开接口与发布接口"
 
 date = 2020-06-15
 lastmod = 2020-06-15
-draft = true
+draft = false
 
 tags = ["EDA","Serverless"]
 summary = "软件设计的发展趋势之一是将接口与实现分离,其原理是将模块分为公共（public）部分和私有（private）部分。此外，还有更进一步的——公开（Public）接口和发布（Published）接口之间的区别。"

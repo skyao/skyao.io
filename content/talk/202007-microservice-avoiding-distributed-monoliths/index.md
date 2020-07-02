@@ -72,7 +72,7 @@ highlight = true
 # Place your image in the `static/img/` folder and reference its filename below, e.g. `image = "example.jpg"`.
 
 [header]
-image = "headers/talk/202004-mecha-mesh-through-to-the-end.jpg"
+image = "headers/talk/202007-microservice-avoiding-distributed-monoliths.jpg"
 caption = ""
 +++
 

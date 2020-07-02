@@ -34,7 +34,7 @@ abstract_short = "Servicemesh落地实践三年，效果一直并不理想，到
 image_preview = ""
 
 # Is this a featured publication? (true/false)
-featured = true
+featured = false
 
 # Projects (optional).
 

@@ -1,13 +1,13 @@
 +++
 title = "[译] Operator和Sidecar: 软件交付的新模式"
 
-date = 2020-06-05
-lastmod = 2020-06-05
-draft = true
+date = 2020-06-22
+lastmod = 2020-06-22
+draft = false
 
 tags = ["EDA","Serverless"]
-summary = "Operator和Sidecar: 软件交付的新模式"
-abstract = "Operator和Sidecar: 软件交付的新模式"
+summary = "Sidecar 和 operator 将会成为一种主流的软件发布和使用模式，在某些情况下甚至会取代我们习惯的软件类库和框架。"
+abstract = "Sidecar 和 operator 将会成为一种主流的软件发布和使用模式，在某些情况下甚至会取代我们习惯的软件类库和框架。"
 
 [header]
 image = ""
@@ -18,6 +18,8 @@ caption = ""
 英文原文来自 [Operators and Sidecars Are the New Model for Software Delivery](https://thenewstack.io/operators-and-sidecars-are-the-new-model-for-software-delivery/)，作者 [Bilgin Ibryam](https://thenewstack.io/author/bilgin-ibryam/)。
 
 -----------------------
+
+> 备注：快速翻译（机翻+人工校对，没有精修），质量不高，一般阅读可以，不适合传播，谢绝转载。
 
 ![](images/sidecar.jpg)
 
@@ -93,8 +95,29 @@ Apache Camel 是一个成熟的集成类库，并在Kubernetes上重新发现了
 
 ## 未来的软件发行和使用
 
-### 作为带控制平面的Sidecar而发行的软件
+### 软件以带控制平面的Sidecar方式发行
 
 假设你是一个Java框架的软件提供商。你可能会把它作为一个包或Maven工件发布。也许更进一步，发布的是容器镜像。无论哪种情况，在今天的云原生世界中，这都不够好。用户仍然必须知道如何在不停机的情况下对运行中的应用程序进行补丁和升级。他们必须知道如何备份和恢复其状态。他们必须知道如何配置他们的监控和警报阈值。他们必须知道如何检测并从复杂的故障中恢复。他们必须知道如何根据当前的负载情况来调整应用程序。
 
-在所有这些和类似的场景中，答案是Kubernetes operators形式的智能控制平面。operator将应用程序的平台和领域知识封装在声明式配置的组件中，以管理工作负载。
+在所有这些类似场景中，答案是Kubernetes operators形式的智能控制平面。operator将应用程序的平台和领域知识封装在声明式配置的组件中，以管理工作负载。
+
+**Sidecar 和 operator 将会成为一种主流的软件发布和使用模式，在某些情况下甚至会取代我们习惯的软件类库和框架。**
+
+假设提供的是软件类库，并作为依赖被包含在使用者的应用程序中。也许它是上面描述的后端框架的客户端类库。例如，在Java中，你可能已经对它进行了认证，以便在JEE服务器上运行，提供了Spring Boot Starters、Builders、Factories和其他实现，这些实现都隐藏在一个干净的Java接口后面。你甚至可能已经把它也带回到了.Net。
+
+有了Kubernetes的 operator 和 sidecars，所有这些都对使用者隐藏。工厂类被operator取代，唯一的配置接口是自定义资源的YAML文件。然后，operator负责配置软件和平台，以便用户可以以显式的sidecar，或者透明代理的形式来使用它。在所有情况下，应用程序都可以通过远程API进行使用，并与平台功能完全集成，甚至和其他依赖的operators集成。让我们看看是如何实现的。
+
+### 通过远程API而不是侵入式类库来使用软件
+
+可以将 sidecar 理解为类似于OOP中的 **组合优于继承**（composition over inheritance）原则，但是是在多语言的上下文中。Sidecar 是一种迥异的组织方式，通过将不同进程中的能力组合从而组织为应用责任，而不是将它们作为依赖包含到一个单一的应用运行时中。当作为一个类库使用软件时，需要实例化一个类，通过传递一些值对象来调用它的方法。当把它作为一个进程外能力使用时，需要访问一个本地进程。在这个模型中，方法被API取代，进程内方法调用被HTTP或gRPC调用取代，值对象被类似 CloudEvents 的东西取代。这是一个从应用服务器到Kubernetes（作为分布式运行时）的变化。从特定语言的接口到远程API的变化。从内存调用到HTTP，从值对象到CloudEvents等。
+
+这就需要软件提供商分发容器和控制器来操作。要创建能够在本地构建和调试多个运行时服务的IDE。用于快速将代码变更部署到Kubernetes并配置控制平面的CLI。编译器能够决定编译什么内容到自定义应用运行时，使用 sidecar 和 编排平台的哪些能力。
+
+![](images/softwareconsumers.png)
+
+图：软件使用者和供应商生态系统
+
+从长远来看，这将导致标准化 API 的整合，这些 API 用于使用 sidecar 中的通用原语。我们将拥有多语言API，而不是特定语言的标准和API。例如，我们将拥有通过HTTP协议使用类似CloudEvents的多语言API，而不是Java数据库连接(JDBC)API、Java的缓存API(JCache)、Java持久性API(JPA)。以Sidecar为中心的API，用于消息传递、缓存、可靠的网络、cron作业和定时器调度、资源绑定（与其他API、协议的连接器）、幂等性、SAGA等。而所有这些能力都将以 operator 的形式包含在管理层中来交付，甚至用自助服务的用户界面来包装。Operator 在这里是关键赋能者，因为它们将使这个更加分布式化的架构在Kubernetes上易于管理和自操作。Operator 的管理接口由 CustomResourceDefinition 定义，代表了另一个面向公众的API，但仍然是应用特有的。
+
+这是以不同的方式分发和消费软件的心态打转变，由交付速度和可操作性驱动。这是从单运行时到多运行时应用架构的转变。这是一种类似于摩尔定律结束时硬件行业从单核到多核平台所必须经历的转变。这是一个通过构建所有拼图元素而慢慢发生的转变：我们已经统一采用并标准化了容器，我们已经有了通过Kubernetes进行编排的事实标准，可能很快就会有改进的Sidecar，operator的快速采用，CloudEvents作为广泛认同的标准，Quarkus等轻运行时，等等。有了基础，应用、生产力工具、实践、标准化的API和生态系统也会到来。
+
