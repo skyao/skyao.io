@@ -22,7 +22,10 @@ email = "aoxiaojian@hotmail.com"
 interests = [
     "微服务/Micro Service",
     "服务网格/Service Mesh",
-    "无服务器架构/Serverless",
+    "无服务器/Serverless",
+    "事件驱动/Event Driven",
+    "响应式编程/Reactive Programing",
+    "多运行时/Multiple Runtime",
     "云原生/Cloud Native"
 ]
 
@@ -77,9 +80,9 @@ interests = [
 
 +++
 
-敖小剑，资深码农，十八年软件开发经验，微服务专家，Service Mesh布道师，Servicemesher社区联合创始人。专注于基础架构，Cloud Native 拥护者，敏捷实践者，坚守开发一线打磨匠艺的架构师。曾在亚信、爱立信、唯品会等任职，对基础架构和微服务有过深入研究和实践。
+敖小剑，资深码农，十八年软件开发经验，微服务专家，Service Mesh布道师，Servicemesher社区联合创始人。专注于基础架构，Cloud Native 拥护者，敏捷实践者，坚守开发一线打磨匠艺的架构师。曾在亚信、爱立信、唯品会、蚂蚁金服等任职，对基础架构和微服务有过深入研究和实践。
 
-目前就职蚂蚁金服，在可信原生部（原中间件团队+系统部）从事Service Mesh、Serverless等云原生产品设计和开发。
+目前就职阿里巴巴/阿里云，在云原生应用平台从事Service Mesh、Serverless、Multiple  Runtime等云原生产品设计和开发。
 
 （欢迎使用 [RSS订阅](/index.xml) 本站内容更新）
 
