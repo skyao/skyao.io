@@ -34,7 +34,7 @@ abstract_short = "Mecha下分布式能力众多，如何为Mecha构建一个坚�
 image_preview = ""
 
 # Is this a featured publication? (true/false)
-featured = true
+featured = false
 
 # Projects (optional).
 

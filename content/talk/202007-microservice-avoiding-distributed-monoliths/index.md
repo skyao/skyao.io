@@ -34,7 +34,7 @@ abstract_short = "最近社区频繁出现的对微服务的各种质疑和反�
 image_preview = ""
 
 # Is this a featured publication? (true/false)
-featured = true
+featured = false
 
 # Projects (optional).
 

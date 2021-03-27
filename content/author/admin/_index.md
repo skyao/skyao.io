@@ -13,7 +13,7 @@ role = "中年码农"
 organizations = [ { name = "Dreamfly.io", url = "https://dreamfly.io" } ]
 
 # Short bio (displayed in user profile at end of posts)
-bio = "我目前研究的方向主要在Microservice、Servicemesh、Serverless等和Cloud Native相关的领域，欢迎交流和指导"
+bio = "我目前研究的方向主要在Microservice、Servicemesh、Serverless等Cloud Native相关的领域，全职从事Dapr开发，欢迎交流和指导"
 
 # Enter email to display Gravatar (if Gravatar enabled in Config)
 email = "aoxiaojian@hotmail.com"
@@ -80,9 +80,9 @@ interests = [
 
 +++
 
-敖小剑，资深码农，十八年软件开发经验，微服务专家，Service Mesh布道师，Servicemesher社区联合创始人。专注于基础架构，Cloud Native 拥护者，敏捷实践者，坚守开发一线打磨匠艺的架构师。曾在亚信、爱立信、唯品会、蚂蚁金服等任职，对基础架构和微服务有过深入研究和实践。
+敖小剑，资深码农，十九年软件开发经验，微服务专家，Service Mesh布道师，Servicemesher社区联合创始人，Dapr Maintainer。专注于基础架构，Cloud Native 拥护者，敏捷实践者，坚守开发一线打磨匠艺的架构师。曾在亚信、爱立信、唯品会、蚂蚁金服等任职，对基础架构和微服务有过深入研究和实践。
 
-目前就职阿里巴巴/阿里云，在云原生应用平台从事Service Mesh、Serverless、Multiple  Runtime等云原生产品设计和开发。
+目前就职阿里云，在云原生应用平台全职从事 Dapr 开发。
 
 （欢迎使用 [RSS订阅](/index.xml) 本站内容更新）
 

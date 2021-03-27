@@ -12,7 +12,7 @@ day_night = true
 font = "default"
 
 # Description for social sharing and search engines. If undefined, superuser role is used in place.
-description = "敖小剑的个人技术博客网站，主要关注服务网格,serverless,kubernetes,微服务等云原生技术。"
+description = "敖小剑的个人技术博客网站，主要关注服务网格,Multi-Runtime,serverless,kubernetes,微服务等云原生技术。"
 
 # Default image for social sharing and search engines. Place image in `static/img/` folder and specify image name here.
 sharing_image = ""
@@ -52,7 +52,7 @@ time_format = "15:04"
 # Enter contact details (optional). To hide a field, clear it to "".
 email = "aoxiaojian@hotmail.com"
 phone = ""
-address = "广州市天河区广电平云广场B塔15楼"
+address = "深圳市南山区阿里中心"
 
 # Office hours: use `<br>` to insert a line break, or set to "" to remove office hours
 #office_hours = """Monday 10:00 to 13:00<br>
