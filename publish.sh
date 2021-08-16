@@ -5,7 +5,7 @@ workPath=$(pwd)
 echo "work path is $workPath"
 
 rm -rf public
-hugo54 --baseUrl="https://skyao.io"
+env HUGO_ENV="production" hugo54 --baseUrl="https://skyao.io"
 if [ $? -ne 0 ]; then
     echo "Fail to build html content by hugo, exit"
     exit 1
