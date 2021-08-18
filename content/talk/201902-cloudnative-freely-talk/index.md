@@ -1,73 +1,56 @@
-+++
-title = "畅谈云原生（上）"
-date = 2019-02-22
-draft = false
+---
+title: "畅谈云原生（上）"
+authors:
+- admin
+date: "2019-02-22T00:00:00Z"
+doi: ""
 
-# Authors. Comma separated list, e.g. `["Bob Smith", "David Jones"]`.
-authors = ["敖小剑"]
+# Schedule page publish date (NOT publication's date).
+publishDate: "2019-02-22T00:00:00Z"
 
 # Publication type.
-# Legend:
-# 0 = Uncategorized
-# 1 = Conference proceedings
-# 2 = Journal
-# 3 = Work in progress
-# 4 = Technical report
-# 5 = Book
-# 6 = Book chapter
-publication_types = ["1"]
+# Legend: 0 = Uncategorized; 1 = Conference paper; 2 = Journal article;
+# 3 = Preprint / Working Paper; 4 = Report; 5 = Book; 6 = Book section;
+# 7 = Thesis; 8 = Patent
+publication_types: ["4"]
 
-# Publication name and optional abbreviated version.
-publication = "蚂蚁金服技术夜校分享"
-publication_short = "*蚂蚁金服技术夜校*"
+# Publication name and optional abbreviated publication name.
+publication: 畅谈云原生（上）
+publication_short: 技术前沿探索
 
-# Abstract and optional shortened version.
-abstract = "在云原生大热之际，聊一聊对云原生的理解和实现思路，上半场主要关注三个话题：如何理解云原生？云原生应用应该是什么样子？云原生下的中间件该如何发展？"
-abstract_short = ""
+abstract: 在云原生大热之际，聊一聊对云原生的理解和实现思路，上半场主要关注三个话题：如何理解云原生？云原生应用应该是什么样子？云原生下的中间件该如何发展？
 
-# Featured image thumbnail (optional)
-image_preview = ""
 
-# Is this a featured publication? (true/false)
-featured = false
+# Summary. An optional shortened abstract.
+summary:
 
-# Projects (optional).
-#   Associate this publication with one or more of your projects.
-#   Simply enter the filename (excluding '.md') of your project file in `content/project/`.
-projects = []
+tags:
+- 云原生
 
-tags = ["云原生", "蚂蚁金服"]
+featured: false
 
 # Links (optional).
-url_pdf = ""
-url_preprint = ""
-url_code = ""
-url_dataset = ""
-url_project = ""
-url_slides = ""
-url_video = ""
-url_poster = ""
-url_source = ""
-
-# Custom links (optional).
-#   Uncomment line below to enable. For multiple links, use the form `[{...}, {...}, {...}]`.
-url_custom = [{name = "PPT下载", url = "/files/pdf/201902-cloudnative-freely-talk.pdf"}, {name = "图文实录(PDF格式)", url = "/files/pdf/201902-cloudnative-freely-talk-record.pdf"}]
+links:
+- name: PPT下载
+  url: /files/pdf/201902-cloudnative-freely-talk.pdf
+  icon: file-powerpoint
+  icon_pack: fas
+- name: 图文稿(PDF格式)
+  url: /files/pdf/201902-cloudnative-freely-talk-record.pdf
+  icon: file-pdf
+  icon_pack: fas
+- name: InfoQ网站
+  url: https://www.infoq.cn/article/fA42rfjV*dYGAvRANFqE
+  icon: info
 
 # Does the content use math formatting?
-math = false
+math: true
 
 # Does the content use source code highlighting?
-highlight = true
+highlight: true
 
-# Featured image
-# Place your image in the `static/img/` folder and reference its filename below, e.g. `image = "example.jpg"`.
-[header]
-image = "headers/talk/201902-cloudnative-freely-talk.jpg"
-caption = ""
+---
 
-+++
-
-_ _ _
 
 ![](images/ppt1-1.png)
 

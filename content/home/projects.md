@@ -1,52 +1,48 @@
-+++
-# Projects widget.
-widget = "projects"  # Do not modify this line!
-active = false  # Activate this widget? true/false
+---
+# An instance of the Portfolio widget.
+# Documentation: https://wowchemy.com/docs/page-builder/
+widget: portfolio
 
-title = "开源项目"
-subtitle = ""
+# This file represents a page section.
+headless: true
 
-# Order that this section will appear in.
-weight = 50
+# Order that this section appears on the page.
+weight: 80
 
-# Content.
-# Display content from the following folder.
-# For example, `folder = "project"` displays content from `content/project/`.
-folder = "project"
+title: 开源项目
+subtitle: ''
 
-# View.
-#   1 = List
-#   3 = Card
-#   5 = Showcase
-view = 3
+content:
+  # Page type to display. E.g. project.
+  page_type: project
 
-# Widget layout
-# Legend: 0 = two columns (default), 1 = single column
-widget_layout = 0
+  # Default filter index (e.g. 0 corresponds to the first `filter_button` instance below).
+  filter_default: 0
 
-# For Showcase view, flip alternate rows?
-flip_alt_rows = false
+  # Filter toolbar (optional).
+  # Add or remove as many filters (`filter_button` instances) as you like.
+  # To show all items, set `tag` to "*".
+  # To filter by a specific tag, set `tag` to an existing tag name.
+  # To remove the toolbar, delete the entire `filter_button` block.
+  filter_button:
+  - name: All
+    tag: '*'
+  - name: 云原生
+    tag: cloudnative
+  - name: 其他
+    tag: Demo
 
-# Filter toolbar.
+design:
+  # Choose how many columns the section has. Valid values: '1' or '2'.
+  columns: '2'
 
-# Default filter index (e.g. 0 corresponds to the first `[[filter]]` instance below).
-filter_default = 0
+  # Toggle between the various page layout types.
+  #   1 = List
+  #   2 = Compact
+  #   3 = Card
+  #   5 = Showcase
+  view: 3
 
-# Add or remove as many filters (`[[filter]]` instances) as you like.
-# To show all items, set `tag` to "*".
-# To filter by a specific tag, set `tag` to an existing tag name.
-# To remove toolbar, delete/comment all instances of `[[filter]]` below.
-# [[filter]]
-#   name = "All"
-#   tag = "*"
-#
-# [[filter]]
-#   name = "Deep Learning"
-#   tag = "Deep Learning"
-#
-# [[filter]]
-#   name = "Other"
-#   tag = "Demo"
-
-+++
-
+  # For Showcase view, flip alternate rows?
+  flip_alt_rows: false
+---

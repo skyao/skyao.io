@@ -10,7 +10,7 @@ summary = "对于服务的可见性，在 Istio 设计之初，是没有特别�
 abstract = "对于服务的可见性，在 Istio 设计之初，是没有特别考虑的，或者说，Istio 一开始的设计就是建立在如下前提下的：Istio中的任何服务都可以访问其他任意服务。直到Istio1.1版本才开始正视这个问题 :)"
 
 [header]
-image = "headers/post/201903-istio-service-visibility.jpg"
+image = ""
 caption = ""
 
 +++

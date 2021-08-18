@@ -10,7 +10,7 @@ summary = "本文档讨论了CloudEvents和CloudEvents Generator的使用方法�
 abstract = "本文档讨论了CloudEvents和CloudEvents Generator的使用方法，帮助更好地理解本教程系列其他教程中使用的演示项目，这是《构建事件驱动的云应用和服务》系列教程的第二篇。"
 
 [header]
-image = "headers/post/202004-microservices-choreography-vs-orchestration.jpg"
+image = ""
 caption = ""
 
 +++

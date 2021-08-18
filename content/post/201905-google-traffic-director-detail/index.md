@@ -10,7 +10,7 @@ summary = "Google最近宣布用于服务网格的Traffic Director beta测试版
 abstract = "Google最近宣布用于服务网格的Traffic Director beta测试版，为VM和容器服务带来全局流量管理。本文将对 Traffic Director 进行详细介绍和产品分析。"
 
 [header]
-image = "headers/post/201904-microservice-anti-patten.jpg"
+image = ""
 caption = ""
 
 +++

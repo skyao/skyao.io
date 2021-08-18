@@ -1,15 +1,15 @@
-+++
-title = "出版作品"
+---
+title: 出版作品
+cms_exclude: true
 
 # View.
 #   1 = List
 #   2 = Compact
 #   3 = Card
 #   4 = Citation
-view = 3
+view: 3
 
-# Optional featured image (relative to `static/img/` folder).
-[header]
-image = ""
-caption = ""
-+++
+cascade:
+- image:
+    placement: 3
+---

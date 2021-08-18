@@ -10,7 +10,7 @@ summary = "微软最近宣布了 Service Mesh Interface 服务网格规范，定
 abstract = "微软最近宣布了 Service Mesh Interface 服务网格规范，定义了通用标准，包含基本特性以满足大多数场景下的通用需求。本文将带您深入了解 Service Mesh Interface。"
 
 [header]
-image = "headers/post/201906-smi.jpg"
+image = ""
 caption = ""
 
 +++

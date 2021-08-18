@@ -1,81 +1,52 @@
-+++
-title = "Mecha：将Mesh进行到底"
-date = "2020-04-25"
-draft = false
+---
+title: "Mecha：将Mesh进行到底"
+authors:
+- admin
+date: "2020-04-25T00:00:00Z"
+doi: ""
 
-# Authors. Comma separated list, e.g. `["Bob Smith", "David Jones"]`.
-
-authors = ["敖小剑"]
+# Schedule page publish date (NOT publication's date).
+publishDate: "2020-04-25T00:00:00Z"
 
 # Publication type.
+# Legend: 0 = Uncategorized; 1 = Conference paper; 2 = Journal article;
+# 3 = Preprint / Working Paper; 4 = Report; 5 = Book; 6 = Book section;
+# 7 = Thesis; 8 = Patent
+publication_types: ["4"]
 
-# Legend:
+# Publication name and optional abbreviated publication name.
+publication: 技术前沿探索
+publication_short: 技术前沿探索
 
-# 0 = Uncategorized
-# 1 = Conference proceedings
-# 2 = Journal
-# 3 = Work in progress
-# 4 = Technical report
-# 5 = Book
-# 6 = Book chapter
-publication_types = ["4"]
+abstract: Servicemesh落地实践三年，效果一直并不理想，到了该反思的时候了。Mecha作为面向服务的分布式能力抽象层，是Servicemesh模式的自然进化版本，预计也将是云原生化和Mesh化的必然趋势，让我们将Mesh进行到底。
 
-# Publication name and optional abbreviated version.
+# Summary. An optional shortened abstract.
+summary:
 
-publication = "技术前沿探索"
-publication_short = "技术前沿探索"
+tags:
+- 云原生
+- 应用运行时
 
-# Abstract and optional shortened version.
-abstract = "Servicemesh落地实践三年，效果一直并不理想，到了该反思的时候了。Mecha作为面向服务的分布式能力抽象层，是Servicemesh模式的自然进化版本，预计也将是云原生化和Mesh化的必然趋势，让我们将Mesh进行到底。"
-abstract_short = "Servicemesh落地实践三年，效果一直并不理想，到了该反思的时候了。Mecha作为面向服务的分布式能力抽象层，是Servicemesh模式的自然进化版本，预计也将是云原生化和Mesh化的必然趋势，让我们将Mesh进行到底。"
-
-# Featured image thumbnail (optional)
-
-image_preview = ""
-
-# Is this a featured publication? (true/false)
-featured = false
-
-# Projects (optional).
-
-#   Associate this publication with one or more of your projects.
-#   Simply enter the filename (excluding '.md') of your project file in `content/project/`.
-projects = []
-
-tags = ["Mecha", "云原生"]
+featured: false
 
 # Links (optional).
-url_pdf = ""
-url_preprint = ""
-url_code = ""
-url_dataset = ""
-url_project = ""
-url_slides = ""
-url_video = ""
-url_poster = ""
-url_source = ""
-
-# Custom links (optional).
-#   Uncomment line below to enable. For multiple links, use the form `[{...}, {...}, {...}]`.
-
-url_custom = []
+links:
+- name: InfoQ微信公众号
+  url: https://mp.weixin.qq.com/s?__biz=MjM5MDE0Mjc4MA==&mid=2651026516&idx=2&sn=8ff68df38253c3a5bebbc24efc9a3f40&chksm=bdbe8c078ac905115b9def7d131310d317dadca3b3f85b5ebfaa2c765ad540ab8dc8a7b9e550&scene=27#wechat_redirect
+  icon: weixin
+  icon_pack: fab
+- name: InfoQ网站
+  url: https://www.infoq.cn/article/Mmfb1fZI3GMDqsiLN5lp
+  icon: info
+  icon_pack: fas
 
 # Does the content use math formatting?
-
-math = false
+math: true
 
 # Does the content use source code highlighting?
+highlight: true
 
-highlight = true
-
-# Featured image
-# Place your image in the `static/img/` folder and reference its filename below, e.g. `image = "example.jpg"`.
-
-[header]
-image = "headers/talk/202004-mecha-mesh-through-to-the-end.jpg"
-caption = ""
-+++
-
+---
 
 
 ## Mecha介绍

@@ -1,25 +1,41 @@
-+++
-# Recent Posts widget.
-# This widget displays recent posts from `content/post/`.
-widget = "posts"  # Do not modify this line!
-active = true  # Activate this widget? true/false
-weight = 40  # Order that this section will appear.
+---
+# An instance of the Pages widget.
+# Documentation: https://wowchemy.com/docs/page-builder/
+widget: pages
 
-title = "技术博客"
-subtitle = ""
+# This file represents a page section.
+headless: true
 
-# Number of recent posts to list.
-count = 10
+# Order that this section appears on the page.
+weight: 70
 
-# View.
-#   1 = List
-#   2 = Compact
-#   3 = Card
-view = 2
+title: 技术博客
+subtitle: 
 
-# Filter posts by tag or category.
-#  E.g. to only show posts tagged with `Academic`, set `filter_tag = "Academic"`
-filter_tag = ""
-filter_category = ""
-+++
+content:
+  # Page type to display. E.g. post, talk, publication...
+  page_type: post
+  # Choose how many pages you would like to display (0 = all pages)
+  count: 5
+  # Filter on criteria
+  filters:
+    author: ""
+    category: ""
+    tag: ""
+    exclude_featured: false
+    exclude_future: false
+    exclude_past: false
+    publication_type: ""
+  # Choose how many pages you would like to offset by
+  offset: 0
+  # Page order: descending (desc) or ascending (asc) date.
+  order: desc
 
+design:
+  # Choose a view for the listings:
+  #   1 = List
+  #   2 = Compact
+  #   3 = Card
+  #   4 = Citation (publication only)
+  view: 2
+---

@@ -10,7 +10,7 @@ summary = "本文讨论如何构建反应式事件驱动系统及其推荐实践
 abstract = "本文讨论如何构建反应式事件驱动系统及其推荐实践，这是 《构建事件驱动的云应用和服务》 系列教程的第三篇。"
 
 [header]
-image = "headers/post/202004-microservices-choreography-vs-orchestration.jpg"
+image = ""
 caption = ""
 
 +++

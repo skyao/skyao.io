@@ -1,80 +1,65 @@
-+++
-title = "Dapr v1.0展望：从servicemesh到云原生"
-date = "2021-03-20"
-draft = false
+---
+title: "Dapr v1.0展望：从servicemesh到云原生"
+authors:
+- admin
+date: "2021-03-20T00:00:00Z"
+doi: ""
 
-# Authors. Comma separated list, e.g. `["Bob Smith", "David Jones"]`.
-
-authors = ["敖小剑"]
+# Schedule page publish date (NOT publication's date).
+publishDate: "2021-03-20T00:00:00Z"
 
 # Publication type.
+# Legend: 0 = Uncategorized; 1 = Conference paper; 2 = Journal article;
+# 3 = Preprint / Working Paper; 4 = Report; 5 = Book; 6 = Book section;
+# 7 = Thesis; 8 = Patent
+publication_types: ["1"]
 
-# Legend:
+# Publication name and optional abbreviated publication name.
+publication: 云原生中间件上海meetup
+publication_short: 云原生meetup
 
-# 0 = Uncategorized
-# 1 = Conference proceedings
-# 2 = Journal
-# 3 = Work in progress
-# 4 = Technical report
-# 5 = Book
-# 6 = Book chapter
-publication_types = ["1"]
+abstract: Dapr 是一个新兴的云原生开源项目，v1.0 刚刚正式发布。本文将从 Servicemesh 的工作原理展开，讨论 Mesh 架构未来的演进方向，介绍以 Dapr 为代表的面向云原生分布式应用的新一代“应用运行时”的理念和思路，结合 Dapr 的特点，探讨全面云原生背景下应用和中间件的未来形态。
 
-# Publication name and optional abbreviated version.
 
-publication = "云原生中间件meetup"
-publication_short = "云原生meetup"
+# Summary. An optional shortened abstract.
+summary:
 
-# Abstract and optional shortened version.
-abstract = "Dapr 是一个新兴的云原生开源项目，v1.0 刚刚正式发布。本文将从 Servicemesh 的工作原理展开，讨论 Mesh 架构未来的演进方向，介绍以 Dapr 为代表的面向云原生分布式应用的新一代“应用运行时”的理念和思路，结合 Dapr 的特点，探讨全面云原生背景下应用和中间件的未来形态。"
-abstract_short = "Dapr 是一个新兴的云原生开源项目，v1.0 刚刚正式发布。本文将从 Servicemesh 的工作原理展开，讨论 Mesh 架构未来的演进方向，介绍以 Dapr 为代表的面向云原生分布式应用的新一代“应用运行时”的理念和思路，结合 Dapr 的特点，探讨全面云原生背景下应用和中间件的未来形态。"
+tags:
+- Dapr
+- 云原生
+- 应用运行时
 
-# Featured image thumbnail (optional)
-
-image_preview = ""
-
-# Is this a featured publication? (true/false)
-featured = true
-
-# Projects (optional).
-
-#   Associate this publication with one or more of your projects.
-#   Simply enter the filename (excluding '.md') of your project file in `content/project/`.
-projects = []
-
-tags = ["Dapr", "云原生"]
+featured: true
 
 # Links (optional).
-url_pdf = ""
-url_preprint = ""
-url_code = ""
-url_dataset = ""
-url_project = ""
-url_slides = ""
-url_video = ""
-url_poster = ""
-url_source = ""
-
-# Custom links (optional).
-#   Uncomment line below to enable. For multiple links, use the form `[{...}, {...}, {...}]`.
-
-url_custom = [{name = "PPT下载", url = "/files/pdf/202103-dapr-from-servicemesh-to-cloudnative.pdf"}, {name = "图文稿(PDF格式)", url = "/files/pdf/202103-dapr-from-servicemesh-to-cloudnative-text.pdf"},  {name = "InfoQ微信公众号头条推送", url = "https://mp.weixin.qq.com/s/KSln4MPWQHICIDeHiY-nWg"},  {name = "Meetup介绍和视频回放地址（2小时6分钟开始）", url = "https://developer.aliyun.com/live/246518"}]
+links:
+- name: PPT下载
+  url: /files/pdf/202103-dapr-from-servicemesh-to-cloudnative.pdf
+  icon: file-powerpoint
+  icon_pack: fas
+- name: 图文稿(PDF格式)
+  url: /files/pdf/202103-dapr-from-servicemesh-to-cloudnative-text.pdf
+  icon: file-pdf
+  icon_pack: fas
+- name: InfoQ微信公众号头条推送
+  url: https://mp.weixin.qq.com/s/KSln4MPWQHICIDeHiY-nWg
+  icon: weixin
+  icon_pack: fab
+- name: Meetup介绍和视频回放地址（2小时6分钟开始）
+  url: https://developer.aliyun.com/live/246518
+  icon: video
+  icon_pack: fas
 
 # Does the content use math formatting?
-
-math = false
+math: true
 
 # Does the content use source code highlighting?
+highlight: true
 
-highlight = true
+---
 
-# Featured image
-# Place your image in the `static/img/` folder and reference its filename below, e.g. `image = "example.jpg"`.
 
-[header]
-image = "headers/talk/202103-dapr-from-servicemesh-to-cloudnative.jpg"
-caption = ""
-+++
+
 
 
 ## 前言

@@ -10,7 +10,7 @@ summary = "在Cloud Next 2019 大会上，Google 宣布了 Cloud Run，这是一
 abstract = "在Cloud Next 2019 大会上，Google 宣布了 Cloud Run，这是一个新的基于容器运行 Serverless 应用的解决方案。Cloud Run 基于开源的 knative 项目，宣称要将 serverless 带入容器世界。"
 
 [header]
-image = "headers/post/project-google-cloud-run.jpg"
+image = ""
 caption = ""
 
 +++

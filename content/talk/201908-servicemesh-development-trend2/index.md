@@ -1,75 +1,59 @@
-+++
-title = "Service Mesh发展趋势(续)：棋到中盘路往何方"
-date = "2019-08-27"
-draft = false
+---
+title: "Service Mesh发展趋势(续)：棋到中盘路往何方"
+authors:
+- admin
+date: "2019-08-27T00:00:00Z"
+doi: ""
 
-# Authors. Comma separated list, e.g. `["Bob Smith", "David Jones"]`.
-
-authors = ["敖小剑"]
+# Schedule page publish date (NOT publication's date).
+publishDate: "2019-08-27T00:00:00Z"
 
 # Publication type.
+# Legend: 0 = Uncategorized; 1 = Conference paper; 2 = Journal article;
+# 3 = Preprint / Working Paper; 4 = Report; 5 = Book; 6 = Book section;
+# 7 = Thesis; 8 = Patent
+publication_types: ["1"]
 
-# Legend:
-# 0 = Uncategorized
-# 1 = Conference proceedings
-# 2 = Journal
-# 3 = Work in progress
-# 4 = Technical report
-# 5 = Book
-# 6 = Book chapter
-publication_types = ["1"]
+# Publication name and optional abbreviated publication name.
+publication: Service Mesh发展趋势(续)：棋到中盘路往何方
+publication_short: ServiceMesh Meetup2019广州站
 
-# Publication name and optional abbreviated version.
+abstract: 继续探讨ServiceMesh发展趋势：深度分析Istio的重大革新Mixer v2，Envoy支持Web Assembly的意义所在; 深入介绍Google Traffic Director对虚拟机模式的创新支持方式，以及最近围绕SMI发生的故事。
 
-publication = "ServiceMesh Meetup2019广州站"
-publication_short = "ServiceMesh Meetup广州"
 
-# Abstract and optional shortened version.
-abstract = "继续探讨ServiceMesh发展趋势：深度分析Istio的重大革新Mixer v2，Envoy支持Web Assembly的意义所在; 深入介绍Google Traffic Director对虚拟机模式的创新支持方式，以及最近围绕SMI发生的故事。"
-abstract_short = "继续探讨ServiceMesh发展趋势：深度分析Istio的重大革新Mixer v2，Envoy支持Web Assembly的意义所在; 深入介绍Google Traffic Director对虚拟机模式的创新支持方式，以及最近围绕SMI发生的故事。"
+# Summary. An optional shortened abstract.
+summary:
 
-# Featured image thumbnail (optional)
+tags:
+- 服务网格
 
-image_preview = ""
-
-# Is this a featured publication? (true/false)
-featured = false
-
-# Projects (optional).
-#   Associate this publication with one or more of your projects.
-#   Simply enter the filename (excluding '.md') of your project file in `content/project/`.
-projects = []
-
-tags = ["服务网格"]
+featured: false
 
 # Links (optional).
-url_pdf = ""
-url_preprint = ""
-url_code = ""
-url_dataset = ""
-url_project = ""
-url_slides = ""
-url_video = ""
-url_poster = ""
-url_source = ""
-
-# Custom links (optional).
-#   Uncomment line below to enable. For multiple links, use the form `[{...}, {...}, {...}]`.
-
-url_custom = [{name = "PPT下载", url = "/files/pdf/201908-servicemesh-development-trend2.pdf"}, {name = "图文实录(PDF格式)", url = "/files/pdf/201908-servicemesh-development-trend2-text.pdf"},  {name = "Meetup资料介绍", url = "https://tech.antfin.com/community/activities/781"}]
+links:
+- name: PPT下载
+  url: /files/pdf/201908-servicemesh-development-trend2.pdf
+  icon: file-powerpoint
+  icon_pack: fas
+- name: 图文稿(PDF格式)
+  url: /files/pdf/201908-servicemesh-development-trend2-text.pdf
+  icon: file-pdf
+  icon_pack: fas
+- name: InfoQ网站
+  url: https://www.infoq.cn/article/3BcWtX2x4NPBlFN4jWAE
+  icon: info
+- name: Meetup资料介绍
+  url: https://tech.antfin.com/community/activities/781
+  icon: address-card
+  icon_pack: fas
 
 # Does the content use math formatting?
-math = false
+math: true
 
 # Does the content use source code highlighting?
-highlight = true
+highlight: true
 
-# Featured image
-# Place your image in the `static/img/` folder and reference its filename below, e.g. `image = "example.jpg"`.
-[header]
-image = "headers/talk/201905-servicemesh-development-trend.png"
-caption = ""
-+++
+---
 
 ## 前言
 

@@ -6,7 +6,6 @@ date = 2018-11-21T19:50:00
 
 draft = false  # Is this a draft? true/false
 toc = false  # Show table of contents? true/false
-type = "docs"  # Do not modify.
 
 # Add menu entry to sidebar.
 linktitle = "基础设施"

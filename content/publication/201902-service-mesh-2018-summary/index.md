@@ -1,72 +1,64 @@
-+++
-title = "Service Mesh2018年度总结"
-date = "2019-02-20"
+---
+title: "Service Mesh2018年度总结"
+authors:
+- admin
+date: "2019-02-20T00:00:00Z"
+doi: ""
 
-# Authors. Comma separated list, e.g. `["Bob Smith", "David Jones"]`.
-authors = ["敖小剑"]
+# Schedule page publish date (NOT publication's date).
+publishDate: "2019-02-20T00:00:00Z"
 
 # Publication type.
-# Legend:
-# 0 = Uncategorized
-# 1 = Conference proceedings
-# 2 = Journal
-# 3 = Work in progress
-# 4 = Technical report
-# 5 = Book
-# 6 = Book chapter
-publication_types = ["4"]
+# Legend: 0 = Uncategorized; 1 = Conference paper; 2 = Journal article;
+# 3 = Preprint / Working Paper; 4 = Report; 5 = Book; 6 = Book section;
+# 7 = Thesis; 8 = Patent
+publication_types: ["4"]
 
-# Publication name and optional abbreviated version.
-publication = "InfoQ2018年度总结系列文章"
-publication_short = "*InfoQ网站*"
+# Publication name and optional abbreviated publication name.
+publication: InfoQ2018年度总结系列文章
+publication_short: InfoQ网站
 
-# Abstract and optional shortened version.
-abstract = "我们回顾 2018 年的 Service Mesh，会发现的确如去年预期的，2018 年 Service Mesh 市场上的几个主要产品，都还在产品落地和生产实践上努力探索。只是这个过程，比我们预期的要慢一些，遇到的问题也比预期的要多一些，以至于在 2018 年结束时，我们未能看到一个梦寐以求的完美答案，而不得不将对 Service Mesh 的美好期许，留待 2019。<br><br>"
-abstract_short = ""
+abstract: 我们回顾 2018 年的 Service Mesh，会发现的确如去年预期的，2018 年 Service Mesh 市场上的几个主要产品，都还在产品落地和生产实践上努力探索。只是这个过程，比我们预期的要慢一些，遇到的问题也比预期的要多一些，以至于在 2018 年结束时，我们未能看到一个梦寐以求的完美答案，而不得不将对 Service Mesh 的美好期许，留待 2019。
 
-# Featured image thumbnail (optional)
-image_preview = ""
+# Summary. An optional shortened abstract.
+summary:
 
-# Is this a selected publication? (true/false)
-selected = false
+tags:
+- 服务网格
+- Istio
+- Linkerd
+- Conduit
+- Envoy
 
-# Projects (optional).
-#   Associate this publication with one or more of your projects.
-#   Simply enter the filename (excluding '.md') of your project file in `content/project/`.
-projects = []
-
-tags = ["服务网格", "Istio", "Linkerd", "Conduit", "Envoy"]
+featured: false
 
 # Links (optional).
-#url_pdf = "http://eprints.soton.ac.uk/352095/1/Cushen-IMV2013.pdf"
-#url_preprint = "http://eprints.soton.ac.uk/352095/1/Cushen-IMV2013.pdf"
-#url_code = "#"
-#url_dataset = "#"
-#url_project = "#"
-#url_slides = "#"
-#url_video = "#"
-#url_poster = "#"
-#url_source = "#"
-
-# Custom links (optional).
-#   Uncomment line below to enable. For multiple links, use the form `[{...}, {...}, {...}]`.
-url_custom = [{name = "InfoQ中国", url = "https://www.infoq.cn/article/DtxylyFwlyl7K5Jte*WI"},{name = "Infoq微信公众号", url = "https://mp.weixin.qq.com/s/5j-1B5U8q2kE7f_DvPrBaw"}, {name = "ServiceMesher社区", url = "http://www.servicemesher.com/blog/service-mesh-summary-2018/"}, {name = "集体创作资料@github", url = "https://github.com/skyao/servicemesh2018"}]
+links:
+- name: InfoQ中国
+  url: https://www.infoq.cn/article/DtxylyFwlyl7K5Jte*WI
+  icon: info
+- name: Infoq微信公众号
+  url: https://mp.weixin.qq.com/s/5j-1B5U8q2kE7f_DvPrBaw
+  icon: shopping-cart
+  icon: weixin
+  icon_pack: fab
+- name: ServiceMesher社区
+  url: http://www.servicemesher.com/blog/service-mesh-summary-2018/
+  icon: users
+  icon_pack: fas
+- name: 集体创作资料@github
+  url: https://github.com/skyao/servicemesh2018
+  icon: github
+  icon_pack: fab
 
 # Does the content use math formatting?
-math = true
+math: true
 
 # Does the content use source code highlighting?
-highlight = true
+highlight: true
 
-# Featured image
-# Place your image in the `static/img/` folder and reference its filename below, e.g. `image = "example.jpg"`.
-[header]
-image = "headers/publication/201802-service-mesh-2018-summary.jpg"
-caption = ""
+---
 
-+++
-
-_ _ _
 
 作者: 敖小剑、崔秀龙、单家骏、宋净超、田晓亮、徐蓓、张超盟
 

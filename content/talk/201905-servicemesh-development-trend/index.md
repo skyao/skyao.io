@@ -1,72 +1,61 @@
-+++
-title = "Service Mesh发展趋势：云原生中流砥柱"
-date = "2019-05-25"
-draft = false
+---
+title: "Service Mesh发展趋势：云原生中流砥柱"
+authors:
+- admin
+date: "2019-05-25T00:00:00Z"
+doi: ""
 
-# Authors. Comma separated list, e.g. `["Bob Smith", "David Jones"]`.
-
-authors = ["敖小剑"]
+# Schedule page publish date (NOT publication's date).
+publishDate: "2019-05-25T00:00:00Z"
 
 # Publication type.
+# Legend: 0 = Uncategorized; 1 = Conference paper; 2 = Journal article;
+# 3 = Preprint / Working Paper; 4 = Report; 5 = Book; 6 = Book section;
+# 7 = Thesis; 8 = Patent
+publication_types: ["1"]
 
-# Legend:
-# 0 = Uncategorized
-# 1 = Conference proceedings
-# 2 = Journal
-# 3 = Work in progress
-# 4 = Technical report
-# 5 = Book
-# 6 = Book chapter
-publication_types = ["1"]
+# Publication name and optional abbreviated publication name.
+publication: Service Mesh发展趋势：云原生中流砥柱
+publication_short: Kubernetes & Cloud Native Meetup上海站
 
-# Publication name and optional abbreviated version.
-publication = "Kubernetes & Cloud Native Meetup上海站"
-publication_short = "*Cloud Native Meetup* 上海"
+abstract: 介绍ServiceMesh最新的产品动态，分析其发展趋势和未来走向；结合蚂蚁的上云实践，阐述在云原生背景下Service Mesh的核心价值，和对云原生落地的关键作用。
 
-# Abstract and optional shortened version.
-abstract = "介绍ServiceMesh最新的产品动态，分析其发展趋势和未来走向；结合蚂蚁的上云实践，阐述在云原生背景下Service Mesh的核心价值，和对云原生落地的关键作用。"
-abstract_short = "介绍ServiceMesh最新的产品动态，分析其发展趋势和未来走向；结合蚂蚁的上云实践，阐述在云原生背景下Service Mesh的核心价值，和对云原生落地的关键作用。"
+# Summary. An optional shortened abstract.
+summary:
 
-# Featured image thumbnail (optional)
-image_preview = ""
+tags:
+- 服务网格
 
-# Is this a featured publication? (true/false)
-featured = false
-
-# Projects (optional).
-#   Associate this publication with one or more of your projects.
-#   Simply enter the filename (excluding '.md') of your project file in `content/project/`.
-projects = []
-
-tags = ["服务网格"]
+featured: false
 
 # Links (optional).
-url_pdf = ""
-url_preprint = ""
-url_code = ""
-url_dataset = ""
-url_project = ""
-url_slides = ""
-url_video = ""
-url_poster = ""
-url_source = ""
-
-# Custom links (optional).
-#   Uncomment line below to enable. For multiple links, use the form `[{...}, {...}, {...}]`.
-url_custom = [{name = "PPT下载", url = "/files/pdf/201905-servicemesh-development-trend.pdf"}, {name = "图文实录(PDF格式)", url = "/files/pdf/201905-servicemesh-development-trend-text.pdf"},  {name = "Meetup资料介绍", url = "https://yq.aliyun.com/articles/701464"}]
+links:
+- name: PPT下载
+  url: /files/pdf/201905-servicemesh-development-trend.pdf
+  icon: file-powerpoint
+  icon_pack: fas
+- name: 图文稿(PDF格式)
+  url: /files/pdf/201905-servicemesh-development-trend-text.pdf
+  icon: file-pdf
+  icon_pack: fas
+- name: InfoQ网站(上)
+  url: https://www.infoq.cn/article/UHFtoEk2CfRtA72wMiS9
+  icon: info
+- name: InfoQ网站(下)
+  url: https://www.infoq.cn/article/Q0e8wDgwRNTcmNb2PDJo
+  icon: info
+- name: Meetup资料介绍
+  url: https://yq.aliyun.com/articles/701464
+  icon: video
+  icon_pack: fas
 
 # Does the content use math formatting?
-math = false
+math: true
 
 # Does the content use source code highlighting?
-highlight = true
+highlight: true
 
-# Featured image
-# Place your image in the `static/img/` folder and reference its filename below, e.g. `image = "example.jpg"`.
-[header]
-image = "headers/talk/201905-servicemesh-development-trend.png"
-caption = ""
-+++
+---
 
 ## 前言
 

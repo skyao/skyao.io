@@ -9,7 +9,7 @@ draft = false
 tags = ["服务网格"]
 
 [header]
-image = "headers/post/201804-service-mesh-architecture-introspection.jpg"
+image = ""
 caption = ""
 +++
 

@@ -10,7 +10,7 @@ summary = "将事件驱动架构和微服务结合在一起会带来巨大的好
 abstract = "将事件驱动架构和微服务结合在一起会带来巨大的好处，事件/消息才是最能处理分布式计算的特异性，是释放微服务架构潜力的关键。"
 
 [header]
-image = "headers/post/202004-event-driven-microservices.jpg"
+image = ""
 caption = ""
 
 +++

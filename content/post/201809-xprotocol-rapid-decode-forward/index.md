@@ -10,7 +10,7 @@ categories = []
 #projects = ["sofamesh"]
 
 [header]
-image = "headers/post/201809-xprotocol-rapid-decode-forward.jpg"
+image = ""
 caption = ""
 +++
 

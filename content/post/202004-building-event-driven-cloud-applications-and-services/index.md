@@ -10,7 +10,7 @@ summary = "本文讨论构建事件驱动的应用和服务的通用实践和技
 abstract = "本文讨论构建事件驱动的应用和服务的通用实践和技术，这是 《构建事件驱动的云应用和服务》 系列教程的第一篇。"
 
 [header]
-image = "headers/post/202004-microservices-choreography-vs-orchestration.jpg"
+image = ""
 caption = ""
 
 +++

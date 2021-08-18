@@ -1,72 +1,55 @@
-+++
-title = "Service Mesh年度总结：群雄逐鹿烽烟起"
-date = "2018-01-06"
+---
+title: "Service Mesh年度总结：群雄逐鹿烽烟起"
+authors:
+- admin
+date: "2018-01-06T00:00:00Z"
+doi: ""
 
-# Authors. Comma separated list, e.g. `["Bob Smith", "David Jones"]`.
-authors = ["敖小剑"]
+# Schedule page publish date (NOT publication's date).
+publishDate: "2018-01-06T00:00:00Z"
 
 # Publication type.
-# Legend:
-# 0 = Uncategorized
-# 1 = Conference proceedings
-# 2 = Journal
-# 3 = Work in progress
-# 4 = Technical report
-# 5 = Book
-# 6 = Book chapter
-publication_types = ["4"]
+# Legend: 0 = Uncategorized; 1 = Conference paper; 2 = Journal article;
+# 3 = Preprint / Working Paper; 4 = Report; 5 = Book; 6 = Book section;
+# 7 = Thesis; 8 = Patent
+publication_types: ["4"]
 
-# Publication name and optional abbreviated version.
-publication = "InfoQ2017年度总结系列文章"
-publication_short = "*InfoQ网站*"
+# Publication name and optional abbreviated publication name.
+publication: InfoQ2017年度总结系列文章
+publication_short: InfoQ网站
 
-# Abstract and optional shortened version.
-abstract = "2017年的Service Mesh 历程，在平淡中开始，如戏剧般结束，留给我们一个充满想象和憧憬的 2018。让我们一起来回顾这堪称精彩的一年。<br><br>"
-abstract_short = "2017年的Service Mesh历程，在平淡中开始，如戏剧般结束，留给我们一个充满想象和憧憬的2018。让我们一起来回顾这堪称精彩的一年。"
+abstract: 2017年的Service Mesh 历程，在平淡中开始，如戏剧般结束，留给我们一个充满想象和憧憬的 2018。让我们一起来回顾这堪称精彩的一年。
 
-# Featured image thumbnail (optional)
-image_preview = ""
+# Summary. An optional shortened abstract.
+summary:
 
-# Is this a selected publication? (true/false)
-selected = false
+tags:
+- 服务网格
+- Istio
+- Linkerd
+- Conduit
+- Envoy
 
-# Projects (optional).
-#   Associate this publication with one or more of your projects.
-#   Simply enter the filename (excluding '.md') of your project file in `content/project/`.
-projects = []
-
-tags = ["服务网格", "Istio", "Linkerd", "Conduit", "Envoy"]
+featured: false
 
 # Links (optional).
-#url_pdf = "http://eprints.soton.ac.uk/352095/1/Cushen-IMV2013.pdf"
-#url_preprint = "http://eprints.soton.ac.uk/352095/1/Cushen-IMV2013.pdf"
-#url_code = "#"
-#url_dataset = "#"
-#url_project = "#"
-#url_slides = "#"
-#url_video = "#"
-#url_poster = "#"
-#url_source = "#"
-
-# Custom links (optional).
-#   Uncomment line below to enable. For multiple links, use the form `[{...}, {...}, {...}]`.
-url_custom = [{name = "InfoQ中国", url = "http://www.infoq.com/cn/articles/2017-service-mesh"},{name = "聊聊架构公众号", url = "https://mp.weixin.qq.com/s?__biz=MzIwMzg1ODcwMw==&mid=2247487273&idx=1&sn=f654a9a8cb85d8cf2d06e469585cce8a&chksm=96c9b949a1be305f3eaa18e3fcb29cf66b4f51f37869e7ccd8c080a8ded8f4ecfe78e3de8ac6&mpshare=1&scene=1&srcid=1227PrB5dA8Hr3CHPv6B9PEN&pass_ticket=Cl08tM1WUxu5lQaF0I2Pq8J1hk%2Ft%2F1W%2BWDjtFMzvi%2BUOCfK6Jq8y1U03XzG1CjJi#rd"}, {name = "ServiceMesh中文网", url = "http://www.servicemesh.cn/?/article/27"}]
+links:
+- name: InfoQ中国
+  url: http://www.infoq.com/cn/articles/2017-service-mesh
+  icon: info
+- name: 聊聊架构公众号
+  url: https://mp.weixin.qq.com/s?__biz=MzIwMzg1ODcwMw==&mid=2247487273&idx=1&sn=f654a9a8cb85d8cf2d06e469585cce8a&chksm=96c9b949a1be305f3eaa18e3fcb29cf66b4f51f37869e7ccd8c080a8ded8f4ecfe78e3de8ac6&mpshare=1&scene=1&srcid=1227PrB5dA8Hr3CHPv6B9PEN&pass_ticket=Cl08tM1WUxu5lQaF0I2Pq8J1hk%2Ft%2F1W%2BWDjtFMzvi%2BUOCfK6Jq8y1U03XzG1CjJi#rd
+  icon: weixin
+  icon_pack: fab
 
 # Does the content use math formatting?
-math = true
+math: true
 
 # Does the content use source code highlighting?
-highlight = true
+highlight: true
 
-# Featured image
-# Place your image in the `static/img/` folder and reference its filename below, e.g. `image = "example.jpg"`.
-[header]
-image = "headers/publication/201801-service-mesh-2017-summary.jpg"
-caption = ""
+---
 
-+++
-
-_ _ _
 
 在过去的2016年和2017年，微服务技术得以迅猛普及，和容器技术一起成为这两年中最吸引眼球的技术热点。而以Spring Cloud为代表的传统侵入式开发框架，占据着微服务市场的主流地位，它甚至一度成为微服务的代名词。
 

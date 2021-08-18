@@ -8,7 +8,7 @@ draft = false
 tags = ["DreamMesh", "服务注册"]
 
 [header]
-image = "headers/post/201804-dreammesh-registry-model.jpg"
+image = ""
 caption = ""
 +++
 

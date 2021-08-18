@@ -1,80 +1,59 @@
-+++
-title = "诗和远方：蚂蚁金服Service Mesh深度实践"
-date = "2019-10-18"
-draft = false
+---
+title: "诗和远方：蚂蚁金服Service Mesh深度实践"
+authors:
+- admin
+date: "2019-10-18T00:00:00Z"
+doi: ""
 
-# Authors. Comma separated list, e.g. `["Bob Smith", "David Jones"]`.
-
-authors = ["敖小剑"]
+# Schedule page publish date (NOT publication's date).
+publishDate: "2019-10-18T00:00:00Z"
 
 # Publication type.
+# Legend: 0 = Uncategorized; 1 = Conference paper; 2 = Journal article;
+# 3 = Preprint / Working Paper; 4 = Report; 5 = Book; 6 = Book section;
+# 7 = Thesis; 8 = Patent
+publication_types: ["1"]
 
-# Legend:
+# Publication name and optional abbreviated publication name.
+publication: 诗和远方：蚂蚁金服Service Mesh深度实践
+publication_short: QCon 上海
 
-# 0 = Uncategorized
-# 1 = Conference proceedings
-# 2 = Journal
-# 3 = Work in progress
-# 4 = Technical report
-# 5 = Book
-# 6 = Book chapter
-publication_types = ["1"]
+abstract: 2019 年，蚂蚁金服在 Service Mesh 领域继续高歌猛进，进入大规模落地的深水区。本次分享将为大家带来 Service Mesh 技术领域最前沿的硝烟与战火。
 
-# Publication name and optional abbreviated version.
+# Summary. An optional shortened abstract.
+summary:
 
-publication = "QCon 上海 2019"
-publication_short = "QCon 上海"
+tags:
+- 服务网格
 
-# Abstract and optional shortened version.
-abstract = "2019 年，蚂蚁金服在 Service Mesh 领域继续高歌猛进，进入大规模落地的深水区。本次分享将为大家带来 Service Mesh 技术领域最前沿的硝烟与战火。"
-abstract_short = "2019 年，蚂蚁金服在 Service Mesh 领域继续高歌猛进，进入大规模落地的深水区。本次分享将为大家带来 Service Mesh 技术领域最前沿的硝烟与战火。"
-
-# Featured image thumbnail (optional)
-
-image_preview = ""
-
-# Is this a featured publication? (true/false)
-featured = false
-
-# Projects (optional).
-
-#   Associate this publication with one or more of your projects.
-#   Simply enter the filename (excluding '.md') of your project file in `content/project/`.
-projects = []
-
-tags = ["服务网格"]
+featured: false
 
 # Links (optional).
-url_pdf = ""
-url_preprint = ""
-url_code = ""
-url_dataset = ""
-url_project = ""
-url_slides = ""
-url_video = ""
-url_poster = ""
-url_source = ""
-
-# Custom links (optional).
-#   Uncomment line below to enable. For multiple links, use the form `[{...}, {...}, {...}]`.
-
-url_custom = [{name = "PPT下载", url = "/files/pdf/201910-ant-finance-service-mesh-deep-practice.pdf"}, {name = "图文稿(PDF格式)", url = "/files/pdf/201910-ant-finance-service-mesh-deep-practice-text.pdf"},  {name = "InfoQ微信公众号推送", url = "https://mp.weixin.qq.com/s/XjbmCxdJLKVcFlEUiM7Pig"},  {name = "QCon专题介绍", url = "https://qcon.infoq.cn/2019/shanghai/presentation/1955"}]
+links:
+- name: PPT下载
+  url: /files/pdf/201910-ant-finance-service-mesh-deep-practice.pdf
+  icon: file-powerpoint
+  icon_pack: fas
+- name: 图文稿(PDF格式)
+  url: /files/pdf/201910-ant-finance-service-mesh-deep-practice-text.pdf
+  icon: file-pdf
+  icon_pack: fas
+- name: InfoQ微信公众号头条推送
+  url: https://mp.weixin.qq.com/s/XjbmCxdJLKVcFlEUiM7Pig
+  icon: weixin
+  icon_pack: fab
+- name: QCon专题介绍
+  url: https://qcon.infoq.cn/2019/shanghai/presentation/1955
+  icon: address-card
+  icon_pack: fas
 
 # Does the content use math formatting?
-
-math = false
+math: true
 
 # Does the content use source code highlighting?
+highlight: true
 
-highlight = true
-
-# Featured image
-# Place your image in the `static/img/` folder and reference its filename below, e.g. `image = "example.jpg"`.
-
-[header]
-image = "headers/talk/201910-ant-finance-service-mesh-deep-practice.jpg"
-caption = ""
-+++
+---
 
 ## 前言
 

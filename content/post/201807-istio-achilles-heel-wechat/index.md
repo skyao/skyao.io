@@ -9,7 +9,7 @@ tags = ["Istio", "Mixer"]
 categories = []
 
 [header]
-image = "headers/post/201804-istio-achilles-heel.jpg"
+image = ""
 caption = ""
 +++
 

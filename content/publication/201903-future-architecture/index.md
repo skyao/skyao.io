@@ -1,70 +1,52 @@
-+++
-title = "未来架构：从服务化到云原生"
-date = "2019-03-19"
+---
+title: "未来架构：从服务化到云原生"
+authors:
+- admin
+date: "2019-03-19T00:00:00Z"
+doi: ""
 
-# Authors. Comma separated list, e.g. `["Bob Smith", "David Jones"]`.
-authors = ["敖小剑"]
+# Schedule page publish date (NOT publication's date).
+publishDate: "2019-03-19T00:00:00Z"
 
 # Publication type.
-# Legend:
-# 0 = Uncategorized
-# 1 = Conference proceedings
-# 2 = Journal
-# 3 = Work in progress
-# 4 = Technical report
-# 5 = Book
-# 6 = Book chapter
-publication_types = ["5"]
+# Legend: 0 = Uncategorized; 1 = Conference paper; 2 = Journal article;
+# 3 = Preprint / Working Paper; 4 = Report; 5 = Book; 6 = Book section;
+# 7 = Thesis; 8 = Patent
+publication_types: ["5"]
 
-# Publication name and optional abbreviated version.
-publication = "未来架构：从服务化到云原生"
-publication_short = "电子工业出版社"
+# Publication name and optional abbreviated publication name.
+publication: 未来架构：从服务化到云原生
+publication_short: 电子工业出版社
 
-# Abstract and optional shortened version.
-abstract = "互联网架构不断演化，经历了从集中式架构到分布式架构，再到云原生架构的过程。云原生因能解决传统应用升级缓慢、架构臃肿、不能快速迭代等问题而成为未来云端应用的目标。本书首先介绍了架构演化过程及云原生的概念，让读者对基础概念能有一个准确的了解。接着阐述分布式、服务化、Observability、容器调度、Service Mesh、云数据库等体系及其原理，并介绍了与其相关的Dubbo、Spring Cloud、SkyWalking、Kubernetes、Istio开源解决方案。最后深度揭秘开源分布式数据库生态圈Sharding-Sphere的设计与实现ss。<br><br>"
-abstract_short = ""
+abstract: 互联网架构不断演化，经历了从集中式架构到分布式架构，再到云原生架构的过程。云原生因能解决传统应用升级缓慢、架构臃肿、不能快速迭代等问题而成为未来云端应用的目标。本书首先介绍了架构演化过程及云原生的概念，让读者对基础概念能有一个准确的了解。接着阐述分布式、服务化、Observability、容器调度、Service Mesh、云数据库等体系及其原理，并介绍了与其相关的Dubbo、Spring Cloud、SkyWalking、Kubernetes、Istio开源解决方案。最后深度揭秘开源分布式数据库生态圈Sharding-Sphere的设计与实现。
 
-# Featured image thumbnail (optional)
-image_preview = ""
+# Summary. An optional shortened abstract.
+summary:
 
-# Is this a selected publication? (true/false)
-selected = false
+tags:
+- 云原生
+featured: true
 
-# Projects (optional).
-#   Associate this publication with one or more of your projects.
-#   Simply enter the filename (excluding '.md') of your project file in `content/project/`.
-projects = []
+links:
+- name: 书籍介绍@电子工业出版社
+  url: https://www.phei.com.cn/module/goods/wssd_content.jsp?bookid=53619
+  icon: book
+- name: 书籍销售@京东
+  url: https://item.jd.com/12498217.html
+  icon: shopping-cart
+- name: 书籍销售@当当
+  url: http://product.dangdang.com/26912145.html
+  icon: shopping-cart
+#url_pdf: http://eprints.soton.ac.uk/352095/1/Cushen-IMV2013.pdf
+#url_code: '#'
+#url_dataset: '#'
+#url_poster: '#'
+#url_project: ''
+#url_slides: ''
+#url_source: '#'
+#url_video: '#'
 
-tags = ["云原生"]
-
-# Links (optional).
-#url_pdf = "http://eprints.soton.ac.uk/352095/1/Cushen-IMV2013.pdf"
-#url_preprint = "http://eprints.soton.ac.uk/352095/1/Cushen-IMV2013.pdf"
-#url_code = "#"
-#url_dataset = "#"
-#url_project = "#"
-#url_slides = "#"
-#url_video = "#"
-#url_poster = "#"
-#url_source = "#"
-
-# Custom links (optional).
-#   Uncomment line below to enable. For multiple links, use the form `[{...}, {...}, {...}]`.
-url_custom = [{name = "书籍介绍@电子工业出版社", url = "https://www.phei.com.cn/module/goods/wssd_content.jsp?bookid=53619"},{name = "书籍销售@京东", url = "https://item.jd.com/12498217.html"}, {name = "书籍销售@当当", url = "http://product.dangdang.com/26912145.html"}]
-
-# Does the content use math formatting?
-math = true
-
-# Does the content use source code highlighting?
-highlight = true
-
-# Featured image
-# Place your image in the `static/img/` folder and reference its filename below, e.g. `image = "example.jpg"`.
-[header]
-image = "headers/publication/201903-future-architecture.jpg"
-caption = ""
-
-+++
+---
 
 本书有多位作者: 张亮、吴晟、敖小剑、宋净超
 

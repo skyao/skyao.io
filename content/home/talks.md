@@ -1,24 +1,41 @@
-+++
-# Recent and Upcoming Talks widget.
-widget = "talks"  # Do not modify this line!
-active = true  # Activate this widget? true/false
+---
+# An instance of the Pages widget.
+# Documentation: https://wowchemy.com/docs/page-builder/
+widget: pages
 
-title = "演讲分享"
-subtitle = ""
+# This file represents a page section.
+headless: true
 
-# Order that this section will appear in.
-weight = 20
+# Order that this section appears on the page.
+weight: 50
 
-# Number of talks to list.
-count = 5
+title: 演讲分享
+subtitle:
 
-# View.
-#   1 = List
-#   2 = Compact
-#   3 = Card
-view = 3
+content:
+  # Page type to display. E.g. post, event, publication...
+  page_type: talk
+  # Choose how many pages you would like to display (0 = all pages)
+  count: 2
+  # Filter on criteria
+  filters:
+    author: ""
+    category: ""
+    tag: ""
+    exclude_featured: true
+    exclude_future: false
+    exclude_past: false
+    publication_type: ""
+  # Choose how many pages you would like to offset by
+  offset: 0
+  # Page order: descending (desc) or ascending (asc) date.
+  order: desc
 
-# Exclude talks that are shown in the Featured Talks widget?
-exclude_featured = true
-+++
-
+design:
+  # Choose a view for the listings:
+  #   1 = List
+  #   2 = Compact
+  #   3 = Card
+  #   4 = Citation (publication only)
+  view: 3
+---

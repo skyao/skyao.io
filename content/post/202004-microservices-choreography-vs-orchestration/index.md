@@ -10,7 +10,7 @@ summary = "有两种方法可以让微服务朝着一个共同的目标协同工
 abstract = "有两种方法可以让微服务朝着一个共同的目标协同工作：协调（Choreography）和编排（Orchestration）。编排需要主动控制所有的元素和交互，就像指挥家指挥乐团的乐手一样，而协调则需要建立一个模式或例程，微服务会跟随音乐起舞，不需要监督和指令。"
 
 [header]
-image = "headers/post/202004-microservices-choreography-vs-orchestration.jpg"
+image = ""
 caption = ""
 
 +++
