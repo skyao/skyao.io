@@ -8,7 +8,7 @@ draft = false
 tags = ["Istio", "Mixer"]
 
 [header]
-image = "headers/post/201804-istio-mixer-cache-concepts.jpg"
+image = ""
 caption = ""
 +++
 

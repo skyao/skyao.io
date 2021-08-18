@@ -10,7 +10,7 @@ summary = "CNCF正在筹建通用数据平面API工作组，以制定数据平�
 abstract = "CNCF正在筹建通用数据平面API工作组，以制定数据平面的标准API，为L4/L7数据平面配置提供事实上的标准，初始成员将包括 Envoy 和 gRPC 项目的代表。"
 
 [header]
-image = "headers/post/201903-istio-service-visibility.jpg"
+image = ""
 caption = ""
 
 +++

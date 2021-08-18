@@ -10,7 +10,7 @@ summary = "Service Mesh的核心在于将原有以类库方式提供的功能拆
 abstract = "Service Mesh的核心在于将原有以类库方式提供的功能拆分到独立的sidecar进程中，以远程调用的方式来强行解耦服务间通讯的业务语义和服务间通讯的具体实现。我们来看看这对性能会有什么影响。"
 
 [header]
-image = "headers/post/201802-dreammesh-brainstorm-cost.jpg"
+image = ""
 caption = ""
 
 +++

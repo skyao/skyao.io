@@ -10,7 +10,7 @@ summary = "微服务领域的著名专家 Chris Richardson 在其博客上发表
 abstract = "微服务反模式序列文章翻译"
 
 [header]
-image = "headers/post/201904-microservice-anti-patten.jpg"
+image = ""
 caption = ""
 
 +++

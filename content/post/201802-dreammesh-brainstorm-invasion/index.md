@@ -10,7 +10,7 @@ summary = "Service Mesh的一个突出优点就是对应用的侵入度非常低
 abstract = "Service Mesh的一个突出优点就是对应用的侵入度非常低，低到可以零侵入。然而，没有任何事情是可以十全十美的，零侵入带来的弊端又在哪里？"
 
 [header]
-image = "headers/post/201802-dreammesh-brainstorm-invasion.jpg"
+image = ""
 caption = ""
 
 +++

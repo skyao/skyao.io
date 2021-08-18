@@ -10,7 +10,7 @@ summary = "service mesh解决的是东西向服务间通讯的问题，我们来
 abstract = "service mesh解决的是东西向服务间通讯的问题，我们来审视一下API gateway到微服务之间的南北向通讯： 服务发现，负载均衡，路由，灰度，安全，认证，加密，限流，熔断……几乎所有主要功能，在这两个方向上都高度重叠。因此，是否该考虑提供一个统一的解决方案来处理？"
 
 [header]
-image = "headers/post/201803-dreammesh-brainstorm-gateway.jpg"
+image = ""
 caption = ""
 
 +++

@@ -10,7 +10,7 @@ summary = "对于Java企业应用，Spring是无论如何绕不开的。但是�
 abstract = "对于Java企业应用，Spring是无论如何绕不开的。但是如何以正确的姿势在Service Mesh时代使用Spring，需要自己探索。Spring Boot + Service Mesh是我所推崇的一对清爽搭配。"
 
 [header]
-image = "headers/post/201802-dreammesh-brainstorm-spring.jpg"
+image = ""
 caption = ""
 
 +++

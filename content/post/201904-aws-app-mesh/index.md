@@ -10,7 +10,7 @@ summary = "在 re:Invent 2018，AWS宣布了AWS App Mesh 的公开预览版，Ap
 abstract = "AWS App Mesh GA。"
 
 [header]
-image = "headers/post/201904-aws-app-mesh.jpg"
+image = ""
 caption = ""
 
 +++

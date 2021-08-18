@@ -10,7 +10,7 @@ summary = "Traffic Director是Google Cloud Platform（GCP）完全托管的服�
 abstract = "Traffic Director是Google Cloud Platform（GCP）完全托管的服务网格控制平面，可提供弹性，负载平衡和流量控制功能，支持跨区域的服务访问，还支持自动伸缩。"
 
 [header]
-image = "headers/post/201904-microservice-anti-patten.jpg"
+image = ""
 caption = ""
 
 +++

@@ -10,7 +10,7 @@ summary = "在上周的Next '19，我们宣布了用于服务网格的Traffic Di
 abstract = "在上周的Next '19，我们宣布了用于服务网格的Traffic Director，为您的VM和容器服务带来全局流量管理。我们还在博客中向您展示了Traffic Director的功能。今天，我们将深入探讨其特性和优势。"
 
 [header]
-image = "headers/post/201904-microservice-anti-patten.jpg"
+image = ""
 caption = ""
 
 +++

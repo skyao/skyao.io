@@ -10,7 +10,7 @@ summary = "要调用服务，自然需要知道服务在哪里，这涉及到服
 abstract = "要调用服务，自然需要知道服务在哪里，这涉及到服务注册与服务发现。本集群内只需要知道目标服务实例的ip地址和端口即可，而要跨集群调用服务，事情要变的复杂的多。我们来罗列一下实现中的难点所在。"
 
 [header]
-image = "headers/post/201804-dreammesh-registry-difficulty.jpg"
+image = ""
 caption = ""
 
 +++

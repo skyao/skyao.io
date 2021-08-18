@@ -10,7 +10,7 @@ summary = "来自 Shopify 的 Michael Kipper 发表了一篇文章，评测和�
 abstract = "来自 Shopify 的 Michael Kipper 发表了一篇文章，评测和对比了 Istio 和 Linkerd2 的CPU使用情况。Istio 的表现可以说相当的尴尬…..."
 
 [header]
-image = "headers/post/201903-istio-service-visibility.jpg"
+image = ""
 caption = ""
 
 +++

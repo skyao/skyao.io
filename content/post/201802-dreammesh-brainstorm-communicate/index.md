@@ -10,7 +10,7 @@ summary = "Service Mesh并不限制序列化方案和远程通讯机制，在拥
 abstract = "Service Mesh并不限制序列化方案和远程通讯机制，在拥有极大选择自由度的同时，烦恼依旧存在：到底什么是适合service mesh时代的网络通讯方案？"
 
 [header]
-image = "headers/post/201802-dreammesh-brainstorm-communicate.jpg"
+image = ""
 caption = ""
 
 +++

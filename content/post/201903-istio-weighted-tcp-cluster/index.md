@@ -10,7 +10,7 @@ summary = "Istio支持在多个cluster之间设置权重，通过设置不同的
 abstract = "Istio支持在多个cluster之间设置权重，通过设置不同的subset和weight，可以实现很多丰富的功能。但是之前只能为HTTP提供，TLS和TCP只能设置一个Destination，直到Istio1.1版本。"
 
 [header]
-image = "headers/post/201903-istio-service-visibility.jpg"
+image = ""
 caption = ""
 
 +++

@@ -10,7 +10,7 @@ summary = "在这篇文章中，我将介绍Traffic Director是什么，它与Is
 abstract = "在这篇文章中，我将介绍Traffic Director是什么，它与Istio服务网格有什么关系，以及对于那些已经在GKE上运行生产Istio网格的人来说意味着什么。"
 
 [header]
-image = "headers/post/201904-microservice-anti-patten.jpg"
+image = ""
 caption = ""
 
 +++

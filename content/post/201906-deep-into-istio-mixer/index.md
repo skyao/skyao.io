@@ -10,7 +10,7 @@ summary = "Istio深度解读之Mixer v2: 浪子回头金不换"
 abstract = "Istio深度解读之Mixer v2: 浪子回头金不换"
 
 [header]
-image = "headers/post/201904-microservice-anti-patten.jpg"
+image = ""
 caption = ""
 
 +++

@@ -9,7 +9,7 @@ tags = ["Istio", "Mixer"]
 categories = []
 
 [header]
-image = "headers/post/201806-istio-mixer-cache-signature.jpg"
+image = ""
 caption = ""
 +++
 

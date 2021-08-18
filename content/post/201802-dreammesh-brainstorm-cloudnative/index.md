@@ -10,7 +10,7 @@ summary = "理想很丰满，现实很骨感。Cloud Native虽然令人向往，
 abstract = "理想很丰满，现实很骨感。Cloud Native虽然令人向往，然而现实中，有多少企业是真的做好了Cloud Native的准备？"
 
 [header]
-image = "headers/post/201802-dreammesh-brainstorm-cloudnative.jpg"
+image = ""
 caption = ""
 
 +++

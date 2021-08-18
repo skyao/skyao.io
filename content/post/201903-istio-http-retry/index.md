@@ -10,7 +10,7 @@ summary = "Istio1.1版本加强了对HTTP Retry条件的控制，同时修改了
 abstract = "Istio1.1版本加强了对HTTP Retry条件的控制，同时修改了原有的HTTP retry的默认行为，去除了5xx的重试条件，但是没有文档上体现，所以使用时请留意：如果遇到重试不生效，请检查retryOn配置。"
 
 [header]
-image = "headers/post/201903-istio-service-visibility.jpg"
+image = ""
 caption = ""
 
 +++
