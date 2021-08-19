@@ -127,7 +127,7 @@ map:
   api_key: ''
   zoom: 15
 marketing:
-  google_analytics: ''
+  google_analytics: 'G-4BVWTNS4MB'
   google_tag_manager: ''
   google_site_verification: ''
   baidu_site_verification: ''
