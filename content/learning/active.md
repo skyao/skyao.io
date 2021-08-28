@@ -13,23 +13,13 @@ description: >
 - 更新：最近有更新
 - 状态：活跃
 
-### [learning-hugo](https://github.com/skyao/learning-hugo)
-
-- 格式：hugo格式 + docsy 主题
-- 更新：最近有更新
-- 状态：活跃
-
-### [learning-macos](https://github.com/skyao/learning-macos)
-
-- 格式：hugo格式 + docsy 主题
-- 更新：最近有更新
-- 状态：活跃
-
-### [learning-quilkin](https://github.com/skyao/learning-quilkin) 
+### [learning-webassembly](https://github.com/skyao/learning-webassembly)
 
 - 格式：hugo格式 + material-docs 主题
-- 更新：最近有更新
-- 状态：活跃（Private）
+- 更新：2年没更新
+- 内容：有当时调研的一些内容
+- 状态：维护
+- 计划：稍后转为 docsy 格式 重新发布，这个学习笔记也有必要继续，重点投入(优先级高）
 
 ### [learning-tokio](https://github.com/skyao/learning-tokio) 
 
@@ -44,7 +34,12 @@ description: >
 - 内容：有不少内容
 - 状态：活跃
 
+### [learning-cloudnative](https://github.com/skyao/learning-cloudnative)
 
+- 格式：hugo格式 + material-docs 主题
+- 更新：长期没更新，内容可访问
+- 内容：有一点点内容
+- 状态：活跃
 
 
 

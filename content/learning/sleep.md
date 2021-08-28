@@ -7,7 +7,20 @@ description: >
   休眠状态的学习笔记
 ---
 
+### [learning-go](https://github.com/skyao/learning-go)
 
+- 格式：hugo格式 + material-docs主题
+- 更新：最近有更新
+- 状态：维护
+- 计划：内容有点多，转docsy主题有点耗时，先放着（优先级高）
+
+### [learning-knative](https://github.com/skyao/learning-knative)
+
+- 格式：hugo格式 + material-docs 主题
+- 更新：2年没更新
+- 内容：有当时调研的一些内容
+- 状态：维护 (archived)
+- 计划：稍后转为 docsy 格式 重新发布，knative也有必要近期调研一下看最近有什么进展(优先级中）
 
 ### [learning-nginx](https://github.com/skyao/learning-nginx)
 
@@ -22,13 +35,6 @@ description: >
 - 更新：半年没更新
 - 内容：有少量内容
 - 睡眠：（private）
-
-### [learning-linux-mint](https://github.com/skyao/learning-linux-mint)
-
-- 格式：hugo格式 + material-docs 主题
-- 更新：半年没更新
-- 内容：有很多内容
-- 状态：睡眠
 
 ### [learning-dns](https://github.com/skyao/learning-dns)
 
