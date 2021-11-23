@@ -57,7 +57,7 @@ social:
   link: '/#contact'
 - icon: twitter
   icon_pack: fab
-  link: https://twitter.com/SkyAoXiaojian
+  link: https://twitter.com/skyaoxiaojian80
   label: Follow me on Twitter
   display:
     header: false
@@ -82,6 +82,5 @@ highlight_name: false
 
 敖小剑，资深码农，十九年软件开发经验，微服务专家，Service Mesh布道师，云原生布道师，Dapr Approver。专注于基础架构，Cloud Native 爱好者和实践者，坚守开发一线打磨匠艺的架构师。曾在亚信、爱立信、唯品会、数人云、蚂蚁集团/阿里云等任职，对基础架构和微服务有过深入研究和实践，矢志不渝探索云原生新方向。
 
-（欢迎使用 [RSS订阅](https://skyao.io/index.xml) 本站内容更新）
-
+（欢迎使用  [<i class="fa fa-rss" aria-hidden="true"></i> RSS订阅](https://skyao.io/index.xml) 本站内容更新）
 

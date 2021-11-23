@@ -29,7 +29,7 @@ tags:
 - 云原生
 - 应用运行时
 
-featured: true
+featured: false
 
 # Links (optional).
 links:
@@ -149,7 +149,7 @@ Istio 中通讯协议的支持主要在 HTTP 和 gRPC，各家厂商在提供更
 
 #### 可观测性
 
-- Istio 1.8：正式移除Mixer，在Envoy基于wasm重新实现Mixer功能 （Istio最大的架构调整之一）
+- Istio 1.8：正式移除Mixer，在Envoy基于wasm重新实现Mixer功能 （Istio最大的架构调整之一）
 - Istio 1.9：远程获取和加载wasm模块
 
 #### 外部集成

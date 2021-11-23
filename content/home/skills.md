@@ -16,7 +16,7 @@ subtitle: 个人看好并正在努力学习和探索中的新技术方向
 # - Add/remove as many `feature` blocks below as you like.
 # - For available icons, see: https://wowchemy.com/docs/page-builder/#icons
 feature:
-- description: 为云原生应用提供保姆式支持
+- description: 为云原生应用提供全面支持
   icon: object-group
   icon_pack: fa
   name: App Runtime
