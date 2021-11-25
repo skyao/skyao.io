@@ -29,9 +29,6 @@ tags:
 featured: true
 
 links:
-- name: 书籍介绍@电子工业出版社
-  url: https://www.phei.com.cn/module/goods/wssd_content.jsp?bookid=53619
-  icon: book
 - name: 书籍销售@京东
   url: https://item.jd.com/13527634.html
   icon: shopping-cart
