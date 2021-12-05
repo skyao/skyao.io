@@ -25,7 +25,7 @@ summary:
 
 tags:
 - 云原生
-featured: true
+featured: false
 
 links:
 - name: 书籍介绍@电子工业出版社

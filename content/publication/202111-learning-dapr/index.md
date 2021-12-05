@@ -26,7 +26,7 @@ summary:
 tags:
 - 云原生
 - Dapr
-featured: true
+featured: false
 
 links:
 - name: 书籍销售@京东
