@@ -5,8 +5,8 @@ lastmod = 2022-06-02
 draft = false
 
 tags = ["Dapr", "workflow"]
-summary = "Dapr Dapr 工作流提案"
-abstract = "Dapr Dapr 工作流提案"
+summary = "Dapr 最近提出了一个新的提案，计划在 Dapr Runtime 中构建工作流引擎"
+abstract = "Dapr 最近提出了一个新的提案，计划在 Dapr Runtime 中构建工作流引擎"
 
 [header]
 image = ""
