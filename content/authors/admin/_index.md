@@ -31,6 +31,9 @@ interests:
 # Education to show in About widget
 education:
   courses:
+  - course: Principal Software Engineer
+    institution: 微软
+    year: 2022-至今
   - course: 高级技术专家 / 布道师
     institution: 蚂蚁集团/阿里云
     year: 2018-2021
@@ -80,7 +83,9 @@ email: ""
 highlight_name: false
 ---
 
-敖小剑，资深码农，二十年软件开发经验，微服务专家，Service Mesh布道师，云原生布道师，Dapr Approver。专注于基础架构，Cloud Native 爱好者和实践者，坚守开发一线打磨匠艺的架构师。曾在亚信、爱立信、唯品会、数人云、蚂蚁集团/阿里云等任职，对基础架构和微服务有过深入研究和实践，矢志不渝探索云原生新方向。
+敖小剑，资深码农，二十一年软件开发经验，微服务专家，Service Mesh布道师，云原生布道师，Dapr Approver。专注于基础架构，Cloud Native 爱好者和实践者，坚守开发一线打磨匠艺的架构师。曾在亚信、爱立信、唯品会、数人云、蚂蚁集团/阿里云等任职，对基础架构和微服务有过深入研究和实践，矢志不渝探索云原生新方向。
+
+目前就职微软开发平台事业部（DevDiv/全称Developer Division），开发维护 Dapr 等云原生产品。
 
 （欢迎使用  [<i class="fa fa-rss" aria-hidden="true"></i> RSS订阅](https://skyao.io/index.xml) 本站内容更新）
 
