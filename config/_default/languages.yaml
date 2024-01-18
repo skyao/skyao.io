@@ -1,6 +1,6 @@
 # Languages
 #   Create a section for each of your site's languages.
-#   Documentation: https://wowchemy.com/docs/guide/language/
+#   Documentation: https://docs.hugoblox.com/reference/language/
 
 # Default language
 #en:
@@ -11,10 +11,10 @@
 # Uncomment the lines below to configure your website in a second language.
 zh:
   languageCode: zh-Hans
-#  contentDir: content/zh
+#  contentDir: content
   title: 敖小剑的博客
 #  params:
-#    description: 敖小剑的技术博客网站
+#    description: Site description in Chinese...
 #  menu:
 #    main:
 #      - name: 传

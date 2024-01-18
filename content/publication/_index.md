@@ -12,4 +12,9 @@ view: 3
 cascade:
 - image:
     placement: 3
+
+# Optional header image (relative to `static/media/` folder).
+banner:
+  caption: ''
+  image: ''
 ---

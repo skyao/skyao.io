@@ -1,17 +1,14 @@
-module github.com/wowchemy/starter-academic/exampleSite
+module github.com/HugoBlox/theme-academic-cv
 
 go 1.15
 
 require (
-	github.com/wowchemy/wowchemy-hugo-modules/wowchemy-cms/v5 v5.0.0-20220303211751-d75dbe7f3d22 // indirect
-	github.com/wowchemy/wowchemy-hugo-modules/wowchemy/v5 v5.0.0-20220303211751-d75dbe7f3d22 // indirect
+	github.com/HugoBlox/hugo-blox-builder/modules/blox-bootstrap/v5 v5.9.6
+	github.com/HugoBlox/hugo-blox-builder/modules/blox-plugin-netlify v1.1.2-0.20231108141515-0478cf6921f9
+	github.com/HugoBlox/hugo-blox-builder/modules/blox-plugin-reveal v1.1.2
 )
 
-// replace with my forked repo for site https://skyao.io
-//replace github.com/wowchemy/wowchemy-hugo-modules/v5 => github.com/skyao/hugo-academic/v5 skyao.io
-//replace github.com/wowchemy/wowchemy-hugo-modules/wowchemy/v5  => github.com/skyao/hugo-academic/wowchemy/v5 skyao.io
-
 // replace for develop when forked repo is in local
-replace github.com/wowchemy/wowchemy-hugo-modules/v5 => ../hugo-academic
-
-replace github.com/wowchemy/wowchemy-hugo-modules/wowchemy/v5 => ../hugo-academic/wowchemy
+replace github.com/HugoBlox/hugo-blox-builder/modules/blox-bootstrap/v5 => ../hugo-blox-builder/modules/blox-bootstrap
+replace github.com/HugoBlox/hugo-blox-builder/modules/blox-plugin-netlify => ../hugo-blox-builder/modules/blox-plugin-netlify
+replace github.com/HugoBlox/hugo-blox-builder/modules/blox-plugin-reveal => ../hugo-blox-builder/modules/blox-plugin-reveal
