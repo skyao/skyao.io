@@ -1,12 +1,12 @@
 +++
 title = "Marker: 用人工智能实现从 PDF 到 Markdown"
-date =  2024-08-26
-lastmod = 2024-08-26
+date =  2024-08-25
+lastmod = 2024-08-25
 draft = false
 
 tags = ["PDF", "markdown", "AI", "marker"]
-summary = "希望这篇技术文章能帮助你理解 actor 模型背后的关键思想及其主要前提"
-abstract = "希望这篇技术文章能帮助你理解 actor 模型背后的关键思想及其主要前提"
+summary = "Marker 是一个快速、高精度地将 PDF 转换为 Markdown 的工具。本文介绍 Marker 在 linux 上的安装和使用。"
+abstract = "Marker 是一个快速、高精度地将 PDF 转换为 Markdown 的工具。本文介绍 Marker 在 linux 上的安装和使用。"
 
 [header]
 image = ""
