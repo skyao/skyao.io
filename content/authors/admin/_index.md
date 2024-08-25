@@ -104,7 +104,7 @@ highlight_name: true
 
 敖小剑，资深码农，二十二年软件开发经验，微服务专家，Service Mesh布道师，云原生布道师，Dapr Approver。专注于基础架构，Cloud Native 爱好者和实践者，坚守开发一线打磨匠艺的架构师。曾在亚信、爱立信、唯品会、数人云、蚂蚁集团/阿里云、微软等任职，对基础架构和微服务有过深入研究和实践，矢志不渝探索云原生新方向。
 
-2022年开始就职微软开发平台事业部（DevDiv/全称Developer Division），开发维护 Dapr 等云原生产品。目前已经从微软离职，准备重新构思一款能让自己满意的 心产品，暂时命名为 [CloudRuntime](https://cloudruntime.net/)。
+2022年开始就职微软开发平台事业部（DevDiv/全称Developer Division），开发维护 Dapr 等云原生产品。目前已经从微软离职，准备重新构思一款能让自己满意的新产品，暂时命名为 [CloudRuntime](https://cloudruntime.net/)。
 
 （欢迎使用  [<i class="fa fa-rss" aria-hidden="true"></i> RSS订阅](https://skyao.io/index.xml) 本站内容更新）
 
