@@ -1,12 +1,12 @@
 +++
-title = "Marker: 搭建windows环境"
+title = "Marker学习笔记（2）: 搭建 windows 环境"
 date =  2024-08-25
 lastmod = 2024-08-25
 draft = false
 
 tags = ["PDF", "markdown", "AI", "marker"]
-summary = "Marker 是一个快速、高精度地将 PDF 转换为 Markdown 的工具。本文介绍 Marker 在 windows上的安装和使用。"
-abstract = "Marker 是一个快速、高精度地将 PDF 转换为 Markdown 的工具。本文介绍 Marker 在 windows上的安装和使用。"
+summary = "Marker 是一个快速、高精度地将 PDF 转换为 Markdown 的工具。本文介绍 Marker 在 windows 上的安装和使用。"
+abstract = "Marker 是一个快速、高精度地将 PDF 转换为 Markdown 的工具。本文介绍 Marker 在 windows 上的安装和使用。"
 
 [header]
 image = ""

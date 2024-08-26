@@ -1,7 +1,7 @@
 +++
-title = "Marker: 用人工智能实现从 PDF 到 Markdown"
-date =  2024-08-25
-lastmod = 2024-08-25
+title = "Marker学习笔记（1）: 用人工智能实现从 PDF 到 Markdown"
+date =  2024-08-24
+lastmod = 2024-08-24
 draft = false
 
 tags = ["PDF", "markdown", "AI", "marker"]
