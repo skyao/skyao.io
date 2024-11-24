@@ -179,13 +179,21 @@ Successfully installed annotated-types-0.7.0 certifi-2024.7.4 charset-normalizer
 
 先尝试转换单个文件，我以从网络上下载的 `adobe-photoshop-book-photographers-2nd.pdf` 这个680页的英文 pdf 为例。
 
-在 cmd 下，先设置临时环境变量：
+先设置临时环境变量，注意在 cmd 下要用 set 命令：
 
 ```bash
 set IMAGE_DPI=192 
+echo %IMAGE_DPI%
 ```
 
-然后执行：
+但是在 bash/zsh 下要用 export 命令：
+
+```bash
+export IMAGE_DPI=192 
+echo $IMAGE_DPI
+```
+
+安全起见，打印一下 IMAGE_DPI 环境变量以检验是否设置成功。然后执行：
 
 ```bash
 marker_single E:\study\sky\ebook\photograph\photoshop\2024-adobe-photoshop-book-photographers-2nd\adobe-photoshop-book-photographers-2nd.pdf E:\study\sky\ebook\photograph\photoshop\2024-adobe-photoshop-book-photographers-2nd\markdown-windows --batch_multiplier 4 --max_pages 10
