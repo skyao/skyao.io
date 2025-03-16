@@ -6,7 +6,7 @@ date: "2023-11-11T00:00:00Z"
 doi: ""
 
 # Schedule page publish date (NOT publication's date).
-publishDate: "2023-11-01T00:00:00Z"
+publishDate: "2026-11-01T00:00:00Z"
 
 # Publication type.
 # Legend: 0 = Uncategorized; 1 = Conference paper; 2 = Journal article;
@@ -29,7 +29,7 @@ tags:
 - API
 - 应用运行时
 
-featured: true
+featured: false
 
 # Links (optional).
 links:
@@ -47,7 +47,7 @@ math: true
 
 # Does the content use source code highlighting?
 highlight: true
-
+draft: true
 ---
 
 
