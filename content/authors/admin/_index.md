@@ -25,7 +25,7 @@ organizations:
     url: https://skyao.io/
 
 # Short bio (displayed in user profile at end of posts)
-bio: 我目前研究的方向主要在Microservice、Servicemesh、Serverless等Cloud Native相关的领域，全职从事Dapr开发，欢迎交流和指导。
+bio: 我目前研究的方向主要在Microservice、Servicemesh、Serverless等Cloud Native相关的领域，欢迎交流和指导。
 
 # Interests to show in About widget
 interests:
@@ -35,7 +35,7 @@ interests:
   - 事件驱动/Event Driven
   - 应用运行时/App Runtime
   - 云原生/Cloud Native
-  - Rust/Golang/Java/C#
+  - Rust/Golang/Java/Python
   - Web Assembly
 
 # Education to show in About widget
