@@ -121,10 +121,10 @@ Out-of-Process Adapter以独立进程的方式运行在 Mixer 进程之外，因
 
 对此有兴趣的朋友可以通过阅读下面的文章获取更详细的信息（发表于一年前，但是依然有效）：
 
-- [大规模微服务架构下的Service Mesh探索之路](https://skyao.io/talk/201806-service-mesh-explore/): 第二节架构设计中的"合并部分Mixer功能"
-- [Service Mesh架构反思：数据平面和控制平面的界线该如何划定？](https://skyao.io/post/201804-servicemesh-architecture-introspection/)
-- [Mixer Cache: Istio的阿克琉斯之踵?](https://skyao.io/post/201804-istio-achilles-heel/)： 系列文章，有两篇
-- [Istio Mixer Cache工作原理与源码分析](https://skyao.io/post/201804-istio-mixer-cache-concepts/): 系列文章，有四篇
+- [大规模微服务架构下的Service Mesh探索之路](https://skyao.net/talk/201806-service-mesh-explore/): 第二节架构设计中的"合并部分Mixer功能"
+- [Service Mesh架构反思：数据平面和控制平面的界线该如何划定？](https://skyao.net/post/201804-servicemesh-architecture-introspection/)
+- [Mixer Cache: Istio的阿克琉斯之踵?](https://skyao.net/post/201804-istio-achilles-heel/)： 系列文章，有两篇
+- [Istio Mixer Cache工作原理与源码分析](https://skyao.net/post/201804-istio-mixer-cache-concepts/): 系列文章，有四篇
 
 目前 Mixer v2 的规划还处于 Review 状态，实现方式尚未有明确决定。如果要合并 Mixer，考虑到目前 Mixer 是基于 Golang 编写，而 Envoy 是基于c++ ，这意味着需要用c++重写所有的 Adapter，工作量巨大，恐怕不是短期之内能够完成的。当然也有另外一个新颖（或者说脑洞大开）的思路：引入 Web Assembly（WASM）。目前 Envoy 在进行支持 Web Assembly 的尝试，如果成功，则通过 Web Assembly 的方式来支持 Mixer Adapter 不失为一个好选择。
 
@@ -148,7 +148,7 @@ Linkerd2 在2019年4月17日发布了最新的稳定版本 Linkerd 2.3 版本。
 
 App Mesh的数据平面采用 Envoy，产品非常有创意的同时支持VM和容器，支持多种产品形态，如上图所示。
 
-> AWS App Mesh 的更多详细内容，请浏览文章 [用AWS App Mesh重新定义应用通讯](https://skyao.io/post/201904-aws-app-mesh/) 。
+> AWS App Mesh 的更多详细内容，请浏览文章 [用AWS App Mesh重新定义应用通讯](https://skyao.net/post/201904-aws-app-mesh/) 。
 
 Google 的打法则是围绕 Istio 。首先是在2018年底推出了 Istio on GKE，即"一键集成Istio"，并提供遥测、日志、负载均衡、路由和mTLS 安全能力。接着 Google 又推出 Google Cloud Service Mesh，这是 Istio的完全托管版本，不仅仅提供Istio开源版本的完整特性，还集成了 Google Cloud上的重要产品 Stackdriver 。
 
@@ -156,7 +156,7 @@ Google 的打法则是围绕 Istio 。首先是在2018年底推出了 Istio on G
 
 ![](images/google-traffic-director.png)
 
-> Google Traffic Director 的详细介绍，请查看我之前的博客文章 [Google Traffic Director详细介绍](https://skyao.io/post/201905-google-traffic-director-detail/)
+> Google Traffic Director 的详细介绍，请查看我之前的博客文章 [Google Traffic Director详细介绍](https://skyao.net/post/201905-google-traffic-director-detail/)
 
 微软则推出了Service Fabric Mesh。Azure Service Fabric 是Microsoft的微服务框架，设计用于公共云，内部部署以及混合和多云架构。而 Service Fabric Mesh 是Azure完全托管的产品，在2018年8月推出预览版。
 
@@ -304,8 +304,8 @@ Service Mesh 技术和 Serverless 技术是工作在不同纬度的两个技术�
 
 关于云原生的理解，以及对这句话的详细阐述，这里不详细展开，有兴趣的同学可以浏览我之前的演讲内容，讲的比较深入，厚颜自荐一下：
 
-- [畅谈云原生（上）](https://skyao.io/talk/201902-cloudnative-freely-talk/): 如何理解云原生？云原生应用应该是什么样子？云原生下的中间件该如何发展？
-- [畅谈云原生（下）](https://skyao.io/talk/201902-cloudnative-freely-talk2/): 云和应用该如何衔接？如何让产品更符合云原生？
+- [畅谈云原生（上）](https://skyao.net/talk/201902-cloudnative-freely-talk/): 如何理解云原生？云原生应用应该是什么样子？云原生下的中间件该如何发展？
+- [畅谈云原生（下）](https://skyao.net/talk/201902-cloudnative-freely-talk2/): 云和应用该如何衔接？如何让产品更符合云原生？
 
 ### Service Mesh的核心价值
 

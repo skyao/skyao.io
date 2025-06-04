@@ -18,7 +18,7 @@ marketing:
     site_type: Person
     local_business_type: ''
     org_name: ''
-    description: '敖小剑的个人技术博客网站，主要关注服务网格,serverless,kubernetes,微服务等云原生技术。'
+    description: '敖小剑的个人技术分享网站，主要关注服务网格,serverless,kubernetes,微服务等云原生技术。'
     twitter: 'SkyAoXiaojian'
   analytics:
     google_analytics: 'G-4BVWTNS4MB'
@@ -45,7 +45,7 @@ header:
 
 footer:
   copyright:
-    notice: '© {year} skyao.io All Rights Reserved'
+    notice: '敖小剑的技术分享 ICP备案/许可证号:[粤ICP备2025423241号](https://beian.miit.gov.cn) 公网安备进行中'
     license:
       enable: false
       allow_derivatives: false
@@ -70,7 +70,7 @@ features:
   privacy_pack:
     enable: false
   repository:
-    url: 'https://github.com/skyao/skyao.io'
+    url: 'https://github.com/skyao/skyao.net'
     content_dir: content
     branch: master
   avatar:

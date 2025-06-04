@@ -315,17 +315,17 @@ Mixer有一个基本的设计目标，就是希望提供一个统一的抽象（
 
 备注链接地址：
 
-- [Service Mesh架构反思：数据平面和控制平面的界线该如何划定？](https://skyao.io/post/201804-servicemesh-architecture-introspection/)
+- [Service Mesh架构反思：数据平面和控制平面的界线该如何划定？](https://skyao.net/post/201804-servicemesh-architecture-introspection/)
 
-- [Mixer Cache: Istio的阿克琉斯之踵](https://skyao.io/post/201804-istio-achilles-heel/)
+- [Mixer Cache: Istio的阿克琉斯之踵](https://skyao.net/post/201804-istio-achilles-heel/)
 
-- [Istio Mixer Cache工作原理与源码分析(1)－基本概念](https://skyao.io/post/201804-istio-mixer-cache-concepts/)
+- [Istio Mixer Cache工作原理与源码分析(1)－基本概念](https://skyao.net/post/201804-istio-mixer-cache-concepts/)
 
-- [Istio Mixer Cache工作原理与源码分析(2)－工作原理](https://skyao.io/post/201806-istio-mixer-cache-principle/)
+- [Istio Mixer Cache工作原理与源码分析(2)－工作原理](https://skyao.net/post/201806-istio-mixer-cache-principle/)
 
-- [Istio Mixer Cache工作原理与源码分析(3)－主流程](https://skyao.io/post/201806-istio-mixer-cache-main/)
+- [Istio Mixer Cache工作原理与源码分析(3)－主流程](https://skyao.net/post/201806-istio-mixer-cache-main/)
 
-- [Istio Mixer Cache工作原理与源码分析(4)－签名](https://skyao.io/post/201806-istio-mixer-cache-signature/)
+- [Istio Mixer Cache工作原理与源码分析(4)－签名](https://skyao.net/post/201806-istio-mixer-cache-signature/)
 
 ![](images/ppt-22.jpg)
 

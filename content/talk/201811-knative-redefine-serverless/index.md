@@ -60,7 +60,7 @@ highlight: true
 
 ![](images/ppt2.png)
 
-这是我的个人资料，有兴趣的同学可以关注的我的个人技术博客网站 https://skyao.io。
+这是我的个人资料，有兴趣的同学可以关注的我的个人技术博客网站 https://skyao.net
 
 ![](images/ppt3.png)
 

@@ -64,7 +64,7 @@ highlight: true
 
 ## 前言
 
-在2017年年底，在Service Mesh刚刚兴起之时，应InfoQ的邀请撰写过一篇名为 ["Service Mesh年度总结：群雄逐鹿烽烟起"](https://skyao.io/publication/201801-service-mesh-2017-summary/) 的文章，对2017年Service Mesh的发展做了一次年度回顾。当时正是Service Mesh技术方兴未艾，各家产品你争我夺之时，一片欣欣向荣的气象。
+在2017年年底，在Service Mesh刚刚兴起之时，应InfoQ的邀请撰写过一篇名为 ["Service Mesh年度总结：群雄逐鹿烽烟起"](https://skyao.net/publication/201801-service-mesh-2017-summary/) 的文章，对2017年Service Mesh的发展做了一次年度回顾。当时正是Service Mesh技术方兴未艾，各家产品你争我夺之时，一片欣欣向荣的气象。
 
 时隔一年，江湖风云变幻。再次有幸收到InfoQ的邀请，继续进行Service Mesh 2018年的年度总结。本次年度总结将由来自聚集国内ServiceMesh爱好者的 [ServiceMesher 社区](http://www.servicemesher.com/) 的多位嘉宾共襄盛举，希望能为 Service Mesh 2018年的发展做一个系统而全面的总结。
 

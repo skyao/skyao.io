@@ -66,7 +66,7 @@ _ _ _
 
 ![](images/ppt-2.png)
 
-在去年的QCon上海，我曾经做过一个名为 ["Service Mesh：下一代微服务"](https://skyao.io/publication/201710-service-mesh-next-generation-microservice/) 的演讲，不知道今天现场是否有当时听过去年这场演讲的同学？（备注：现场调查的结果，大概十几位听众听过去年的演讲。）
+在去年的QCon上海，我曾经做过一个名为 ["Service Mesh：下一代微服务"](https://skyao.net/publication/201710-service-mesh-next-generation-microservice/) 的演讲，不知道今天现场是否有当时听过去年这场演讲的同学？（备注：现场调查的结果，大概十几位听众听过去年的演讲。）
 
 当然，今天我们的内容不是继续做 Service Mesh 的布道，按秀涛的要求，今年要好好讲一讲实践。所以今天我不会像去年那样给大家详细解释 Service Mesh 是什么，能做什么，有什么优势。而是结合过去一年中蚂蚁金服的实践经验，结合蚂蚁金服的 SOFAMesh 产品，帮助大家更深刻的理解 Service Mesh 技术。
 
@@ -305,9 +305,9 @@ MOSN 和 x-protocol 介绍：
 
 X-protocol 特性的详细讲解：
 
-- [SOFAMesh中的多协议通用解决方案x-protocol介绍系列(1)-DNS通用寻址方案](https://skyao.io/post/201809-xprotocol-common-address-solution/)
-- [SOFAMesh中的多协议通用解决方案x-protocol介绍系列(2)-快速解码转发](https://skyao.io/post/201809-xprotocol-rapid-decode-forward/)
-- [SOFAMesh中的多协议通用解决方案x-protocol介绍系列(3)-TCP协议扩展](https://skyao.io/post/201809-xprotocol-tcp-protocol-extension/)
+- [SOFAMesh中的多协议通用解决方案x-protocol介绍系列(1)-DNS通用寻址方案](https://skyao.net/post/201809-xprotocol-common-address-solution/)
+- [SOFAMesh中的多协议通用解决方案x-protocol介绍系列(2)-快速解码转发](https://skyao.net/post/201809-xprotocol-rapid-decode-forward/)
+- [SOFAMesh中的多协议通用解决方案x-protocol介绍系列(3)-TCP协议扩展](https://skyao.net/post/201809-xprotocol-tcp-protocol-extension/)
 
 总结一下，我们解决了如下几个问题：
 
@@ -572,6 +572,6 @@ Service Mesh 是一个新生事物，新事物在刚出现时总是会遇到各�
 
 也欢迎大家加入 servicemesher 社区的微信交流群，请按照 servicemesher.com 网站的 "联系我们" 页面的要求加入微信交流群。
 
-最后，厚颜推荐一下我自己的个人技术博客 https://skyao.io ，欢迎浏览和交流。
+最后，厚颜推荐一下我自己的个人技术博客 https://skyao.net ，欢迎浏览和交流。
 
 今天的内容到此结束，非常感谢大家的聆听，有缘下次再会！谢谢大家！

@@ -5,12 +5,12 @@ workPath=$(pwd)
 echo "work path is $workPath"
 
 rm -rf public
-env HUGO_ENV="production" hugo --baseUrl="https://skyao.io"
+env HUGO_ENV="production" hugo --baseUrl="https://skyao.net"
 if [ $? -ne 0 ]; then
     echo "Fail to build html content by hugo, exit"
     exit 1
 fi
-echo "Success to build skyao.io site"
+echo "Success to build skyao.net site"
 
 cd /var/www/skyao
 ls /var/www/skyao | grep -v learning | xargs rm -rf
@@ -26,4 +26,4 @@ if [ $? -ne 0 ]; then
     exit 1
 fi
 
-echo "Success to publish skyao.io site"
+echo "Success to publish skyao.net site"

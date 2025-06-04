@@ -71,7 +71,7 @@ Dapr 的全称是 "Distributed Application Runtime"，即 "分布式应用运行
 
 本文是 Dapr 的进阶内容分享和讨论，因此在本文中我假定读者对 **Dapr** 已有初步的了解，如果之前没有接触过 Dapr，建议在阅读本文之前先阅读这篇 Dapr 的介绍文章：
 
-[Dapr v1.0展望：从servicemesh到云原生](https://skyao.io/talk/202103-dapr-from-servicemesh-to-cloudnative/) 
+[Dapr v1.0展望：从servicemesh到云原生](https://skyao.net/talk/202103-dapr-from-servicemesh-to-cloudnative/) 
 
 在这里我们对 Dapr 进行一个快速而简单的介绍。首先来看ServiceMesh，和传统RPC框架相比，servicemesh的创新之处在于引入了 Sidecar 模式：
 
@@ -161,7 +161,7 @@ Dapr 和 Servicemesh 最明显的不同之处是 **Dapr 的场景比 Servicemesh
 
 ## 死生之地：API标准化的价值 
 
-在上一篇文章 [Dapr v1.0展望：从servicemesh到云原生](https://skyao.io/talk/202103-dapr-from-servicemesh-to-cloudnative/)  中，我曾经指出：Dapr 的本质是面向云原生应用的 **分布式能力抽象层**：
+在上一篇文章 [Dapr v1.0展望：从servicemesh到云原生](https://skyao.net/talk/202103-dapr-from-servicemesh-to-cloudnative/)  中，我曾经指出：Dapr 的本质是面向云原生应用的 **分布式能力抽象层**：
 
 ![](images/nature-of-multi-runtime.jpg)
 

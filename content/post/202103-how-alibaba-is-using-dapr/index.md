@@ -156,7 +156,7 @@ Faas 对多语言支持有强烈的诉求，肯定不会局限于 Java。而阿�
 
 - [Alibaba Cloud Uses Dapr to Support Its Business Growth](https://www.infoq.com/news/2021/03/alibaba-dapr/)
 
-由于考虑到国内 Dapr 的现状，这篇 Dapr 实践文章押后了一周发布，在20号演讲的 Dapr 介绍文章，也就是 [Dapr v1.0展望：从servicemesh到云原生](https://skyao.io/talk/202103-dapr-from-servicemesh-to-cloudnative/) 一文发布之后，才对外发布这片 Dapr 的落地实践篇。
+由于考虑到国内 Dapr 的现状，这篇 Dapr 实践文章押后了一周发布，在20号演讲的 Dapr 介绍文章，也就是 [Dapr v1.0展望：从servicemesh到云原生](https://skyao.net/talk/202103-dapr-from-servicemesh-to-cloudnative/) 一文发布之后，才对外发布这片 Dapr 的落地实践篇。
 
 但比较有意思的是国内 Dapr 社区的 **Edison** 同学，非常积极的直接翻译并补充了部分内容：
 

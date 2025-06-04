@@ -3,8 +3,8 @@
 # Hugo Documentation: https://gohugo.io/getting-started/configuration/#all-configuration-settings
 # This file is formatted using YAML syntax - learn more at https://learnxinyminutes.com/docs/yaml/
 
-title: 敖小剑的博客 # Website name
-baseURL: 'https://skyao.io/' # Website URL
+title: 敖小剑的技术分享 # Website name
+baseURL: 'https://skyao.net/' # Website URL
 
 ############################
 ## LANGUAGE

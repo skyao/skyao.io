@@ -17,12 +17,12 @@ status:
 superuser: true
 
 # Role/position/tagline
-role: 新时代农民工 * 中年码农
+role: IT技术爱好者 * 中年码农
 
 # Organizations/Affiliations to show in About widget
 organizations:
-  - name: SkyAo.io
-    url: https://skyao.io/
+  - name: SkyAo.net
+    url: https://skyao.net/
 
 # Short bio (displayed in user profile at end of posts)
 bio: 我目前研究的方向主要在Microservice、Servicemesh、Serverless等Cloud Native相关的领域，欢迎交流和指导。
@@ -109,6 +109,6 @@ highlight_name: true
 
 2024年底加入华为云容器团队，继续从事云原生和 serverless 方面的工作。工作之余，正在重新构思一款能让自己满意的新产品，暂时命名为 [CloudRuntime](https://cloudruntime.net/)。
 
-（欢迎使用  [<i class="fa fa-rss" aria-hidden="true"></i> RSS订阅](https://skyao.io/index.xml) 本站内容更新）
+（欢迎使用  [<i class="fa fa-rss" aria-hidden="true"></i> RSS订阅](https://skyao.net/index.xml) 本站内容更新）
 
 {style="text-align: justify;"}

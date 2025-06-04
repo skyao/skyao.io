@@ -176,7 +176,7 @@ public interface DaprClient {
 
 ![](images/dapr-publish-event.jpg)
 
-关于 Multiple Runtime / Mecha 架构的介绍不在这里深入展开，有兴趣的同学可以浏览我之前的博客文章 [“Mecha：将Mesh进行到底”](https://skyao.io/talk/202004-mecha-mesh-through-to-the-end/) 。
+关于 Multiple Runtime / Mecha 架构的介绍不在这里深入展开，有兴趣的同学可以浏览我之前的博客文章 [“Mecha：将Mesh进行到底”](https://skyao.net/talk/202004-mecha-mesh-through-to-the-end/) 。
 
 稍后我会有一篇深度文章针对上面这个话题，详细介绍在消息通讯领域和EDA架构下如何实现消息通讯和事件驱动的抽象和标准化，以避免业务应用和底层消息产品绑定和强耦合，敬请关注。
 
@@ -419,11 +419,11 @@ Event可以解耦生产者和消费者，因此图中的微服务A和微服务C/
 
 
 - [Avoid the Distributed Monolith!!](https://www.slideshare.net/DevOpsDaysDFW/avoid-the-distributed-monolith)：来自 verizon 的 Mohamad Byan 在2018年9月的一个演讲，描述微服务实践中的分布式单体陷阱和解决的方式。
-- [“Mecha：将Mesh进行到底”](https://skyao.io/talk/202004-mecha-mesh-through-to-the-end/) ：我前段时间的文章，详细介绍 Multiple Runtime / Macha 架构，将更多的分布式能力进行Mesh化。
+- [“Mecha：将Mesh进行到底”](https://skyao.net/talk/202004-mecha-mesh-through-to-the-end/) ：我前段时间的文章，详细介绍 Multiple Runtime / Macha 架构，将更多的分布式能力进行Mesh化。
 - [The Eight Fallacies of Distributed Computing](https://www.red-gate.com/simple-talk/blogs/the-eight-fallacies-of-distributed-computing/): 分布式计算领域的经典文章，中文翻译请见 [分布式计算的八大谬论](http://www.xumenger.com/the-eight-fallacies-of-distributed-computing-20180817/)
 - [Opportunities and Pitfalls of Event-driven Utopia](https://www.youtube.com/watch?v=jjYAZ0DPLNM): Bernd Rücker 在QCon上的一个演讲，讲述“事件驱动乌托邦的机遇与陷阱”，本文的部分图片来自这份PPT。
 - [Practical DDD: Bounded Contexts + Events => Microservices](https://www.infoq.com/presentations/microservices-ddd-bounded-contexts/): Indu Alagarsamy的一个演讲，介绍领域驱动开发（DDD）和 Messaging 的交集。推荐使用消息技术在干净、定义良好的有界上下文之间进行通信，以去除时空耦合。
-- [Building Event-Driven Cloud Applications and Services](https://medium.com/@ratrosy/building-event-driven-cloud-applications-and-services-ad0b5b970036): 讨论构建事件驱动的应用和服务的通用实践和技术，是一个序列教程。中文翻译看 [构建事件驱动的云应用和服务](https://skyao.io/post/202004-building-event-driven-cloud-applications-and-services/) 
-- [The Architect’s Guide to Event-Driven Microservices](https://go.solace.com/wp-download-eventdrivenmicroservices.html): 来自Solace公司网站上的一份PDF格式的小册子,副标题为 “The Architect’s Guide to Building a Responsive, Elastic and Resilient Microservices Architecture / 架构师指南，用于建立响应式的，灵活而弹性的微服务架构。” 中文翻译见 [事件驱动微服务架构师指南](https://skyao.io/post/202004-event-driven-microservices/)
+- [Building Event-Driven Cloud Applications and Services](https://medium.com/@ratrosy/building-event-driven-cloud-applications-and-services-ad0b5b970036): 讨论构建事件驱动的应用和服务的通用实践和技术，是一个序列教程。中文翻译看 [构建事件驱动的云应用和服务](https://skyao.net/post/202004-building-event-driven-cloud-applications-and-services/) 
+- [The Architect’s Guide to Event-Driven Microservices](https://go.solace.com/wp-download-eventdrivenmicroservices.html): 来自Solace公司网站上的一份PDF格式的小册子,副标题为 “The Architect’s Guide to Building a Responsive, Elastic and Resilient Microservices Architecture / 架构师指南，用于建立响应式的，灵活而弹性的微服务架构。” 中文翻译见 [事件驱动微服务架构师指南](https://skyao.net/post/202004-event-driven-microservices/)
 - [致传统企业朋友：不够痛就别微服务，有坑](https://www.infoq.cn/article/Nd0RofAUp0WtlvlQArbu)：网易云刘超刘老师的超级好文章，极其实在而全面的讲述微服务落地需要考虑的方方面面以及各种问题，强烈推荐阅读。
 

@@ -451,9 +451,9 @@ docker 这块我们现在涉猎的不多，暂时还处于探索阶段，后面�
 
 最后做一下广告， dolphin 框架使用了很多目前业界最新(绝不夸张)的技术栈，很多基本都没有中文资料，因此我自己写了一些学习笔记，里面翻译了部分这些技术的英文文档，如果感兴趣可以一起研究：
 
-- [gRPC学习笔记](https://skyao.io/learning-grpc/)
-- [etcd3学习笔记](https://skyao.io/learning-etcd3/)
-- [Protocol buffer 3学习笔记](https://skyao.io/learning-proto3/)
+- [gRPC学习笔记](https://skyao.net/learning-grpc/)
+- [etcd3学习笔记](https://skyao.net/learning-etcd3/)
+- [Protocol buffer 3学习笔记](https://skyao.net/learning-proto3/)
 
 
 

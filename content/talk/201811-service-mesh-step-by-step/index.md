@@ -154,9 +154,9 @@ highlight: true
 1. 在非k8s环境下，以Sidecar模式先进行少量落地，主要是替换掉原有的多语言客户端 （拿短期红利）
 2. 开发SOFAMesh，集成MOSN到Istio，增加对多种RPC协议的支持，增加对RPC服务模式的兼容（为最终目标做准备 ）
 
-在今年6月底的杭州第一届Service Mesh 线下 meetup 中，我们公布了 SOFAMesh 项目，我当时做了一个演讲 [大规模微服务架构下的Service Mesh探索之路](https://skyao.io/publication/201806-service-mesh-explore/) ，有兴趣的同学可以去回顾一下我们当时的背景/需求/设计方案。
+在今年6月底的杭州第一届Service Mesh 线下 meetup 中，我们公布了 SOFAMesh 项目，我当时做了一个演讲 [大规模微服务架构下的Service Mesh探索之路](https://skyao.net/publication/201806-service-mesh-explore/) ，有兴趣的同学可以去回顾一下我们当时的背景/需求/设计方案。
 
-大概在今年九月，我们完成了对非k8s下运行istio的深入调研，得出的结论是要实现这个模式需要非常多的工作。而且，我们对Service Mesh的认知也更加深刻，明确了通过Service Mesh将传统中间件能力向以k8s为代表的基础设施层下沉的战略方向。期间，内部也明确了k8s普及的大方向，因此，综合这两个重要输入，我们选择放弃继续在路线2上继续演进（即 istio on 非k8s）的想法。关于这一点，有兴趣的同学可以去阅读我在10月份QCon大会上的演讲内容 [长路漫漫踏歌而行：蚂蚁金服Service Mesh实践探索](https://skyao.io/publication/201810-ant-finance-service-mesh-practice/) 。
+大概在今年九月，我们完成了对非k8s下运行istio的深入调研，得出的结论是要实现这个模式需要非常多的工作。而且，我们对Service Mesh的认知也更加深刻，明确了通过Service Mesh将传统中间件能力向以k8s为代表的基础设施层下沉的战略方向。期间，内部也明确了k8s普及的大方向，因此，综合这两个重要输入，我们选择放弃继续在路线2上继续演进（即 istio on 非k8s）的想法。关于这一点，有兴趣的同学可以去阅读我在10月份QCon大会上的演讲内容 [长路漫漫踏歌而行：蚂蚁金服Service Mesh实践探索](https://skyao.net/publication/201810-ant-finance-service-mesh-practice/) 。
 
 最近，k8s普及的时间表再一次明确提前，蚂蚁金服将会在短时间内开启k8s的大面积普及。因此，我们的演进路线再一次发生变化。目前最新的演进路线将会是这样：
 
@@ -221,7 +221,7 @@ highlight: true
 
 在我们的迁移方案中，我们考虑引入DNS寻址方式。除了前面说的DNS是支持度最好，使用最普遍的寻址方式，在所有的编程语言和平台上都可以支持之外，我们还希望将DNS寻址方式作为未来产品的长期方向：
 
-- 在SOFAMesh和SOFAMosn中，我们已经基于名为x-protocol的方式实现了DNS通用寻址方式，用来解决Dubbo/HSF/SOFA等传统SOA服务模型在Service Mesh下的访问问题 （备注: 具体内容请见我的博客文章 [SOFAMesh中的多协议通用解决方案x-protocol介绍系列(1)-DNS通用寻址方案](https://skyao.io/post/201809-xprotocol-common-address-solution/) )
+- 在SOFAMesh和SOFAMosn中，我们已经基于名为x-protocol的方式实现了DNS通用寻址方式，用来解决Dubbo/HSF/SOFA等传统SOA服务模型在Service Mesh下的访问问题 （备注: 具体内容请见我的博客文章 [SOFAMesh中的多协议通用解决方案x-protocol介绍系列(1)-DNS通用寻址方案](https://skyao.net/post/201809-xprotocol-common-address-solution/) )
 - 未来在我们的serverless产品中，我们希望可以为运行其上的Function提供DNS寻址支持
 - 可能还会有其他更加广泛的使用场景。
 
